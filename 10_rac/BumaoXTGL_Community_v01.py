@@ -136,7 +136,7 @@ def b3_root_flat():
     _ROOT_ALLOW = {"README-HX.txt", "README-HX.md", "README.md", "NOTICE", "TRADEMARK.md",
                    "CONTRIBUTING.md", "LICENSE", "DCO", "CHANGELOG.md", "COMPLIANCE.md",
                    "OPEN_SOURCE_NOTICE.md", "SECURITY.md", "CODE_OF_CONDUCT.md", ".gitignore",
-                   ".gitattributes"}
+                   ".gitattributes", "RETURN_HERE.md"}
     flat = [f for f in sorted(os.listdir(HX)) if os.path.isfile(os.path.join(HX, f))]
     bad = [f for f in flat if f not in _ROOT_ALLOW]
     return not bad, ("根下平铺 %d 件（白名单内 %d，越界 %d）：%s"
@@ -360,6 +360,8 @@ except Exception as e:
     sys.exit(1)
 
 if __name__ == "__main__":
-    try: sys.stdout.reconfigure(encoding="utf-8")
-    except: pass
+    try: sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception: pass
+    try: sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception: pass
     sys.exit(core.main())

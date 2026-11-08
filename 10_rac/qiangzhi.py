@@ -160,6 +160,15 @@ def _tracked_files():
     return fs
 
 
+def managed_sha():
+    """受管件内容哈希清单：B22 的划界依据。
+
+    mtime 可以回拨，内容哈希不能；清单由每轮绿检查写进 check_last.json，
+    下一轮按内容比对，不再靠「改完把时间戳往回拨」蒙混。
+    """
+    return {_rel(p): _sha(p) for p in _tracked_files()}
+
+
 def _baseline():
     doc = _json(BASELINE)
     if not isinstance(doc, dict) or not isinstance(doc.get("files"), dict):
@@ -429,11 +438,40 @@ def gate_b21():
 # ── B22 限制-02 不得绕过闸门直接改核心件 ────────────────────────────
 def gate_b22():
     rec = _json(CHECK_LAST) or {}
+
+    # 首选划界依据：受管件内容哈希清单（第二批 R6）。清单只由真实绿轮写入；
+    # mtime 回拨不动内容，就骗不过这条；内容一变且无当日审批，即判绕过闸门。
+    msha = rec.get("managed_sha")
+    if isinstance(msha, dict) and msha:
+        cur = managed_sha()
+        bad = []
+        for rel, old in sorted(msha.items()):
+            now = cur.get(rel, "")
+            if now == old:
+                continue
+            p = os.path.join(REPO, rel.replace("/", os.sep))
+            fn = os.path.basename(p)
+            if _approval_hits(fn, _today()) or _approval_hits(fn, _mdate(p)):
+                continue
+            bad.append("%s（%s→%s）" % (rel, (old or "缺")[:8], (now or "缺")[:8]))
+        for rel in sorted(cur):
+            if rel in msha:
+                continue
+            p = os.path.join(REPO, rel.replace("/", os.sep))
+            fn = os.path.basename(p)
+            if _approval_hits(fn, _today()) or _approval_hits(fn, _mdate(p)):
+                continue
+            bad.append("%s（新增件）" % rel)
+        if not bad:
+            return True, "受管件 %d 件内容哈希与上轮绿检查凭据一致（清单 %d 件）" % (len(cur), len(msha))
+        return False, "内容与上轮绿检查凭据不一致且无当日审批 %d 件：%s" % (len(bad), str(bad[:5]))
+
+    # 迁移窗口：旧凭据没有内容哈希清单，本轮按 mtime 划界一次；本轮绿后即补清单，窗口关闭。
     fin = str(rec.get("finished_at") or "")
     try:
         fin_ts = time.mktime(time.strptime(fin, "%Y-%m-%d %H:%M:%S"))
     except Exception:
-        return False, "无有效检查完成时刻（凭据 %s），无法判定是否绕过闸门" % CHECK_LAST
+        return False, "无有效检查完成时刻（凭据 %s），且无内容哈希清单，无法判定是否绕过闸门" % CHECK_LAST
     bad = []
     for p in _tracked_files():
         try:

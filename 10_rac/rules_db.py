@@ -164,7 +164,11 @@ def enforce_decl():
 
 
 def record_check_result(nfail, a_items, b_items, total):
-    """每轮 check 结束写凭据；B19 下一轮据此判「跑完检查才准落盘」。"""
+    """每轮 check 结束写凭据；B19 下一轮据此判「跑完检查才准落盘」。
+
+    第二批 R6：凭据同时落受管件内容哈希清单，B22 下一轮按内容划界，不再看 mtime。
+    清单随每轮完成的检查落盘，与旧 mtime 划界同一时点，只是判据从时间换成内容。
+    """
     doc = {
         "finished_at": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
         "rules_sha": rules_sha(),
@@ -174,6 +178,13 @@ def record_check_result(nfail, a_items, b_items, total):
         "nfail": int(nfail),
         "version": json.loads(rd(META)).get("version", "") if os.path.exists(META) else "",
     }
+    try:
+        import qiangzhi as _qz
+        _msha = _qz.managed_sha()
+    except Exception:
+        _msha = {}
+    if _msha:
+        doc["managed_sha"] = _msha
     wr(os.path.join(LEDGER_DIR, "check_last.json"),
        json.dumps(doc, ensure_ascii=False, indent=1))
     return doc

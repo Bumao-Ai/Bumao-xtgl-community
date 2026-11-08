@@ -1,13 +1,19 @@
 # Bumao XTGL · Community
 
+Status: maintenance pause
+状态：维护暂停，稳定可用
+
 ![license](https://img.shields.io/badge/license-Apache--2.0-blue)
 ![python](https://img.shields.io/badge/python-3.12%2B-blue)
 ![rules](https://img.shields.io/badge/rules-59-brightgreen)
 ![checks](https://img.shields.io/badge/checks-44-brightgreen)
 ![local](https://img.shields.io/badge/local--first-no%20cloud-informational)
 
-> **Two version spaces** — the in-app version in `00_meta/meta.json` is `0.10`; the repository release tag is `v0.14`. They are two independent numbering spaces, not the same number.
-> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.10`；仓库发布 tag 是 `v0.14`。这是两个独立的编号空间，不是同一个数字。
+> **Two version spaces** — the in-app version in `00_meta/meta.json` is `0.10`; the repository release tag is `v0.15`. They are two independent numbering spaces, not the same number.
+> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.10`；仓库发布 tag 是 `v0.15`。这是两个独立的编号空间，不是同一个数字。
+>
+> **Cold start** — to resume iteration, start from [`RETURN_HERE.md`](RETURN_HERE.md).
+> **冷启动** — 恢复迭代从 [`RETURN_HERE.md`](RETURN_HERE.md) 开始。
 
 59 rules, 44 checks and a local web console: run an AI agent under a rule set you can inspect, with one verifiable `ALL PASS` / `FAIL` verdict per run.
 
@@ -21,7 +27,7 @@
 ## Quick start (30 seconds)
 
 ```bash
-git clone -b v0.14 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
+git clone -b v0.15 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
 cd Bumao-xtgl-community/10_rac
 python BumaoXTGL_Community_v01.py whoami
 python BumaoXTGL_Community_v01.py check --strict   # exit code is the verdict
@@ -34,7 +40,7 @@ cd ../20_view/web
 python serve.py            # prints the real local address
 ```
 
-`v0.14` is the tag this README was released with; see Releases and verify the zip with `SHA256SUMS`.
+`v0.15` is the tag this README was released with; see Releases and verify the zip with `SHA256SUMS`.
 
 > Counting: **59 rules / 44 checks** are two dimensions. Rules are the written clauses (15 chapters); checks are the gates that inspect them. One rule can be covered by several gates, and one gate can span several rules.
 
@@ -42,13 +48,13 @@ python serve.py            # prints the real local address
 
 | Item | Value | Source |
 |---|---|---|
-| Commits at `v0.14` | 17 | `git rev-list --count v0.14` |
+| Commits at `v0.15` | 20 | `git rev-list --count v0.15` |
 | Last commit | 2026-11-08 | `git log -1 --date=short` |
 | Rules | 59 clauses / 15 chapters | first line of `check --strict` (`15 ch / 59 cls`) |
 | Check items | 44 | `check --strict` conclusion line (`2/44 gates red`, second run) |
 | Reverse cases | 14 | `10_rac/test_qiangzhi.py`; last run 13 caught / 1 missed (B15) |
 | Defect ledger | 0 real closed items | `30_taizhang/chacuo_zhang.txt` holds 3 sanitized sample rows only |
-| Releases | 6 tags, `v0.1` → `v0.14`, all 2026-11-08 | `git tag` |
+| Releases | 7 tags, `v0.1` → `v0.15`, all 2026-11-08 | `git tag` |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) | — |
 
 On a public clone, `A10` and `A13` are red by design: they check an approval ledger and a quoted authorization, and this edition ships no real approval samples. They are marked *not applicable*, not passed. The **first** run on a clean clone also flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; a second run is `2/44` red. That credential is runtime state, not a committed file.
