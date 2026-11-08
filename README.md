@@ -51,13 +51,13 @@ python serve.py            # prints the real local address
 | Commits at `v0.16` | 22 | `git rev-list --count v0.16` |
 | Last commit | 2026-11-08 | `git log -1 --date=short` |
 | Rules | 59 clauses / 15 chapters | first line of `check --strict` (`15 ch / 59 cls`) |
-| Check items | 44 | `check --strict` conclusion line (`2/44 gates red`, second run) |
+| Check items | 44 | `check --strict` conclusion line (`2/44 gates red`, second run at tag `v0.16` without an approval ledger; live with the real ledger is `0/44`) |
 | Reverse cases | 16 | `10_rac/test_qiangzhi.py`; last run 15 caught / 1 missed (B15, pre-existing) |
 | Defect ledger | 0 real closed items | `30_taizhang/chacuo_zhang.txt` holds 3 sanitized sample rows only |
 | Releases | 8 tags, `v0.1` → `v0.16`, all 2026-11-08 | `git tag` |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) | — |
 
-On a public clone, `A10` and `A13` are red by design: they check an approval ledger and a quoted authorization, and this edition ships no real approval samples. They are marked *not applicable*, not passed. The **first** run on a clean clone also flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; a second run is `2/44` red. That credential is runtime state, not a committed file.
+On a public clone, `A10` and `A13` are red by design: they check an approval ledger and a quoted authorization, and this edition ships no real approval samples. Without an approval ledger they are **explicitly denied (DENY)** — the result is FAIL, never PASS. "Red by design" means the public repository ships no same-day authorization credential; it is not a waiver. Older kernels word the detail as "找不到审批册", the current kernel writes "A10 判定=DENY" — both are FAIL. The **first** run on a clean clone also flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; a second run at tag `v0.16` without a ledger is `2/44` red, while live with the real ledger is `0/44` — the two numbers measure different trees. That credential is runtime state, not a committed file.
 
 ## 中文
 
@@ -96,7 +96,7 @@ flowchart TB
 | Group | Gates | What it proves |
 |---|---|---|
 | Rule source | A1–A9, A11, A12 | 15 chapters / 59 clauses load, IDs are unique, blocks are contiguous, references resolve, no empty clauses |
-| Authorization trail | A10, A13 | approval ledger and quoted authorization; **not applicable** in the public repo |
+| Authorization trail | A10, A13 | approval ledger and quoted authorization; without a ledger → explicit **DENY** (FAIL), not a waiver |
 | Views and render | B1, B2, B5, B8a, B8b, B8c | view drift is zero, render is idempotent, chapter files match, version is injected from meta |
 | Structure and layout | B3, B4, B14 | flat root files ≤ 1, sub-directory naming, layers match `meta.layers` |
 | Sanitization | B6, B6b, B7, B23, B25 | no machine paths, keys, private words or real ledger entries |

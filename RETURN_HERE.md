@@ -12,10 +12,10 @@ Iteration is paused; the current release is stable and usable as-is. When work r
    If the tree is dirty, stop and decide what to keep before touching anything.
    先确认当前 tag 与工作区是否干净；工作区不干净就先决定留什么，再动手。
 
-2. **The last verdict, then the current one**
-   Read `30_taizhang/check_last.json` (`finished_at`, `nfail`, `managed_sha`), then run `check --strict` twice.
+2. **The current verdict**
+   Run `check --strict` twice and record both outputs. A fresh clone has no `30_taizhang/check_last.json` — it is runtime state, not a committed file — so the two runs are the only evidence.
    Two identical conclusions are the baseline; one run alone is not evidence.
-   先读上一轮凭据，再连跑两次 `check --strict`；两次结论一致才算基线。
+   连跑两次 `check --strict` 并记录两次输出；`30_taizhang/check_last.json` 是运行凭据、不进仓库，新克隆本就没有，只能以两次实跑为准。两次结论一致才算基线。
 
 3. **What was in flight**
    Read the top entry of `CHANGELOG.md` and `ROADMAP.md`. The top entry lists what the last release actually changed; the roadmap marks what was still in progress.
@@ -27,6 +27,8 @@ Iteration is paused; the current release is stable and usable as-is. When work r
 - `00_meta/feature_packs/f02_lishi.json` — `enabled: false`（日志日历，只读面板）；要用再打开。
 - 维护暂停：迭代停了，但已发的代码照常能跑；`serve.py` 不会自动启动，`check --strict` 也不会自己跑。
 - 首次克隆不自动改文件：`check --strict` 只写 `30_taizhang/check_last.json` 这一份运行凭据。
+- 真正的主开关是 `BUMO_JIANCHA_MODE`（监督执行器属 personal／live 树，本仓不随附）：未设或拼错一律按 `off`，不会自启。
+- 该开关置 `enforce` 时，一轮检查会复制基线，实测约 228 MB／1303 文件；`qingli` 默认只 dry-run，400 MB 上限只报警、不删。
 
 ## Touch this file first · 先动这个文件
 
