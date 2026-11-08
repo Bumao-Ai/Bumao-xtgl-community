@@ -23,7 +23,8 @@ bumao-xtgl-community/
 ## 30 秒跑起来
 
 ```bash
-cd 10_rac
+git clone -b v0.11 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
+cd bumao-xtgl-community/10_rac
 python BumaoXTGL_Community_v01.py whoami
 python BumaoXTGL_Community_v01.py check --strict
 ```
