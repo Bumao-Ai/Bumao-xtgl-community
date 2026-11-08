@@ -1,0 +1,59 @@
+Bumao XTGL Community 变更与治理台账 biangeng_zhang.txt
+============================================================
+记账口径：每次改动一行，写明性质级别（L1 措辞 / L2 条款增删改 / L3 架构级）、
+影响面与证据指针。只追加，不修改历史条目。
+本件为脱敏样本。
+
+2026-01-01 | L3 架构级 | 示例：项目初始化
+  性质：建立六层结构，不含具体条款与个人信息。
+  版本：以 00_meta/meta.json 为准
+  证据：check --strict 输出原文
+
+2026-01-02 | L2 条款增补 | 示例：补充判定阈值
+  性质：为分级判定补入阈值与留痕要求。
+  验证：render write + check --strict -> ALL PASS
+  证据：check --strict 输出原文
+
+2026-11-07 | L2 条款增删改 | 新增第 11／12 章强制类与限制类
+  范围：z11.json（11.0—11.5 六条强制）、z12.json（12.0—12.5 六条限制）；
+        z00 真身范围改 z00..z12；jiancha_map／gates_decl／meta.ssot 同步。
+  影响面：条款 44→56，章 11→13；新增闸位 B15—B26 与 engine A12 接线核对。
+  来源：用户指令（原话「（原话已脱敏移除）」）
+  验证：10_rac/test_qiangzhi.py 12 条反向用例 + 1 条放行对照；check --strict
+  证据：30_taizhang/qiangzhi_shenpi.txt 第 1 号；30_taizhang/core_baseline.json
+
+============================================================
+2026-11-07 | L1 手续补录 | 前端边框彩虹改动的授权来源与留痕闭环
+  范围：20_view/web/design_tokens.json、20_view/web/index.html（community 端）
+  来源：用户指令（原话「（原话已脱敏移除）」，系对「补 community 审批记录，需一句明确授权原话」提问的答复）
+  说明：审批册【第 10 号】已由并发工序于本日写入，点名上述两件并含授权词，B15 判 PASS；
+        本条不重复授权、不修改第 10 号时间戳（其原文 23:15 晚于本条写入时刻，
+        按「只追加不改历史」原样保留），只补登本会话授权来源与证据指针。
+        改前件：90_lishi/gongkai_weihu_261107 下 design_tokens.json.261107-2300.pre.bak
+        （sha256 506ad094…）与 index.html.261107-2300.pre.bak（sha256 71d22b06…），
+        均等于 core_baseline.json 基准值；同哈希本地副本见
+        40_renwu/gai_261107_zaigong/w89_community_224645.bak.json、
+        w87_community_223304.bak.html。
+  影响面：不改条款、不改代码、不重建基线；B16 剩 1 件（新增文件 portability_probe.py）
+        按第 10 号「（原话已脱敏移除）」保持如实红态，不掩盖。
+  验证：BumaoXTGL_Community_v01.py check --strict（票据 w90_check_community.json）
+  证据：30_taizhang/qiangzhi_shenpi.txt 第 10 号；30_taizhang/core_baseline.json；
+        w90_baseline_check.json
+
+2026-11-08 | L3 架构级 | community 7 条红按甲／乙／丙分类处置（如实补录）
+  性质：B27 已修转绿；余 7 条按用户 2026-11-08 指令分三类：甲如实补、乙事后追认不补签、丙列不可追溯。
+  范围：B15／B22／B24（审批类）、B16（改前件）、B17／B20（台账）、B29（预告行）。
+  实际改动时间：kernelsync.py 2026-11-08 07:59:22；engine.py 06:56:24；portability_probe.py 07:49:37；
+        test_check_rc.py 06:57:07；index.html／i18n.js 08:17—08:18；design_tokens.json 2026-11-07 22:46:45。
+  来源：用户指令（2026-11-07「（原话已脱敏移除）」、2026-11-08「（原话已脱敏移除）」）
+  L2 补录：B16 改前件——kernelsync.py 与 engine.py 的同哈希改前件已从 2026-11-07 22:00 每日备份
+        补入 90_lishi/gongkai_weihu_261107（sha256 82700fcc…／b6643e65…，与基线旧哈希逐字相同）；
+        portability_probe.py／test_check_rc.py 为基线后新增件，无改前态，列丙类。
+  L2 补录：B29 预告行——design_tokens.json 补一行，行首时间写「实际改动时间」，
+        行内另写「补记时间 2026-11-08 08:26:28」，明写本行事后补记、非事前预告。
+  L3 记录：B15／B22／B24 不补签，审批册第 12 号写「事后追认」，明写非事前审批、属流程缺口。
+  证据：30_taizhang/qiangzhi_shenpi.txt 第 12 号；20_view/web/gaigai_yugao.txt 2026-11-07 22:46:45 行；
+        90_lishi/gongkai_weihu_261107 两件改前件；30_taizhang/buke_zhuisu_qingdan.txt
+  验证：BumaoXTGL_Community_v01.py check --strict（复跑结果见 check_last.json）
+
+【本文件结束】

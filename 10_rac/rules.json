@@ -1,0 +1,127 @@
+{
+ "schema": 1,
+ "product": "Bumao XTGL Community",
+ "name": "Bumao XTGL Community",
+ "version": "0.1",
+ "ssot_files": [
+  "z00.json",
+  "z01.json",
+  "z02.json",
+  "z03.json",
+  "z04.json",
+  "z05.json",
+  "z06.json",
+  "z07.json",
+  "z08.json",
+  "z09.json",
+  "z10.json"
+ ],
+ "n_clauses": 44,
+ "n_chapters": 11,
+ "chapters": [
+  {
+   "ch": 0,
+   "file": "di00_yuanxinxi_jieru.txt",
+   "n": 5
+  },
+  {
+   "ch": 1,
+   "file": "di01_shuyu_jiazu.txt",
+   "n": 3
+  },
+  {
+   "ch": 2,
+   "file": "di02_juese_qiyue.txt",
+   "n": 4
+  },
+  {
+   "ch": 3,
+   "file": "di03_fenji_luyou.txt",
+   "n": 6
+  },
+  {
+   "ch": 4,
+   "file": "di04_zhixing_tai.txt",
+   "n": 5
+  },
+  {
+   "ch": 5,
+   "file": "di05_jiaohu_tai.txt",
+   "n": 4
+  },
+  {
+   "ch": 6,
+   "file": "di06_rongduan_bianjie.txt",
+   "n": 3
+  },
+  {
+   "ch": 7,
+   "file": "di07_jiyi_fenceng.txt",
+   "n": 3
+  },
+  {
+   "ch": 8,
+   "file": "di08_chacuo_taizhang.txt",
+   "n": 4
+  },
+  {
+   "ch": 9,
+   "file": "di09_yinsi_hongxian.txt",
+   "n": 3
+  },
+  {
+   "ch": 10,
+   "file": "di10_banben_jiaofu.txt",
+   "n": 4
+  }
+ ],
+ "ids": [
+  "0.0",
+  "0.1",
+  "0.2",
+  "0.3",
+  "0.4",
+  "1.0",
+  "1.1",
+  "1.2",
+  "2.0",
+  "2.1",
+  "2.2",
+  "2.3",
+  "3.0",
+  "3.1",
+  "3.2",
+  "3.3",
+  "3.4",
+  "3.5",
+  "4.0",
+  "4.1",
+  "4.2",
+  "4.3",
+  "4.4",
+  "5.0",
+  "5.1",
+  "5.2",
+  "5.3",
+  "6.0",
+  "6.1",
+  "6.2",
+  "7.0",
+  "7.1",
+  "7.2",
+  "8.0",
+  "8.1",
+  "8.2",
+  "8.3",
+  "9.0",
+  "9.1",
+  "9.2",
+  "10.0",
+  "10.1",
+  "10.2",
+  "10.3"
+ ],
+ "quanwen_files": [
+  "quanwen_0.1.txt"
+ ]
+}

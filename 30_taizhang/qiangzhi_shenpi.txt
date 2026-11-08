@@ -1,0 +1,131 @@
+Bumao XTGL Community 强制/限制类审批册 qiangzhi_shenpi.txt
+============================================================
+口径：本册只记「改核心件／改内核」的授权，与版本审批册分账；一条一授权，
+须点名被改文件并含授权词。只追加，不改历史。
+
+【第 1 号】2026-11-07 20:58:00｜社区版强制/限制类落地与内核接线
+性质：用户令，授权本次核心件治理
+范围：engine.py、gate_registry.py、contract_test.py
+说明：新增第 11／12 章共 12 条（条款 44→56、章 11→13），并在 engine 加 A12
+      接线核对、在 contract_test 加 G 组接线完整性、在 10_rac/qiangzhi.py 落地
+      B15—B26 十二条机器判据。用户原话同时用于本次变更台账来源声明。
+用户批准原文：「（原话已脱敏移除）」
+
+【第 2 号】2026-11-07 21:15:00｜前端冻结后重生成基线
+性质：用户令，授权前端六件定稿与清单重算
+范围：index.html、setup.html、tutorial.html、i18n.js、core_manifest.json
+说明：前端线在 21:06—21:10 完成 setup／tutorial／i18n／index 改动并冻结；
+      本号授权据此重算 core_manifest.json 与 core_baseline.json，不覆盖前端内容。
+用户批准原文：「（原话已脱敏移除）」
+
+【第 3 号】2026-11-07 21:41:00｜内核发布件脱敏归零＋事实源工具落地
+性质：用户令，授权内核件脱敏改写与事实源工具新增
+范围：engine.py、gate_registry.py、gate_count.py、contract_test.py、kernel_contract.json、
+      test_equivalence.py、facts.py、facts_check.py
+说明：与 personal 审批册第 6 号「发布件脱敏归零（内核公开仓 14 件白名单）」同批：
+      清 Q 编号、端名硬编码、本机用户名 token；事实源两件按 G1 指令新增。
+      本号为社区侧闸门（B15／B16／B24）可判据的唯一授权行，改前件已留 90_lishi。
+用户批准原文：「（原话已脱敏移除）」「（原话已脱敏移除）」
+授权闸：L2／L3（改内核件须当日点名审批＋同哈希改前件）
+
+【第 4 号】2026-11-07 21:58:00｜0.1 定型清场：脱敏归零＋可迁移性静态收口
+性质：用户令，授权发布件与三端活区改写（不新增功能、不改业务逻辑）
+范围：engine.py、bumao_core_rules.py、xtgl_core.py、kernelsync.py、qidong_kongzhitai.bat、
+      README.md、README.en.md、kaiyuan_jiaocheng.md（community／minimal 同口径；personal 仅同款硬编码）
+说明：按「（原话已脱敏移除）」四条判据与「（原话已脱敏移除）」清理：去写死盘符/解释器/系统路径/私人端名字。
+用户批准原文：「（原话已脱敏移除）」「（原话已脱敏移除）」
+授权闸：L2／L3（当日点名审批＋改前件）
+
+【第 5 号】2026-11-07 22:18:00｜0.1 定型新增两道闸：可迁移性＋前端 token 一致性
+性质：用户令，授权新增条款、闸门与配套基线（不新增业务功能）
+范围：10_rac/qiangzhi.py、10_rac/BumaoXTGL_Community_v01.py、10_rac/zhunze/z00.json、z13.json、z14.json、
+      00_meta/gates_decl.json、00_meta/jiancha_map.json、00_meta/meta.json、00_meta/frontend_token_baseline.json、
+      20_view 视图、README／ARCHITECTURE、00_交付清单.txt、kernel/bumao_core/portability_probe.py
+说明：按用户原文落两条铁律：①整份工程可迁移（全相对路径、解释器不写死、不依赖本机、端口／根／密钥在包内）；
+      ②前端设计语言先读后动、只用既有 token。存量字面色值登记为基线，新增野值判红。
+用户批准原文：「（原话已脱敏移除）」「（原话已脱敏移除）」「（原话已脱敏移除）」
+授权闸：L2／L3（当日点名审批＋改前件）
+
+【第 6 号】2026-11-07 22:22:00｜TUTORIAL 双语文档去盘符示例
+性质：用户令，授权文档字面量收口（不改逻辑）
+范围：20_view/web/TUTORIAL.md、20_view/web/TUTORIAL.en.md
+说明：按「发布件与活区绝对路径为 0」，把文档里的盘符示例路径改为 `<项目根>/community`。
+用户批准原文：「（原话已脱敏移除）」
+授权闸：L2／L3
+
+【第 10 号】2026-11-07 23:15:00｜前端授权美化＋内核件登记
+性质：用户裁定，认可并登记（不回退、不重建基线）
+范围：20_view/web/design_tokens.json（新增 8 个彩虹色值：#ff2f6d／#ff7a1f／#ffe22f／#4dff8a／#22e0ff 等）、
+      20_view/web/index.html（新增 .card-rainbow）、kernel/kernel_contract.json（清 findings 内盘符与用户目录字面量）、
+      kernel/bumao_core/portability_probe.py（新增可迁移性探针，依据 z13 13.0 与 B27）
+说明：22:37—22:57 那次前端美化为用户授权范围，一个字不回退；personal 同步归前端线，本册只登记
+      「personal 待前端线同步」，不以两端文件覆盖 personal（避免冲掉记忆层与 8801 端口）。
+      （原话已脱敏移除）；期间 kernelsync --check 三端 EXIT=1 为如实状态，不改清单掩盖。
+用户批准原文：「（原话已脱敏移除）」「（原话已脱敏移除）」
+授权闸：L2／L3（当日点名审批＋同哈希改前件）
+
+【第 11 号】2026-11-07 23:40:00｜新增 B29 核心件改动预告闸：只读锁定／哨兵／下游阻断
+性质：用户令，授权新增条款、闸门与配套脚本（不新增业务功能）
+范围：10_rac/zhunze/z11.json、10_rac/qiangzhi.py、10_rac/BumaoXTGL_Community_v01.py、
+      00_meta/gates_decl.json、00_meta/jiancha_map.json、kernel/suoding.py、kernel/shaobing.py、
+      kernel/duanxia_zuduan.py、20_view/web/gaigai_yugao.txt
+说明：按用户令立三段机制：①20_view/web 核心件 attrib +R，解锁即落预告行；②哨兵盯 mtime／sha256／
+      只读属性，变化落固定证据文件（不阻止写入，保证必被发现）；③B16 红时截图／基线重建／发布包生成
+      一律拒绝启动，打印「因 B16 红，已阻断」。本册为 z11.json 的改动点名与授权。
+用户批准原文：「（原话已脱敏移除）」「（原话已脱敏移除）」「（原话已脱敏移除）」「（原话已脱敏移除）」
+授权闸：L2／L3（当日点名审批＋同哈希改前件）
+
+【第 12 号】2026-11-08 08:26:28｜事后追认：community 端改动补记（非事前审批）
+性质：事后追认记录（不是事前审批，也不是补签）
+范围：index.html、kernelsync.py（20_view/web）；engine.py、portability_probe.py、test_check_rc.py
+      （kernel/bumao_core）；i18n.js（仅 mtime 被触及，内容已还原为与基线同哈希）
+改动时间：index.html／i18n.js 2026-11-08 08:17—08:18（Q016 图收口及更正还原）；
+      kernelsync.py 2026-11-08 07:59:22（Q007 W7 沿革收口）；engine.py 2026-11-08 06:56:24
+      （结论 FAIL 时 rc 返回 1 的修复）；portability_probe.py 2026-11-08 07:49:37
+      （可迁移性探针收口）；test_check_rc.py 2026-11-08 06:57:07（rc 回归用例新增）
+追认时间：2026-11-08 08:26:28
+授权来源：用户 2026-11-07「（原话已脱敏移除）」、2026-11-08「（原话已脱敏移除）」（范围性授权，非逐件事前审批）
+签署：无（未经用户事前签署；本条目由执行端记录，不代用户签）
+说明：本记录为事后追认，非事前审批，属流程缺口。改前件：kernelsync.py 与 engine.py 的同哈希
+      改前件已补入 90_lishi/gongkai_weihu_261107（82700fcc…／b6643e65…）；portability_probe.py
+      与 test_check_rc.py 为基线建立后新增件，无改前态可留，见 30_taizhang/buke_zhuisu_qingdan.txt。
+
+============================================================
+【第 13 号】2026-11-08｜Q017 三端闸门状态面板（只读各端 check 日志）＋ B25 公开件脱敏修字（一条命令登记）
+范围：index.html、i18n.js、xtgl_core.py、shenpi.py
+改动时间：2026-11-08 09:13:36
+授权来源：用户 2026-11-07「（原话已脱敏移除）」、2026-11-08「（原话已脱敏移除）」
+签署：<待签>（本命令不代签，谁签写谁）
+说明：模板见 HX/community/10_rac/shenpi_moban.txt；本行为事前审批。
+
+============================================================
+【第 14 号】2026-11-08｜Q001 授权原话闸门落地（engine 新增 A13）
+范围：kernel/bumao_core/engine.py、kernel/bumao_core/gate_registry.py
+改动时间：2026-11-08 11:35:00
+授权来源：用户 2026-11-08「（原话已脱敏移除）」「（原话已脱敏移除）」；Q001 任务原文「需改 A8+B60 判定链与 engine.py」（由主会话转达，非端内事前签署）
+签署：无（执行端记录，不代用户签；属事后追认）
+用户批准原文：「（原话已脱敏移除）」
+说明：A13 补上 A8（形态）＋B60（重大错误册）之间缺失的「本轮改动须引用户授权原话」机检项；本轮反证 6/6 通过。改前件同哈希已补入 90_lishi/gongkai_weihu_261107（846e395f…／641a3d6e…）。
+
+============================================================
+【第 15 号】2026-11-08｜前端 Q011 字号增强块＋Q012 基线准入过滤
+范围：20_view/web/setup.html、20_view/web/tutorial.html、20_view/web/xtgl_core.py
+改动时间：2026-11-08 11:05:16—11:06:24
+授权来源：用户 2026-11-08「（原话已脱敏移除）」「（原话已脱敏移除）」；任务转达「Q011 setup/tutorial 缺字号增强块」「Q012 clients()／client_name 未接基线准入过滤」
+签署：无（执行端记录，不代用户签；属事后追认）
+用户批准原文：「（原话已脱敏移除）」
+引用说明：「用户令（2026-11-08）：」为来源标注；其后两句为用户原话逐字引用，未改写。
+说明：setup/tutorial 补 --fs-zoom:1.12 与同 index 的字号增强块，两开源端逐字节相同；xtgl_core.py 新增 huichuan_dir()／baseline_passed()／baseline_ok()，clients() 过滤未过基线端。改前件同哈希已补入 90_lishi/gongkai_weihu_261107。
+============================================================
+【第 16 号】2026-11-08｜前端三端中文称谓统一（personal→私人版／community→个人版／minimal→社区版）
+范围：20_view/web/index.html、20_view/web/tutorial.html、20_view/web/i18n.js、20_view/web/xtgl_core.py、20_view/web/web_config.json
+改动时间：2026-11-08 11:59:29
+授权来源：用户 2026-11-08 逐字原话「（原话已脱敏移除）」「（原话已脱敏移除）」
+签署：无（执行端记录，不代用户签；属事后追认）
+用户批准原文：「（原话已脱敏移除）」
+引用说明：「用户令（2026-11-08）：」为来源标注（令＝授权词）；其后两句为用户原话逐字引用，未改写。
+说明：称谓映射收进 web_config.json 的 labels（可配置层），代码与 /api 只按英文标识 personal／community／minimal 取词；英文端名与目录路径未动。改前件同哈希已补入 90_lishi/gongkai_weihu_261107（*.261108_chengwei.bak）。
+
+============================================================
+【本册结束】
+

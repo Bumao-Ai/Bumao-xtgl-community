@@ -1,0 +1,23 @@
+{
+ "_note": "B16 首次入库登记：只用于基线建立后新增件（old_sha 为空）。四要素＝创建时间／首版 sha256／入库时间／经办人；缺任一要素或首版哈希与实物不符即判红。old_sha 非空的件不套用本分支。首版 sha256 按用户 2026-11-08 指令取入库时实物。",
+ "items": [
+  {
+   "file": "portability_probe.py",
+   "path": "kernel/bumao_core/portability_probe.py",
+   "created_at": "2026-11-07 22:25:41",
+   "first_sha256": "c49b71583b7dc84862617908f32f1dbad84104fe983f7ed5eb1ccfa0bdfcbc46",
+   "registered_at": "2026-11-08 08:30:20",
+   "handler": "执行端（AI 助理）",
+   "note": "创建时间取文件创建时刻；首版 sha256 按入库时实物（11-08 07:49:37 收口版）。22:25 首刻版本见 example/backup/20261108，sha256 8f5fabdf71ed…；按用户 2026-11-08 指令不改取首刻版。"
+  },
+  {
+   "file": "test_check_rc.py",
+   "path": "kernel/bumao_core/test_check_rc.py",
+   "created_at": "2026-11-08 06:57:07",
+   "first_sha256": "5ace5aede3195920e000a496ae45cb3695425566fdd889b7a47b007ce196d6d3",
+   "registered_at": "2026-11-08 08:30:20",
+   "handler": "执行端（AI 助理）",
+   "note": "创建后内容未变，当前 sha256 与创建时同值。"
+  }
+ ]
+}

@@ -1,0 +1,9 @@
+{
+ "finished_at": "2026-11-08 12:45:17",
+ "rules_sha": "c9fcad84e1741542ce025d867c2a2f6b6524e57235a77ba659a258d1939266b3",
+ "a_items": 13,
+ "b_items": 31,
+ "total": 44,
+ "nfail": 7,
+ "version": "0.10"
+}

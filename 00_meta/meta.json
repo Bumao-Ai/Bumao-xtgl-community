@@ -1,0 +1,50 @@
+{
+ "schema": 1,
+ "name": "Bumao XTGL Community",
+ "short": "BumaoComm",
+ "version": "0.10",
+ "effective": "2026-11-04",
+ "nature": "社区规则版 AI 治理引擎",
+ "privacy_level": "public",
+ "ssot": "10_rac/zhunze/z00..z14.json",
+ "entry": "README-HX.txt",
+ "paths_relative": true,
+ "note_paths": "本产品不含任何绝对路径；全部位置在运行时由 10_rac 脚本以 __file__ 溯源，可整体拷贝至任意机器运行。",
+"gates": {
+  "note": "闸门清单不在本文件手工登记。B 段唯一来源＝本端 wrapper 的 core.set_expected()；A 段在 kernel/bumao_core/engine.py。实跑数以 check --strict 的 [结论] 行为准。",
+  "source": "wrapper.set_expected + kernel/bumao_core/engine.py"
+},
+ "layers": [
+  {
+   "dir": "00_meta",
+   "role": "元信息 / 接入协议 / 版本单点",
+   "write": "手工"
+  },
+  {
+   "dir": "10_rac",
+   "role": "执行器 ＋ 唯一真身 zhunze\\",
+   "write": "engine / render"
+  },
+  {
+   "dir": "20_view",
+   "role": "生成的视图（单源，唯一视图区）",
+   "write": "render 独占"
+  },
+  {
+   "dir": "30_taizhang",
+   "role": "变更与治理台账",
+   "write": "手工"
+  },
+  {
+   "dir": "40_renwu",
+   "role": "任务执行区（交付物与过程稿）",
+   "write": "手工"
+  },
+  {
+   "dir": "90_lishi",
+   "role": "历史归档（只读）",
+   "write": "禁止"
+  }
+ ],
+ "frozen": []
+}

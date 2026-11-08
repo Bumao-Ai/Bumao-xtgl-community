@@ -1,0 +1,25 @@
+Bumao XTGL Community 不可追溯清单（丙类）
+============================================================
+口径：只列「本次补记补不了」的件，逐件写清为什么补不了。不硬造改前件、不改 B16 判据、
+      不重建基线来抹掉红态。
+生成时间：2026-11-08 08:26:28
+对应复跑判据：10_rac/BumaoXTGL_Community_v01.py check --strict（B16 强制 11.1）
+
+1) kernel/bumao_core/portability_probe.py
+   为什么补不了：该件创建于 2026-11-07 22:25:41，晚于基线 core_baseline.json 的建立时刻
+       2026-11-07 22:10:57。基线 files 表里没有它的旧哈希，B16 的 want_sha 为空，
+       「相对基线的改前件」在这个口径下不存在；放任何副本都无法命中（_backup_with_sha 空哈希直接返回空）。
+   现存最早副本（只能作沿革参考，不能当基线改前件）：
+       example/backup/20261108/example/kernel/bumao_core/probe.py
+       sha256 8f5fabdf71ed…（07:42 快照，早于当日 07:49:37 的改动）
+
+2) kernel/bumao_core/test_check_rc.py
+   为什么补不了：该件创建于 2026-11-08 06:57:07，创建后内容未变（当前与 07:42 快照同哈希
+       5ace5aede319…）。同样不在基线 files 表内、无旧哈希可比，属基线后新增件。
+
+============================================================
+说明：B16 其余 2 件（community/20_view/web/kernelsync.py、kernel/bumao_core/engine.py）
+      的改前件已补齐，哈希与基线旧值逐字相同，见 90_lishi/gongkai_weihu_261107 下
+      community_20_view_web_kernelsync.py.261107-2200.pre_261108bak（82700fcc…）与
+      kernel_bumao_core_engine.py.261107-2200.pre_261108bak（b6643e65…）。
+【本清单结束】

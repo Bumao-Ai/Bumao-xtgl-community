@@ -1,0 +1,25 @@
+{
+ "ch": 14,
+ "file": "di14_qian_duan_yu_yan.txt",
+ "chapter_title": "14. 前端设计语言：先读后动，只用既有 token",
+ "pre": [
+  "本章把「美观已定型、加功能先读设计语言」落成机器判据，由 B28 在 check --strict 时执行；存量字面值登记为基线，新增野值即 FAIL。"
+ ],
+ "clauses": [
+  {
+   "id": "14.0",
+   "root": "14.0",
+   "title": "14.0 强制-08 前端新增元素必须由既有 token 组合而成：",
+   "gate": "B28",
+   "judge": "machine",
+   "trigger": "check --strict 启动时扫三页字面色值与 px 字号",
+   "action": "命中即 FAIL 并阻断，退出码 1；确需新增 token 时先请示并落 design_tokens.json",
+   "body": [
+    "（1）判据：index.html／setup.html／tutorial.html 中出现的字面色值 #xxxxxx 与 font-size:Npx，必须能在 20_view\\web\\design_tokens.json 中找到，或在 00_meta\\frontend_token_baseline.json 的存量登记中找到；两者都不在即判越界。",
+    "（2）触发点：每次 check --strict 逐行扫描三页；新增色值、字号、间距、圆角、阴影一律不得直接写字面量。",
+    "（3）处置：B28 判 FAIL，打印文件、行号与越界字面值；改前必须先生成「设计语言清单」（token 全量＋组件类名＋栅格卡片规格），改后同视口 1440×900 拍前后两图并取色度量比对。",
+    "（4）闸位：B28；存量登记由 qiangzhi.py token-baseline 维护，只记存量、不放宽新增。"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+来源：Bumao XTGL Community 0.10 第12章
+
+12. 限制类：不许做（越界即阻断）
+本章每条均为禁止项，由 B21—B26 在 check --strict 时执行；一旦命中即 FAIL 并返回退出码 1，不设「下不为例」。
+12.0 限制-01 不得擅自改 CORE_VERSION：
+（1）判据：20_view\web\xtgl_core.py 的 CORE_VERSION 赋值只允许出现一次；其值必须等于 20_view\web\core_manifest.json 的 core_version，并等于 kernel\kernel_contract.json 中 frozen_interfaces.core_version.current_value（该契约存在时）。
+（2）触发点：每次 check --strict 静态读取上述三处并三方比对。
+（3）处置：B21 判 FAIL，打印三处取值与不一致的那一处；版本变更必须先取得授权并同步契约与审批册，单改代码即拦。
+（4）闸位：B21。
+12.1 限制-02 不得绕过闸门直接改核心件：
+（1）判据：受管文件（10_rac\zhunze 的 z 系真身、10_rac 的脚本、20_view\web 的核心件、kernel\bumao_core 的代码）中任一文件的修改时间晚于 30_taizhang\check_last.json 的 finished_at，且该文件未列入当日审批条目，即视为绕过闸门直改。
+（2）触发点：check --strict 时取文件 mtime 与上一轮检查完成时刻比较。
+（3）处置：B22 判 FAIL，列出文件与两个时间点；绕过闸门的改动不得以「反正现在跑绿了」结案，须补审批或回退。
+（4）闸位：B22。
+12.2 限制-03 不得把本机路径、执行者代号写进公开件：
+（1）判据：公开件集合（仓根门面文件、00_meta 的公开文档与配置、10_rac 的脚本、zhunze 真身、20_view 的文本视图）内不得出现本机用户名、机器名、家目录标识的真实取值，也不得出现指向真实用户目录的盘符路径；占位符「你」「用户」「<user>」不算命中。
+（2）触发点：check --strict 时以当前运行环境的环境变量取真实标识词，再逐件扫描公开件。
+（3）处置：B23 判 FAIL，打印文件与命中词；换行、编码或注释都不构成豁免，公开件只允许占位符。
+（4）闸位：B23。共用前端代码的去私人化由 kernel\contract_test.py 的 E 组同轮负责。
+12.3 限制-04 不得未审批改动内核：
+（1）判据：kernel\bumao_core 的 Python 代码、kernel\contract_test.py 与 kernel\kernel_contract.json 相对 30_taizhang\core_baseline.json 的基准发生改动时，该文件必须在当日审批条目中被点名且该条目含授权词；未点名即拦。
+（2）触发点：每次 check --strict 对内核文件逐件比哈希，再查审批册当日段。
+（3）处置：B24 判 FAIL，打印改动文件与审批册位置；内核改动不得由执行端自行批准，也不得以「只改了注释」为由跳过。
+（4）闸位：B24。
+12.4 限制-05 不得把私人端内容带进开源件：
+（1）判据：公开件集合内不得出现私人端专属标识——私人端物理目录名、私人端入口品牌拼写、私人数据目录名、私人自检目录名。清单固定在 10_rac\qiangzhi.py 的 PRIVATE_TOKENS，改动清单须同轮登记。
+（2）触发点：check --strict 时逐件扫描公开件；正文、注释、配置键一视同仁。
+（3）处置：B25 判 FAIL，打印文件与命中的私人端标识；不得以「只是举例」「用户看得懂」为由保留。
+（4）闸位：B25。
+12.5 限制-06 不得自造许可条款：
+（1）判据一：仓根与 10_rac 的 LICENSE 必须是 Apache License 2.0 全文，且两份字节相同；仓根除 LICENSE 外不得出现自造许可文件。
+（2）判据二：发布用 Python 文件均带 SPDX-License-Identifier: Apache-2.0；NOTICE 不得出现「禁止商用／仅限个人／非商业／附加条款」一类附加限制。
+（3）触发点：check --strict 时读 LICENSE 关键段落、逐件查 SPDX 行、扫 NOTICE 禁用词。
+（4）处置：B26 判 FAIL，打印缺 SPDX 的文件或命中的附加条款；许可条款只认 Apache-2.0 原文，不得在仓内另立口径。
+（5）闸位：B26。
