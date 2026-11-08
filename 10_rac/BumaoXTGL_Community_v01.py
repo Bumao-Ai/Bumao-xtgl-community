@@ -135,7 +135,8 @@ def b3_root_flat():
     # 「入口导航 + 门面白名单」，其余仍判 FAIL。白名单宁多不少，覆盖标准门面件。
     _ROOT_ALLOW = {"README-HX.txt", "README-HX.md", "README.md", "NOTICE", "TRADEMARK.md",
                    "CONTRIBUTING.md", "LICENSE", "DCO", "CHANGELOG.md", "COMPLIANCE.md",
-                   "OPEN_SOURCE_NOTICE.md", "SECURITY.md", "CODE_OF_CONDUCT.md", ".gitignore"}
+                   "OPEN_SOURCE_NOTICE.md", "SECURITY.md", "CODE_OF_CONDUCT.md", ".gitignore",
+                   ".gitattributes"}
     flat = [f for f in sorted(os.listdir(HX)) if os.path.isfile(os.path.join(HX, f))]
     bad = [f for f in flat if f not in _ROOT_ALLOW]
     return not bad, ("根下平铺 %d 件（白名单内 %d，越界 %d）：%s"

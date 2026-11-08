@@ -1,0 +1,5 @@
+# 换行符固定为 LF：Windows 默认 core.autocrlf=true 会把检出改写成 CRLF，
+# 而 30_taizhang/core_baseline.json 按 LF 字节记录哈希，clone 后会导致
+# B16／B24 恒红。锁定 LF 后，各平台 clone 的字节内容与基线一致。
+* text=auto eol=lf
+*.bat text eol=crlf
