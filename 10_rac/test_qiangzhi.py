@@ -98,6 +98,14 @@ def _approve(dst, filename, day=None):
         f.write("性质：授权\n范围：%s\n用户批准原文：「测试放行授权」\n" % filename)
 
 
+def _b15_other_file(dst, q):
+    """当日有审批条目，但点名的是另一件：B15 必须仍拦截。
+    这条防的是「只看当日有没有审批、不看点名到哪一件」的松判。
+    """
+    _approve(dst, "setup.html")
+    _append(os.path.join(dst, "community", "20_view", "web", "xtgl_core.py"), "\n# drill\n")
+
+
 def _case(name, mutate, gate):
     dst = tempfile.mkdtemp(prefix="qz_")
     try:
@@ -115,6 +123,7 @@ def main():
     cases = [
         ("B15 未审批改核心件", lambda d, q: _append(
             os.path.join(d, "community", "20_view", "web", "xtgl_core.py"), "\n# drill\n"), "gate_b15"),
+        ("B15 审批未点名该件", lambda d, q: _b15_other_file(d, q), "gate_b15"),
         ("B16 改动无改前件", lambda d, q: _append(
             os.path.join(d, "community", "10_rac", "zhunze", "z00.json"), "\n"), "gate_b16"),
         ("B16 老件不得走新增分支", lambda d, q: _b16_old_with_entry(d, q), "gate_b16"),
