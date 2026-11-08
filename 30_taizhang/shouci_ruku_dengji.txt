@@ -18,6 +18,24 @@
    "registered_at": "2026-11-08 08:30:20",
    "handler": "执行端（AI 助理）",
    "note": "创建后内容未变，当前 sha256 与创建时同值。"
+  },
+  {
+   "file": "__init__.py",
+   "path": "kernel/bumao_core/__init__.py",
+   "created_at": "2026-11-09 00:00:00",
+   "first_sha256": "86b25ee5ad1bb1704c7d1588d626e15b4f5977a44c09ed83d61e37740fae394b",
+   "registered_at": "2026-11-09 00:00:00",
+   "handler": "执行端（AI 助理）",
+   "note": "随 core v0.2.0-beta.5 内核同步新增；首版 sha256 与入库时实物一致。"
+  },
+  {
+   "file": "test_build_parser.py",
+   "path": "kernel/bumao_core/test_build_parser.py",
+   "created_at": "2026-11-09 00:00:00",
+   "first_sha256": "302fa486952336610ca9559ea1f94607597b6b33d3b11b52a47b3a544822df06",
+   "registered_at": "2026-11-09 00:00:00",
+   "handler": "执行端（AI 助理）",
+   "note": "随 core v0.2.0-beta.5 内核同步新增；首版 sha256 与入库时实物一致。"
   }
  ]
 }
