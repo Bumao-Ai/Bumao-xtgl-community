@@ -9,8 +9,8 @@ Status: maintenance pause
 ![checks](https://img.shields.io/badge/checks-44-brightgreen)
 ![local](https://img.shields.io/badge/local--first-no%20cloud-informational)
 
-> **Two version spaces** — the in-app version in `00_meta/meta.json` is `0.10`; the repository release tag is `v0.16`. They are two independent numbering spaces, not the same number.
-> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.10`；仓库发布 tag 是 `v0.16`。这是两个独立的编号空间，不是同一个数字。
+> **Two version spaces** — the in-app version in `00_meta/meta.json` is `0.10`; the repository release tag is `v0.17`. They are two independent numbering spaces, not the same number.
+> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.10`；仓库发布 tag 是 `v0.17`。这是两个独立的编号空间，不是同一个数字。
 >
 > **Cold start** — to resume iteration, start from [`RETURN_HERE.md`](RETURN_HERE.md).
 > **冷启动** — 恢复迭代从 [`RETURN_HERE.md`](RETURN_HERE.md) 开始。
@@ -27,7 +27,7 @@ Status: maintenance pause
 ## Quick start (30 seconds)
 
 ```bash
-git clone -b v0.16 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
+git clone -b v0.17 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
 cd Bumao-xtgl-community/10_rac
 python BumaoXTGL_Community_v01.py whoami
 python BumaoXTGL_Community_v01.py check --strict   # exit code is the verdict
@@ -40,7 +40,7 @@ cd ../20_view/web
 python serve.py            # prints the real local address
 ```
 
-`v0.16` is the tag this README was released with; see Releases and verify the zip with `SHA256SUMS`.
+`v0.17` is the tag this README was released with; see Releases and verify the zip with `SHA256SUMS`.
 
 > Counting: **59 rules / 44 checks** are two dimensions. Rules are the written clauses (15 chapters); checks are the gates that inspect them. One rule can be covered by several gates, and one gate can span several rules.
 
@@ -48,16 +48,16 @@ python serve.py            # prints the real local address
 
 | Item | Value | Source |
 |---|---|---|
-| Commits at `v0.16` | 22 | `git rev-list --count v0.16` |
-| Last commit | 2026-11-08 | `git log -1 --date=short` |
+| Commits at `v0.17` | 24 | `git rev-list --count v0.17` |
+| Last commit | 2026-11-09 | `git log -1 --date=short` |
 | Rules | 59 clauses / 15 chapters | first line of `check --strict` (`15 ch / 59 cls`) |
-| Check items | 44 | `check --strict` conclusion line (`2/44 gates red`, second run at tag `v0.16` without an approval ledger; live with the real ledger is `0/44`) |
-| Reverse cases | 16 | `10_rac/test_qiangzhi.py`; last run 15 caught / 1 missed (B15, pre-existing) |
+| Check items | 44 | `check --strict` conclusion line (`1/44 gates red`, second run at tag `v0.17`; only `A10`) |
+| Reverse cases | 17 | `10_rac/test_qiangzhi.py`; last run 17 caught / 0 missed |
 | Defect ledger | 0 real closed items | `30_taizhang/chacuo_zhang.txt` holds 3 sanitized sample rows only |
-| Releases | 8 tags, `v0.1` → `v0.16`, all 2026-11-08 | `git tag` |
+| Releases | 9 tags, `v0.1` → `v0.17`, 2026-11-08 → 2026-11-09 | `git tag` |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) | — |
 
-On a public clone, `A10` and `A13` are red by design: they check an approval ledger and a quoted authorization, and this edition ships no real approval samples. Without an approval ledger they are **explicitly denied (DENY)** — the result is FAIL, never PASS. "Red by design" means the public repository ships no same-day authorization credential; it is not a waiver. Older kernels word the detail as "找不到审批册", the current kernel writes "A10 判定=DENY" — both are FAIL. The **first** run on a clean clone also flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; a second run at tag `v0.16` without a ledger is `2/44` red, while live with the real ledger is `0/44` — the two numbers measure different trees. That credential is runtime state, not a committed file.
+On a public clone, `A10` is red by design: it needs a same-day authorized entry in `30_taizhang/shenpi_jilu.txt`, and this edition ships that file as a **structure template with zero entries**. With no parseable entry the gate is **explicitly denied (DENY)** — the result is FAIL, never PASS. "Red by design" means the public repository ships no same-day authorization credential; it is not a waiver. The detail line now starts with `A10 判定=DENY` and names the policy (`deny`). The **first** run on a clean clone also flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; a second run at tag `v0.17` is `1/44` red, while live with a real ledger is `0/44` — the two numbers measure different trees. That credential is runtime state, not a committed file.
 
 ## 中文
 

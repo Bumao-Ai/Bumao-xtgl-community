@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.17 — 2026-11-09
+
+本版修的是判据取件与一条空闸，不放宽任何判定。This release fixes where the gates look for the approval ledger and repairs one vacuous gate; no verdict was relaxed.
+
+- **`B15` 空闸修复（真缺陷）** — `gate_b15()` 的前缀原是 `community/20_view/web/`，而基线键是 `20_view/web/…`（`REPO` 已指向端根），前缀永不匹配，于是恒报「0 件改动」，正反两向都放行。改为相对端根的前缀后，`test_qiangzhi.py` 的两条 `B15` 反向用例（未审批改核心件、审批未点名该件）才真正被拦。`B15` 的前缀 bug made the gate always report “0 files changed”, so both directions passed; the prefix is now relative to the edition root and both reverse cases are caught.
+- **反向套件补齐** — `10_rac/test_qiangzhi.py` 新增 1 条反向用例（当日有审批条目但点名另一件，`B15` 必须仍拦），套件由 16 条增至 17 条，实跑 **17 caught / 0 missed**。One reverse case added (same-day approval naming a different file); suite 17 cases, all caught.
+- **A10／A13 判据取件修正** — 单仓 clone 下「区根」原被取成仓外上一级，`A10` 读不到 `30_taizhang/shenpi_jilu.txt`；现在本仓根带 `30_taizhang/` 时以本仓根为区根。`find_approval_ledger()` 不再扫描兄弟目录（旧实现会读到别仓审批册，结论对但理由错）。随包新增 `30_taizhang/shenpi_jilu.txt` **结构模板（零条目）**，`A10` 因此输出 `A10 判定=DENY ｜ 判拒（DENY · 策略 deny）：审批册里没有可解析的【第 N 号】条目`。`A10`/`A13` now resolve the area root correctly and no longer read a sibling repo's ledger; the shipped template has zero entries, so `A10` prints an explicit DENY with the policy name.
+- **未变** — 规则 59 条／15 章、闸门总数 44、应用内版本 `0.10`、目录结构未改。Rules, gate count, in-app version and layout unchanged.
+- **已知红项** — 首跑 `4/44`（`B19`／`B22` 因本轮才写检查凭据），第二次 `1/44`（仅 `A10`，公开仓不发当日授权条目，按设计判 DENY）。First run `4/44` (`B19`/`B22` are this-run credentials), second run `1/44` (only `A10`, DENY by design).
+
 ## 0.16 — 2026-11-08
 
 本版是功能版：`B29` 预告闸判据收紧，核心件预告必须逐件点名，`*` 不再是通配符。This release ships a real gate change: `B29` notices must name each core file, and `*` no longer matches as a wildcard.

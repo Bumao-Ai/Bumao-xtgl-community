@@ -24,3 +24,8 @@ Thumbs.db
 
 # 测试临时产物
 _tmp_*
+
+# runtime check credential (written by check itself)
+30_taizhang/check_last.json
+30_taizhang/saojian_zuijin.json
+00_meta/a13_benlun_jizhun.json

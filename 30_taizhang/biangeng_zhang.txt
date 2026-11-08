@@ -56,4 +56,16 @@ Bumao XTGL Community 变更与治理台账 biangeng_zhang.txt
         90_lishi/gongkai_weihu_261107 两件改前件；30_taizhang/buke_zhuisu_qingdan.txt
   验证：BumaoXTGL_Community_v01.py check --strict（复跑结果见 check_last.json）
 
+2026-11-09 | L2 变更 | community A10／A13 判定口径与 core 对齐；B15 空闸修复
+  性质：测试侧与判据取件侧修正，不改判定结论；不发版前先落台账。
+  范围：kernel/bumao_core/gate_registry.py、kernel/bumao_core/engine.py、10_rac/qiangzhi.py、10_rac/test_qiangzhi.py。
+  来源：用户指令（2026-11-09「（原话已脱敏移除）」）
+  L2 记录：A10／A13 缺审批册时由「找不到审批册」软提示改为显式判拒（DENY）＋策略 deny，detail 首段写「A10 判定=」；
+        find_approval_ledger 不再翻兄弟目录，避免发布仓同级布局下读到别仓审批册（判定结论不变，只修理由错误）。
+  L3 记录：B15 前缀由 "community/20_view/web/" 改为相对端根的 "20_view/web/"。
+        改前基线键为 "20_view/web/…"，旧前缀永不匹配，B15 恒报「0 件改动」，正反两向都放行，等于空闸；
+        改后 test_qiangzhi.py 的 B15 两条反向用例（未审批改核心件、审批未点名该件）均被拦。
+  证据：10_rac/test_qiangzhi.py 实跑 17 条反向用例 + 1 条放行对照 ALL PASS
+  验证：BumaoXTGL_Community_v01.py check --strict（结果见 30_taizhang/check_last.json）
+
 【本文件结束】

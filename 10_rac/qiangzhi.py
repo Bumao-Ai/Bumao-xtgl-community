@@ -303,7 +303,10 @@ def _baseline_signature_ok():
 
 # ── B15 强制-01 改核心件前必须有审批记录 ──────────────────────────────
 def gate_b15():
-    ch = _changed("community/20_view/web/")
+    # 2026-11-09 修：前缀原为 "community/20_view/web/"，但基线键是 "20_view/web/…"（REPO 已指向端根），
+    # 前缀永不匹配 → 恒报「0 件改动」，正向反向都放行，等于空闸。改回相对 REPO 的前缀后
+    # test_qiangzhi.py 的 B15 两条反向用例才真正被拦。
+    ch = _changed("20_view/web/")
     if ch is None:
         return False, "缺基线 %s，无法判定核心件是否被改动" % BASELINE
     bad = []
