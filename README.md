@@ -39,7 +39,7 @@ python serve.py            # prints the real local address
 
 | Item | Value | Source |
 |---|---|---|
-| Commits | 12 | `git rev-list --count HEAD` (before this facade commit) |
+| Commits at `v0.13` | 12 | `git rev-list --count v0.13` |
 | Last commit | 2026-11-08 | `git log -1 --date=short` |
 | Rules | 59 clauses / 15 chapters | first line of `check --strict` (`15 ch / 59 cls`) |
 | Check items | 44 | `check --strict` conclusion line (`2/44 gates red`) |
