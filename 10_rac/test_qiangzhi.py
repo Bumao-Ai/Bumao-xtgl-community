@@ -141,6 +141,8 @@ def main():
             os.path.join(d, "community", "README.md"), "\n" + "BUMA" + "OSI" + "\n"), "gate_b25"),
         ("B26 自造许可附加条款", lambda d, q: _append(
             os.path.join(d, "community", "NOTICE"), "\n禁止商用\n"), "gate_b26"),
+        ("B29 预告行不得用通配覆盖", lambda d, q: _b29_wildcard(d, q), "gate_b29"),
+        ("B29 预告未点名该件", lambda d, q: _b29_other_name(d, q), "gate_b29"),
     ]
     print("反向用例（每条应被拦截）：")
     bad = 0
@@ -161,6 +163,14 @@ def main():
             _copy_product(dst)
             q = _load(dst)
             _seed(dst, q)
+            idx = os.path.join(dst, "community", "20_view", "web", "index.html")
+            idx_mtime = os.path.getmtime(idx)
+            _b29_yugao(dst, "index.html")
+            r29 = q.gate_b29()
+            os.utime(idx, (idx_mtime, idx_mtime))   # 还原，避免 B22 的 mtime 判据被本用例带红
+            print("  %s B29 %s" % ("PASS" if r29[0] else "FAIL", r29[1][:80]))
+            if not r29[0]:
+                bad += 1
             core = os.path.join(dst, "community", "20_view", "web", "xtgl_core.py")
             old = q._sha(core)
             bak = os.path.join(dst, "community", "90_lishi", "gongkai_weihu_261107")
@@ -237,6 +247,23 @@ def _set_core_version(d):
 def _touch_after_check(d):
     p = os.path.join(d, "community", "10_rac", "zhunze", "z01.json")
     os.utime(p, (time.time() + 3, time.time() + 3))
+
+
+def _b29_yugao(d, fn):
+    """把 index.html 的 mtime 推到基线之后，再写一条指错文件的预告行。"""
+    web = os.path.join(d, "community", "20_view", "web")
+    os.utime(os.path.join(web, "index.html"), (time.time() + 3, time.time() + 3))
+    _write(os.path.join(web, "gaigai_yugao.txt"),
+           "%s | %s | 测试夹具 | 5m | 无 | 测试夹具\n"
+           % (time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), fn))
+
+
+def _b29_wildcard(d, q):
+    _b29_yugao(d, "*.html")
+
+
+def _b29_other_name(d, q):
+    _b29_yugao(d, "serve.py")
 
 
 if __name__ == "__main__":

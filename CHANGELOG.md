@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.16 — 2026-11-08
+
+本版是功能版：`B29` 预告闸判据收紧，核心件预告必须逐件点名，`*` 不再是通配符。This release ships a real gate change: `B29` notices must name each core file, and `*` no longer matches as a wildcard.
+
+- **`B29` 判据收紧** — `10_rac/qiangzhi.py` 的 `_yugao_covers()` 由 `fnmatch` 通配改为逐字精确匹配；`10_rac/zhunze/z11.json` 的 11.6 正文同步写明「0.16 起 `*` 不再作通配」。改前：一条 `*.html` 预告能覆盖全部核心件，等于没有点名；改后：预告行必须写出被改件的文件名，未点名的核心件仍判 FAIL。Before: one `*.html` notice covered every core file. Now: the file name must match literally; unlisted files still fail.
+- **回归用例** — `10_rac/test_qiangzhi.py` 新增 2 条反向用例（`*.html` 通配、预告点名别的文件）与 1 条放行对照（精确点名仍然通过）；反向套件由 14 条增至 16 条，实跑 15 caught / 1 missed（`B15` 为既有缺口，未在本版改动）。Two reverse cases and one positive control added; 16 cases, 15 caught / 1 missed (`B15`, pre-existing).
+- **派生视图** — `python render.py write` 重渲染 17 个视图，`B1` 视图漂移归零。
+- **未变** — 规则 59 条／15 章、闸门总数 44、应用内版本 `0.10`、目录结构、三页样式与生成视图格式均未改动。Rules, gate count, in-app version and layout unchanged.
+- **已知红项** — 干净克隆首跑 `4/44`（`A10`、`A13`、`B19`、`B22`），第二次 `2/44`（`A10`、`A13`，公开仓不发审批册，按设计红）。Clean clone: first run `4/44`, second `2/44` (`A10`/`A13` by design).
+
 ## 0.15 — 2026-11-08
 
 本版是功能版：编码修复、启动器兼容、`B22` 改按内容哈希划界。This release ships real behaviour changes: encoding-safe entry points, a portable launcher, and a content-hash boundary for `B22`.

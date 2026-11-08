@@ -29,7 +29,6 @@
   rules_db.record_check_result() 写入，本文件只读不写。
 """
 
-import fnmatch
 import hashlib
 import json
 import os
@@ -666,6 +665,8 @@ def gate_b28():
 
 
 # ── B29 强制-07 核心件改动必须先落预告行，且可被第三方复核 ─────────────
+# 0.16 收紧：预告行「改哪几件」逐字精确匹配，* 不再当通配符；一条泛预告
+# 不得覆盖未点名的核心件。判据同步写进 z11.json 的 11.6 正文。
 def _yugao_minutes(text):
     """把「预计多久」解析成分钟数。认 60／60m／1h／90分钟／2小时；解析不出按 60。"""
     t = str(text or "").strip().lower()
@@ -705,7 +706,8 @@ def _yugao_covers(fn, mtime, base_time, rows):
     """某核心件的 mtime 是否有「对应」预告行。
 
     对应＝三件事同时成立（判据写死，换人复跑结论一致）：
-      ① 文件名出现在「改哪几件」字段（按逗号等分隔后精确匹配，允许 * 通配）；
+      ① 文件名出现在「改哪几件」字段（按逗号等分隔后逐字精确匹配；0.16 起
+         不再接受 * 通配 —— 一条 `*.html` 预告曾经能覆盖全部核心件，等于没点名）；
       ② 预告时刻落在 [基线时刻, 文件 mtime] 之间（预告必须先于改动，允许 120 秒时钟偏差）；
       ③ 文件 mtime 不晚于「预告时刻＋预计时长＋10 分钟宽限」（防一条旧预告长期有效）。
     """
@@ -714,7 +716,7 @@ def _yugao_covers(fn, mtime, base_time, rows):
             continue
         if mtime > r["t"] + r["minutes"] * 60 + 600:
             continue
-        if any(fnmatch.fnmatch(fn, pat) for pat in r["files"]):
+        if any(pat == fn for pat in r["files"]):
             return True
     return False
 
