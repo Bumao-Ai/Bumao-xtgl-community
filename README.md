@@ -56,7 +56,7 @@ The two red gates on a fresh public clone are `A10` and `A13` (authorization led
 - **给谁用**：需要「可审计地使用 AI」的个人或小团队。
 - **解决什么**：AI 干了什么、合不合规，事后查不清、事前拦不住。
 
-快速开始沿用上方命令块。`59 条规则 / 44 道检查` 是两个维度：规则条数指 15 章里的条款总数，检查项数指闸门总数；一条规则可能被多道闸门覆盖，一道闸门也可能横跨多条规则。
+快速开始沿用上方命令块。`59 条规则 / 44 道检查` 是两个维度：规则条数指 15 章里的条款总数，检查项数指闸门总数；一条规则可能被多道闸门覆盖，一道闸门也可能横跨多条规则。每条结论挂到证据锚点；本期不新增票链面板。
 
 ## Roadmap (0.2 — in progress)
 
@@ -96,6 +96,8 @@ flowchart TB
 | Portability and UI | B27, B28 | the tree is portable; the console uses existing tokens |
 
 Total: 13 source gates + 31 view/governance gates = **44 checks**.
+
+Each run ends with one verdict, and that verdict is anchored to an evidence record (证据锚点) in the console. This release adds no separate ticket-chain view.
 
 ## Layout
 
