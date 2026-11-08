@@ -7,8 +7,9 @@
 - **`B15` 空闸修复（真缺陷）** — `gate_b15()` 的前缀原是 `community/20_view/web/`，而基线键是 `20_view/web/…`（`REPO` 已指向端根），前缀永不匹配，于是恒报「0 件改动」，正反两向都放行。改为相对端根的前缀后，`test_qiangzhi.py` 的两条 `B15` 反向用例（未审批改核心件、审批未点名该件）才真正被拦。`B15` 的前缀 bug made the gate always report “0 files changed”, so both directions passed; the prefix is now relative to the edition root and both reverse cases are caught.
 - **反向套件补齐** — `10_rac/test_qiangzhi.py` 新增 1 条反向用例（当日有审批条目但点名另一件，`B15` 必须仍拦），套件由 16 条增至 17 条，实跑 **17 caught / 0 missed**。One reverse case added (same-day approval naming a different file); suite 17 cases, all caught.
 - **A10／A13 判据取件修正** — 单仓 clone 下「区根」原被取成仓外上一级，`A10` 读不到 `30_taizhang/shenpi_jilu.txt`；现在本仓根带 `30_taizhang/` 时以本仓根为区根。`find_approval_ledger()` 不再扫描兄弟目录（旧实现会读到别仓审批册，结论对但理由错）。随包新增 `30_taizhang/shenpi_jilu.txt` **结构模板（零条目）**，`A10` 因此输出 `A10 判定=DENY ｜ 判拒（DENY · 策略 deny）：审批册里没有可解析的【第 N 号】条目`。`A10`/`A13` now resolve the area root correctly and no longer read a sibling repo's ledger; the shipped template has zero entries, so `A10` prints an explicit DENY with the policy name.
+- **改前件随包** — 本轮改动的两件内核改前件（`engine.py.261108_deny.bak`、`gate_registry.py.261108_deny.bak`）随包放进 `90_lishi/gongkai_weihu_261107/`。`*.bak` 默认不入库；本次特意随包，是为了让**下载件解出后** `B16` 也能对到同哈希改前件——否则干净解包只有本机才有的备份区，`B16` 会判红。The two pre-change kernel copies ship in `90_lishi/gongkai_weihu_261107/`, so a downloaded extract satisfies `B16` without any local backup.
 - **未变** — 规则 59 条／15 章、闸门总数 44、应用内版本 `0.10`、目录结构未改。Rules, gate count, in-app version and layout unchanged.
-- **已知红项** — 首跑 `4/44`（`B19`／`B22` 因本轮才写检查凭据），第二次 `1/44`（仅 `A10`，公开仓不发当日授权条目，按设计判 DENY）。First run `4/44` (`B19`/`B22` are this-run credentials), second run `1/44` (only `A10`, DENY by design).
+- **已知红项** — 解出即跑：首跑 `4/44`（`B19`／`B22` 因本轮才写检查凭据），第二次 `1/44`（仅 `A10`，公开仓不发当日授权条目，按设计判 DENY）。Extracted artifact: first run `4/44` (`B19`/`B22` are this-run credentials), second run `1/44` (only `A10`, DENY by design).
 
 ## 0.16 — 2026-11-08
 
