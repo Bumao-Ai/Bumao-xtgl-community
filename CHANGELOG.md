@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased — 2026-11-08
+
+本版为口径与结构对齐（无新增界面功能）。This release aligns naming and structure; it adds no UI feature.
+
+- Before: README opened with gate IDs and ledger paths. Now: first screen answers what/who/problem, English first, Chinese below.
+- Before: no screenshots. Now: two real captures in `docs/screens/` — console overview and `check --strict` output.
+- Before: install command followed `main`. Now: pinned to the release tag and verified with `SHA256SUMS`.
+- Numbers corrected: `56 rules / 13 chapters` → `59 rules / 15 chapters / 44 checks`, with an explicit note that rules and checks are two dimensions (`check --strict` A1 line reports `15 ch / 59 cls`).
+- No rule, gate or kernel change: `git diff v0.13..HEAD -- 10_rac/ 20_view/ kernel/` is empty.
+
 ## 0.1.1 — 2026-11-08
 
 内置内核。

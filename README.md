@@ -1,80 +1,124 @@
-# Bumao XTGL Community（规则版）
+# Bumao XTGL · Community
 
-一句话：把「你想守的规矩」写成机器能检查的条目，每次动手前得到一个唯一的 `ALL PASS / FAIL` 结论。本仓自带 56 条通用规则、13 章结构和一个 Web 控制台。
+![license](https://img.shields.io/badge/license-Apache--2.0-blue)
+![python](https://img.shields.io/badge/python-3.12%2B-blue)
+![rules](https://img.shields.io/badge/rules-59-brightgreen)
+![checks](https://img.shields.io/badge/checks-44-brightgreen)
+![local](https://img.shields.io/badge/local--first-no%20cloud-informational)
 
-- 运行时依赖：**纯 Python 标准库**，要求 **Python 3.12 或更高**，不需要 `pip install`。
-- 本仓是四个独立仓库之一，**已内置内核**（`kernel/bumao_core/`），克隆后可直接运行。
+59 rules, 44 checks and a local web console: run an AI agent under a rule set you can inspect, with one verifiable `ALL PASS` / `FAIL` verdict per run.
 
-## 内核已内置
+**What it is** — the full edition: rule set, gate set and a local console.
+**Who it's for** — individuals and small teams that need auditable AI usage.
+**What it solves** — after the fact nobody can tell what the agent did or whether it was allowed; before the fact nothing stops it.
 
-入口脚本按 `10_rac/../kernel/bumao_core` 查找内核，内核随本仓一起分发，克隆后无需另装：
+![Console overview](docs/screens/console-overview.png)
+*Real console on a fresh clone: metadata and the gate entry point. No mock data.*
 
-```
-bumao-xtgl-community/
-├── kernel/
-│   └── bumao_core/            ← 已随本仓内置（源头为 bumao-core 仓）
-├── 10_rac/
-│   └── BumaoXTGL_Community_v01.py
-└── 20_view/
-```
-
-内核只有一份源头：`bumao-core` 仓。内核更新时，用 `bumao-core` 的 `bumao_core/` **整目录覆盖**本仓 `kernel/bumao_core/`，不做逐文件合并；覆盖后比对哈希是否一致即可。
-
-## 30 秒跑起来
+## Quick start (30 seconds)
 
 ```bash
-git clone -b v0.13 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
-cd bumao-xtgl-community/10_rac
+git clone -b <release-tag> https://github.com/Bumao-Ai/Bumao-xtgl-community.git
+cd Bumao-xtgl-community/10_rac
 python BumaoXTGL_Community_v01.py whoami
-python BumaoXTGL_Community_v01.py check --strict
+python BumaoXTGL_Community_v01.py check --strict   # exit code is the verdict
 ```
 
-`check --strict` 输出唯一结论：功能类闸门应全绿。A10／A13（版本变更授权 / 本轮改动须引用户授权原话）依赖团队内部审批册 `30_taizhang/shenpi_jilu.txt`；公开仓不携带内部台账，这两条按**不适用**处理——如实报缺件，不提供空审批样本，不是安装失败。首次 clone 的第一轮还会报 B19（尚无检查凭据）与 B22（无有效检查完成时刻），本轮结束时会写出 `30_taizhang/check_last.json`，第二轮起只剩 A10／A13。
-
-Web 控制台：
+Console:
 
 ```bash
-cd 20_view/web
-python serve.py
+cd ../20_view/web
+python serve.py            # prints the real local address
 ```
 
-默认端口 8802（见 `web_config.json`，端口被占用时会自动向后寻找并打印真实地址）。Windows 也可以直接双击 `20_view/web/qidong_kongzhitai.bat`。
+`<release-tag>` is the tag of the release you install; see Releases and verify with `SHA256SUMS`.
 
-## 六层结构
+> Counting: **59 rules / 44 checks** are two dimensions. Rules are the written clauses (15 chapters); checks are the gates that inspect them. One rule can be covered by several gates, and one gate can span several rules.
+
+## Proof of work
+
+| Item | Value | Source |
+|---|---|---|
+| Commits | 12 | `git rev-list --count HEAD` (before this facade commit) |
+| Last commit | 2026-11-08 | `git log -1 --date=short` |
+| Rules | 59 clauses / 15 chapters | first line of `check --strict` (`15 ch / 59 cls`) |
+| Check items | 44 | `check --strict` conclusion line (`2/44 gates red`) |
+| Reverse cases | 14 | `10_rac/test_qiangzhi.py`; last run 13 caught / 1 missed (B15) |
+| Defect ledger | 0 real closed items | `30_taizhang/chacuo_zhang.txt` holds 3 sanitized sample rows only |
+| Releases | 5 tags, `v0.1` → `v0.13`, all 2026-11-08 | `git tag` |
+| Changelog | [CHANGELOG.md](CHANGELOG.md) | — |
+
+The two red gates on a fresh public clone are `A10` and `A13` (authorization ledger and quoted approval). They are marked *not applicable* in the public edition, because no real approval samples are shipped.
+
+## 中文
+
+- **是什么**：带规则与控制台的完整发行版。
+- **给谁用**：需要「可审计地使用 AI」的个人或小团队。
+- **解决什么**：AI 干了什么、合不合规，事后查不清、事前拦不住。
+
+快速开始沿用上方命令块。`59 条规则 / 44 道检查` 是两个维度：规则条数指 15 章里的条款总数，检查项数指闸门总数；一条规则可能被多道闸门覆盖，一道闸门也可能横跨多条规则。
+
+## Roadmap (0.2 — in progress)
+
+1. **执行前约束** — 动手前提交意图，由内核先判。
+2. **执行中监管** — 过程中持续检查，而不是只在结束时判一次。
+3. **执行后审计** — 把操作、依据、结果、异常四者关联成一条可追溯链。
+
+Status: **in progress**. Nothing here is claimed as shipped.
+
+## Architecture
+
+```mermaid
+flowchart TB
+  S[10_rac/zhunze<br/>15 chapters · 59 clauses] --> E[engine check]
+  S --> R[render.py]
+  R --> V[20_view text views]
+  V --> W[20_view/web console]
+  E --> K[kernel/bumao_core]
+  K --> C{ALL PASS / FAIL}
+  W --> C
+```
+
+## What gets checked
+
+![check --strict](docs/screens/check-terminal.png)
+*Real gate-by-gate output on a fresh clone; the last line is the verdict and the exit code.*
+
+| Group | Gates | What it proves |
+|---|---|---|
+| Rule source | A1–A9, A11, A12 | 15 chapters / 59 clauses load, IDs are unique, blocks are contiguous, references resolve, no empty clauses |
+| Authorization trail | A10, A13 | approval ledger and quoted authorization; **not applicable** in the public repo |
+| Views and render | B1, B2, B5, B8a, B8b, B8c | view drift is zero, render is idempotent, chapter files match, version is injected from meta |
+| Structure and layout | B3, B4, B14 | flat root files ≤ 1, sub-directory naming, layers match `meta.layers` |
+| Sanitization | B6, B6b, B7, B23, B25 | no machine paths, keys, private words or real ledger entries |
+| Coverage, locks, ledgers | B9, B10, B11, B12 | every clause is registered, no stale lock, governance and defect ledgers are complete |
+| Governance | B15–B22, B24, B26, B29 | approval before core edits, trace, source, single version source, no fake-green |
+| Portability and UI | B27, B28 | the tree is portable; the console uses existing tokens |
+
+Total: 13 source gates + 31 view/governance gates = **44 checks**.
+
+## Layout
 
 ```
-00_meta/       元信息、接入协议、版本单点、规则库与功能包
-10_rac/        执行器与规则真身：入口脚本、render.py、rules_db.py、rules/
-20_view/       只读视图区：渲染产物与 Web 控制台
-30_taizhang/   变更与治理台账（只追加）
-40_renwu/      任务执行区（交付物与过程稿）
-90_lishi/      历史归档（只读）
+00_meta/      meta.json, gates_decl.json
+10_rac/       engine entry, rule sources (zhunze/), renderers
+20_view/      generated views + web console
+30_taizhang/  ledgers and baselines
+40_renwu/     task records
+90_lishi/     history
+kernel/       bundled bumao_core
+assets/       logos
+docs/screens/ screenshots used in this README
 ```
 
-规则真身在 `10_rac/rules/`，视图由 `render.py` 生成；**只改真身，不改视图**，否则下一轮渲染会覆盖你的改动。
+`30_taizhang/core_baseline.json` is keyed by repository-relative paths, so a fresh clone can verify without a local work tree.
 
-## 常用命令（在 `10_rac/` 下执行）
+## Docs / License
 
-| 命令 | 作用 |
-|---|---|
-| `python BumaoXTGL_Community_v01.py check --strict` | 全量闸门校验，唯一的放行结论 |
-| `python BumaoXTGL_Community_v01.py whoami` | 接入自检与检查项体检 |
-| `python BumaoXTGL_Community_v01.py audit` | 结构与条款统计 |
-| `python BumaoXTGL_Community_v01.py show <条款id>` | 打印某条条款正文 |
-| `python render.py write` | 真身 → 视图 |
-| `python rules_db.py` | 重建派生索引 |
-
-## 它不做什么
-
-- 不做权限控制：它只能说「你违规了」，不能拦住你的手。
-- 不做代码审查：它管行为纪律，不管代码写得好不好。
-- 不保证规则内容本身正确：它只查自相矛盾、编号重复、视图漂移。
-
-## 许可
+- Changelog: [`CHANGELOG.md`](CHANGELOG.md)
+- Contributing: [`CONTRIBUTING.md`](CONTRIBUTING.md) · DCO: [`DCO`](DCO)
+- Security: [`SECURITY.md`](SECURITY.md)
+- License: Apache-2.0, see [`LICENSE`](LICENSE)
+- Trademark boundary: [`TRADEMARK.md`](TRADEMARK.md)
 
 Copyright 2026 Bumao
-
-Licensed under the Apache License, Version 2.0. 全文见 [`LICENSE`](LICENSE)。
-商标与品牌使用边界见 [`TRADEMARK.md`](TRADEMARK.md)。
-贡献流程与 DCO 要求见 [`CONTRIBUTING.md`](CONTRIBUTING.md)。
-安全问题请按 [`SECURITY.md`](SECURITY.md) 的私密渠道报告。
