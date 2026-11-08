@@ -36,6 +36,8 @@
   "kernel/bumao_core/gate_count.py": "b5f2316957fbaa69ca7aa4ab32c6e28dee3ca26c1b73baecf081cea74acad46a",
   "kernel/bumao_core/gate_registry.py": "a0291356f7305cc8f58f314bfd1e3c1c6b9576969c5f70be149c3020b71ae7a4",
   "kernel/bumao_core/test_check_rc.py": "5ace5aede3195920e000a496ae45cb3695425566fdd889b7a47b007ce196d6d3",
-  "kernel/bumao_core/test_equivalence.py": "f2419d3acfe837ce3e22ffff3c647c4b42f302406daa6db46c02ecbc9179102a"
+  "kernel/bumao_core/test_equivalence.py": "f2419d3acfe837ce3e22ffff3c647c4b42f302406daa6db46c02ecbc9179102a",
+  "kernel/kernel_contract.json": "ed96c132759acd1b036a1b0f2ca8b787e8e2f289717116d7fcd763d2e8b06fc5",
+  "kernel/contract_test.py": "799a927ad1f8dfb05ac9963261c1a25086dbc8a88f8fb43678d9e0b35bb6a596"
  }
 }

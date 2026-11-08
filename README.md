@@ -12,13 +12,13 @@
 **Who it's for** — individuals and small teams that need auditable AI usage.
 **What it solves** — after the fact nobody can tell what the agent did or whether it was allowed; before the fact nothing stops it.
 
-![Console overview](docs/screens/console-overview.png)
-*Real console on a fresh clone: metadata and the gate entry point. No mock data.*
+![Console overview](20_view/screens/console-overview.png)
+*Real console on a single-repo clone: metadata and the gate entry point. The gate-state panel reads sibling editions, so it shows "data unavailable" when only this repo is cloned — a known layout limitation, not a mock. No mock data.*
 
 ## Quick start (30 seconds)
 
 ```bash
-git clone -b <release-tag> https://github.com/Bumao-Ai/Bumao-xtgl-community.git
+git clone -b v0.14 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
 cd Bumao-xtgl-community/10_rac
 python BumaoXTGL_Community_v01.py whoami
 python BumaoXTGL_Community_v01.py check --strict   # exit code is the verdict
@@ -31,7 +31,7 @@ cd ../20_view/web
 python serve.py            # prints the real local address
 ```
 
-`<release-tag>` is the tag of the release you install; see Releases and verify with `SHA256SUMS`.
+`v0.14` is the tag this README was released with; see Releases and verify the zip with `SHA256SUMS`.
 
 > Counting: **59 rules / 44 checks** are two dimensions. Rules are the written clauses (15 chapters); checks are the gates that inspect them. One rule can be covered by several gates, and one gate can span several rules.
 
@@ -39,16 +39,16 @@ python serve.py            # prints the real local address
 
 | Item | Value | Source |
 |---|---|---|
-| Commits at `v0.13` | 12 | `git rev-list --count v0.13` |
+| Commits at `v0.14` | 17 | `git rev-list --count v0.14` |
 | Last commit | 2026-11-08 | `git log -1 --date=short` |
 | Rules | 59 clauses / 15 chapters | first line of `check --strict` (`15 ch / 59 cls`) |
-| Check items | 44 | `check --strict` conclusion line (`2/44 gates red`) |
+| Check items | 44 | `check --strict` conclusion line (`2/44 gates red`, second run) |
 | Reverse cases | 14 | `10_rac/test_qiangzhi.py`; last run 13 caught / 1 missed (B15) |
 | Defect ledger | 0 real closed items | `30_taizhang/chacuo_zhang.txt` holds 3 sanitized sample rows only |
-| Releases | 5 tags, `v0.1` → `v0.13`, all 2026-11-08 | `git tag` |
+| Releases | 6 tags, `v0.1` → `v0.14`, all 2026-11-08 | `git tag` |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) | — |
 
-The two red gates on a fresh public clone are `A10` and `A13` (authorization ledger and quoted approval). They are marked *not applicable* in the public edition, because no real approval samples are shipped.
+On a public clone, `A10` and `A13` are red by design: they check an approval ledger and a quoted authorization, and this edition ships no real approval samples. They are marked *not applicable*, not passed. The **first** run on a clean clone also flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; a second run is `2/44` red. That credential is runtime state, not a committed file.
 
 ## 中文
 
@@ -81,7 +81,7 @@ flowchart TB
 
 ## What gets checked
 
-![check --strict](docs/screens/check-terminal.png)
+![check --strict](20_view/screens/check-terminal.png)
 *Real gate-by-gate output on a fresh clone; the last line is the verdict and the exit code.*
 
 | Group | Gates | What it proves |
@@ -104,13 +104,11 @@ Each run ends with one verdict, and that verdict is anchored to an evidence reco
 ```
 00_meta/      meta.json, gates_decl.json
 10_rac/       engine entry, rule sources (zhunze/), renderers
-20_view/      generated views + web console
+20_view/      generated views + web console + screens/ (README images)
 30_taizhang/  ledgers and baselines
 40_renwu/     task records
 90_lishi/     history
 kernel/       bundled bumao_core
-assets/       logos
-docs/screens/ screenshots used in this README
 ```
 
 `30_taizhang/core_baseline.json` is keyed by repository-relative paths, so a fresh clone can verify without a local work tree.
