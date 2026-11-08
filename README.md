@@ -48,7 +48,7 @@ python serve.py            # prints the real local address
 
 | Item | Value | Source |
 |---|---|---|
-| Commits at `v0.18` | 25 | `git rev-list --count v0.18` |
+| Commits at `v0.18` | — | 远端由 API 合成提交，本地与远端计数不同，不虚标 |
 | Last commit | 2026-11-09 | `git log -1 --date=short` |
 | Rules | 59 clauses / 15 chapters | first line of `check --strict` (`15 ch / 59 cls`) |
 | Check items | 44 | `check --strict` conclusion line (`1/44 gates red`, second run at tag `v0.18`; only `A10`) |
