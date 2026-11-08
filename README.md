@@ -29,7 +29,7 @@ python BumaoXTGL_Community_v01.py whoami
 python BumaoXTGL_Community_v01.py check --strict
 ```
 
-`check --strict` 输出唯一结论：功能类闸门应全绿；A10／A13／B15／B16／B24／B29 等「审批与留痕」闸门在没有团队内部台账时会如实报缺件——公开仓不携带内部审批与备份记录，这是预期差异，不是安装失败。首次 clone 的第一轮还会报 B19（尚无检查凭据）与 B22（无有效检查完成时刻），本轮结束时会写出 `30_taizhang/check_last.json`，第二轮起转为通过。
+`check --strict` 输出唯一结论：功能类闸门应全绿。A10／A13（版本变更授权 / 本轮改动须引用户授权原话）依赖团队内部审批册 `30_taizhang/shenpi_jilu.txt`；公开仓不携带内部台账，这两条按**不适用**处理——如实报缺件，不提供空审批样本，不是安装失败。首次 clone 的第一轮还会报 B19（尚无检查凭据）与 B22（无有效检查完成时刻），本轮结束时会写出 `30_taizhang/check_last.json`，第二轮起只剩 A10／A13。
 
 Web 控制台：
 
