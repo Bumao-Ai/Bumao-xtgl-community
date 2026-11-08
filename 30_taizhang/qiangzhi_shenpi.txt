@@ -139,5 +139,23 @@ Bumao XTGL Community 强制/限制类审批册 qiangzhi_shenpi.txt
       导致理由错误）。判定结论仍为 DENY，未放宽任何一条。
 
 ============================================================
+============================================================
+【第 18 号】2026-11-09｜随 core v0.2.0-beta.5 同步内核修复并发布 community v0.18
+范围：kernel/bumao_core/engine.py、kernel/bumao_core/gate_registry.py、
+      kernel/bumao_core/bumao_core_rules.py、kernel/bumao_core/gate_count.py、
+      kernel/bumao_core/test_equivalence.py、kernel/bumao_core/__init__.py、
+      kernel/bumao_core/test_build_parser.py
+改动时间：2026-11-09
+授权来源：用户 2026-11-09 逐字原话（两处）
+签署：无（执行端记录，不代用户签）
+用户批准原文：「（原话已脱敏移除）」
+引用说明：「用户令（2026-11-09）：」为来源标注（令＝授权词）；其后两句为用户原话逐字引用，未改写。
+说明：内核以 core 为唯一源头，整目录口径同步本轮修复——build_parser 不再重复注册 check、
+      --quick／--full／selftest --kernel 真实现、engine 内部互导兼容相对与扁平两种加载、
+      gate_count／test_equivalence 单仓 clone 下按退出码 2「不可判定」。
+      未放宽任何判定：A10 随包审批册零条目仍判 DENY（设计行为），A13 逻辑未改。
+      改前件同哈希已补入 90_lishi/gongkai_weihu_261107（*.261109_v018.bak）；
+      新增件 __init__.py（86b25ee5…）与 test_build_parser.py（302fa486…）已登首次入库。
+
 【本册结束】
 

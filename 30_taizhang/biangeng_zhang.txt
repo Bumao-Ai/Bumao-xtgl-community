@@ -68,4 +68,16 @@ Bumao XTGL Community 变更与治理台账 biangeng_zhang.txt
   证据：10_rac/test_qiangzhi.py 实跑 17 条反向用例 + 1 条放行对照 ALL PASS
   验证：BumaoXTGL_Community_v01.py check --strict（结果见 30_taizhang/check_last.json）
 
+2026-11-09 | L2 变更 | community v0.18：同步 core v0.2.0-beta.5 内核修复
+  性质：内核同步与打包修复，不放宽任何判定；本版为本阶段最后一个版本，未来一个月不再主动迭代。
+  范围：kernel/bumao_core/engine.py、gate_registry.py、bumao_core_rules.py、gate_count.py、
+        test_equivalence.py、__init__.py（新增）、test_build_parser.py（新增）。
+  来源：用户指令（2026-11-09「（原话已脱敏移除）」「（原话已脱敏移除）」）
+  L2 记录：build_parser() 曾重复注册 check 子命令，调用即抛 conflicting subparser；现只注册一次，
+        main() 复用同一解析器。--quick／--full／selftest --kernel 由文档承诺改为真实实现。
+  L3 记录：引擎内部互导改为相对导入优先、扁平导入兜底；新增 __init__.py 后 pip install -e . 与
+        sys.path.insert 两种加载方式并存，行为一致。
+  证据：check --strict 实跑（结果见 30_taizhang/check_last.json）；随包 test_build_parser.py 4/4。
+  验证：BumaoXTGL_Community_v01.py check --strict
+
 【本文件结束】

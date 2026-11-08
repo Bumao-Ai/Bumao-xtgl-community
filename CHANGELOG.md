@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.18 — 2026-11-09
+
+本版只做内核同步，不新增规则、不放宽任何判定；**是本阶段的最后一个版本**，未来一个月不再主动迭代（只做维护与修复）。Kernel sync only; this is the last release of this phase.
+
+- **内核随 core `v0.2.0-beta.5` 同步** — `kernel/bumao_core/engine.py`、`gate_registry.py`、`bumao_core_rules.py`、`gate_count.py`、`test_equivalence.py` 与 `HOST_CONTRACT.md` 按整目录口径覆盖到 core 同版本。内核以 core 为唯一源头，这里是同一份字节。
+- **`build_parser()` 重复注册修复** — 旧代码连续两次 `sub.add_parser("check")`，调用 `build_parser()` 即抛 `argparse.ArgumentError: conflicting subparser: check`；`main()` 过去另建一份解析器，文档里的参数因此从未真正注册。现在只有一份解析器，`main()` 复用同一份。
+- **三个参数由文档承诺改为真实实现** — `check --quick`（只跑 A 段结构闸，结论行明说不能替代 `--strict`）、`whoami --full`（追加 4 行诊断，不带时逐字不变）、`selftest --kernel`（6 项宿主无关自检）。随包新增 `kernel/bumao_core/test_build_parser.py` 锁定回归（4/4）。
+- **两种加载方式并存** — 新增 `kernel/bumao_core/__init__.py`，`pip install -e .` 后 `from bumao_core import engine` 与历史 `sys.path.insert` + `import engine` 都可用；`gate_count.py`／`test_equivalence.py` 在单仓 clone 下改为打印「需要三端同级检出」并退出 2，不再假绿或误报红。
+- **留痕** — 三件改前件同哈希随包（`*.261109_v018.bak`），两件新增件登 `30_taizhang/shouci_ruku_dengji.txt`；审批册第 18 号记录本轮授权原话。
+- **未变** — 规则 59 条／15 章、闸门总数 44、应用内版本 `0.10`、目录结构未改；`A10`／`A13` 判定逻辑未动，无当日授权条目时仍判 `DENY`。
+- **已知红项（设计行为）** — 已存在基线的本机工作树里，当日改动内核件会让 `A13` 判红（`改而未授权`），`A10` 因随包审批册零条目恒判 `DENY`。下载件解出后首跑无基线，`A13` 先纳基线后通过，只剩 `A10`。
+
 ## 0.17 — 2026-11-09
 
 本版修的是判据取件与一条空闸，不放宽任何判定。This release fixes where the gates look for the approval ledger and repairs one vacuous gate; no verdict was relaxed.
