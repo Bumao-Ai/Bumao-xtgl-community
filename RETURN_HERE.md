@@ -21,6 +21,13 @@ Iteration is paused; the current release is stable and usable as-is. When work r
    Read the top entry of `CHANGELOG.md` and `ROADMAP.md`. The top entry lists what the last release actually changed; the roadmap marks what was still in progress.
    读 `CHANGELOG.md` 最上面一条与 `ROADMAP.md`：前者是上一版真实改动，后者标着当时未完成项。
 
+## Default-off switches · 默认关闭的开关
+
+- `00_meta/feature_packs/f01_jieru.json` — `enabled: false`（接入名册，只读面板）；要用再打开。
+- `00_meta/feature_packs/f02_lishi.json` — `enabled: false`（日志日历，只读面板）；要用再打开。
+- 维护暂停：迭代停了，但已发的代码照常能跑；`serve.py` 不会自动启动，`check --strict` 也不会自己跑。
+- 首次克隆不自动改文件：`check --strict` 只写 `30_taizhang/check_last.json` 这一份运行凭据。
+
 ## Touch this file first · 先动这个文件
 
 `CHANGELOG.md` — open the new version entry before editing any code, so the change is recorded before it exists.
