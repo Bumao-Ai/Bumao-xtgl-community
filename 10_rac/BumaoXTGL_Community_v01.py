@@ -135,20 +135,25 @@ def b3_root_flat():
     # 「入口导航 + 门面白名单」，其余仍判 FAIL。白名单宁多不少，覆盖标准门面件。
     _ROOT_ALLOW = {"README-HX.txt", "README-HX.md", "README.md", "NOTICE", "TRADEMARK.md",
                    "CONTRIBUTING.md", "LICENSE", "DCO", "CHANGELOG.md", "COMPLIANCE.md",
-                   "OPEN_SOURCE_NOTICE.md"}
+                   "OPEN_SOURCE_NOTICE.md", "SECURITY.md", "CODE_OF_CONDUCT.md", ".gitignore"}
     flat = [f for f in sorted(os.listdir(HX)) if os.path.isfile(os.path.join(HX, f))]
     bad = [f for f in flat if f not in _ROOT_ALLOW]
     return not bad, ("根下平铺 %d 件（白名单内 %d，越界 %d）：%s"
                      % (len(flat), len(flat) - len(bad), len(bad), str(bad[:5])))
 core.register("B3", b3_root_flat, "工程域根下平铺文件 ≤ 1")
 
-# B4: 子目录名匹配格式
+# B4: 子目录名匹配格式（kernel/ 例外，但必须内含 bumao_core）
 def b4_subdir_names():
     dirs = [f for f in sorted(os.listdir(HX))
             if os.path.isdir(os.path.join(HX, f)) and not f.startswith(".")]
-    baddir = [x for x in dirs if not re.match(r"^\d{2}_[a-z]+$", x)]
+    _DIR_ALLOW = {"kernel"}
+    baddir = [x for x in dirs if not re.match(r"^\d{2}_[a-z]+$", x) and x not in _DIR_ALLOW]
+    if "kernel" in dirs:
+        kc = os.path.join(HX, "kernel", "bumao_core")
+        if not (os.path.isdir(kc) and os.listdir(kc)):
+            return False, "kernel/ 存在但缺少 bumao_core（内置内核不完整）"
     return not baddir, "bad dirs: %s" % str(baddir[:3])
-core.register("B4", b4_subdir_names, r"子目录名匹配 ^\d{2}_[a-z]+$")
+core.register("B4", b4_subdir_names, r"子目录名匹配 ^\d{2}_[a-z]+$（kernel 需含 bumao_core）")
 
 # B5: zhunze 文件数 = 章数
 def b5_zcount():
