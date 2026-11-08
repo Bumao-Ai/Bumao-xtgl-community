@@ -38,8 +38,8 @@ import sys
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PRODUCT = os.path.dirname(HERE)            # HX/community
-REPO = os.path.dirname(PRODUCT)            # HX（kernel 与本端同级）
+PRODUCT = os.path.dirname(HERE)            # 本仓根目录
+REPO = PRODUCT                             # 本仓根目录（kernel/ 与 10_rac/ 同级）
 ZH = os.path.join(HERE, "zhunze")
 META = os.path.join(PRODUCT, "00_meta", "meta.json")
 MAPF = os.path.join(PRODUCT, "00_meta", "jiancha_map.json")

@@ -31,26 +31,17 @@ import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 HX = os.path.dirname(HERE)
-KCORE = os.path.join(os.path.dirname(HX), "kernel", "bumao_core")
+KCORE = os.path.join(HX, "kernel", "bumao_core")
 TODAY = time.strftime("%Y-%m-%d", time.localtime())
 
 
 def _copy_product(dst):
     shutil.copytree(HX, os.path.join(dst, "community"),
                     ignore=shutil.ignore_patterns("__pycache__", "*.pyc"))
-    kdst = os.path.join(dst, "kernel", "bumao_core")
-    os.makedirs(kdst)
-    for fn in ("gate_registry.py", "engine.py", "bumao_core_gates.py",
-               "bumao_core_rules.py"):
-        src = os.path.join(KCORE, fn)
-        if os.path.isfile(src):
-            shutil.copy2(src, os.path.join(kdst, fn))
-    con = os.path.join(os.path.dirname(KCORE), "kernel_contract.json")
-    if os.path.isfile(con):
-        shutil.copy2(con, os.path.join(os.path.dirname(kdst), "kernel_contract.json"))
+    # 内核随仓内嵌，已由 copytree 一并复制到 community/kernel/bumao_core。
     for fn in ("LICENSE", "NOTICE", "TRADEMARK.md", "CONTRIBUTING.md",
                "README.md", "DCO", "README-HX.txt"):
-        src = os.path.join(os.path.dirname(HX), fn)
+        src = os.path.join(HX, fn)
         if os.path.isfile(src):
             shutil.copy2(src, os.path.join(dst, fn))
     # 副本里的核心件带着只读锁（z11 的 attrib +R），夹具要能破坏判据，先只对副本解锁。
@@ -64,8 +55,9 @@ def _copy_product(dst):
 
 
 def _load(dst):
-    if os.path.join(dst, "kernel", "bumao_core") not in sys.path:
-        sys.path.insert(0, os.path.join(dst, "kernel", "bumao_core"))
+    kdir = os.path.join(dst, "community", "kernel", "bumao_core")
+    if kdir not in sys.path:
+        sys.path.insert(0, kdir)
     spec = importlib.util.spec_from_file_location(
         "qz_" + str(abs(hash(dst)))[:8],
         os.path.join(dst, "community", "10_rac", "qiangzhi.py"))
@@ -144,7 +136,7 @@ def main():
             os.path.join(d, "community", "README.md"),
             "\n" + (os.environ.get("USERNAME") or "LOCALUSER") + "\n"), "gate_b23"),
         ("B24 未审批改内核", lambda d, q: _append(
-            os.path.join(d, "kernel", "bumao_core", "bumao_core_rules.py"), "\n# drill\n"), "gate_b24"),
+            os.path.join(d, "community", "kernel", "bumao_core", "bumao_core_rules.py"), "\n# drill\n"), "gate_b24"),
         ("B25 私人端标识混入", lambda d, q: _append(
             os.path.join(d, "community", "README.md"), "\n" + "BUMA" + "OSI" + "\n"), "gate_b25"),
         ("B26 自造许可附加条款", lambda d, q: _append(
@@ -171,13 +163,13 @@ def main():
             _seed(dst, q)
             core = os.path.join(dst, "community", "20_view", "web", "xtgl_core.py")
             old = q._sha(core)
-            bak = os.path.join(dst, "90_lishi", "gongkai_weihu_261107")
+            bak = os.path.join(dst, "community", "90_lishi", "gongkai_weihu_261107")
             os.makedirs(bak, exist_ok=True)
             shutil.copy2(core, os.path.join(bak, "xtgl_core.py.bak_drill"))
             _append(core, "\n# approved drill\n")
             assert q._sha(os.path.join(bak, "xtgl_core.py.bak_drill")) == old
             _approve(dst, "xtgl_core.py")
-            newp = os.path.join(dst, "kernel", "bumao_core", "new_ok.py")
+            newp = os.path.join(dst, "community", "kernel", "bumao_core", "new_ok.py")
             _write(newp, "# ok\n")
             _first_entry_fixture(dst, "new_ok.py", q._sha(newp), complete=True)
             _approve(dst, "new_ok.py")
@@ -229,7 +221,7 @@ def _b16_old_with_entry(d, q):
 
 def _b16_new_missing_field(d, q):
     """新增件（基线里没有）登记缺「入库时间」，必须判红。"""
-    p = os.path.join(d, "kernel", "bumao_core", "new_drill.py")
+    p = os.path.join(d, "community", "kernel", "bumao_core", "new_drill.py")
     _write(p, "# drill\n")
     _first_entry_fixture(d, "new_drill.py", q._sha(p), complete=False)
 
