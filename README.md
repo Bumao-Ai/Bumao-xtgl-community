@@ -6,6 +6,9 @@
 ![checks](https://img.shields.io/badge/checks-44-brightgreen)
 ![local](https://img.shields.io/badge/local--first-no%20cloud-informational)
 
+> **Two version spaces** — the in-app version in `00_meta/meta.json` is `0.10`; the repository release tag is `v0.14`. They are two independent numbering spaces, not the same number.
+> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.10`；仓库发布 tag 是 `v0.14`。这是两个独立的编号空间，不是同一个数字。
+
 59 rules, 44 checks and a local web console: run an AI agent under a rule set you can inspect, with one verifiable `ALL PASS` / `FAIL` verdict per run.
 
 **What it is** — the full edition: rule set, gate set and a local console.
