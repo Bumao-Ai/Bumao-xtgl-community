@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.34 — 2026-11-09
+
+本版只修「发布件自述与实物不一致」，不改判定、不改核心件集合。
+
+- **加号依据：0.33→0.34（+0.01 同档正常晋升）** — 依据 `HX\personal\20_view\di00_qidong_zongze.txt` L55—60 的 0.6.8 规则；随包内核仍 core `v0.2.6`，不跨档再加号。
+- **`20_view/web/core_manifest.json` 的 `index.html` 哈希改为实物值** — 旧值 `17db952b…` 是 logKey 分组目录名修正前的版本；现按磁盘 12 件逐件重算，`generated` 改为 `2026-11-09`，`core_version` 仍 `0.10`。
+- **README 自述按实物校正** — 英文侧「应用内版本」停在 `0.32`，改为 `0.34`；随附 `2026-11-09` 条目数由 4 条改为 6 条；发布 tag 引用统一为 `v0.22`，tag 总数 14。
+- **未变** — 规则 59 条／15 章、检查项 44；A10／A13／B16／B19／B22 判据不变；`check --strict` 仍 `ALL PASS（A段 13 项 + B段 31 项）`。
+
+**English**
+- Fixes only where the published artefacts described themselves wrongly; no verdict or core-file-set changes.
+- `20_view/web/core_manifest.json`: the `index.html` entry now carries the actual on-disk sha256 (the old value predates the logKey directory-name fix); all 12 entries verify against disk, `generated` is `2026-11-09`, `core_version` stays `0.10`.
+- README: the English "in-app version" line (stuck at `0.32`) now reads `0.34`; the shipped `2026-11-09` entry count is 6; tag references are `v0.22` (14 tags total).
+- Unchanged: 59 rules / 15 chapters, 44 checks, and the A10 / A13 / B16 / B19 / B22 verdicts.
+
 ## 0.33 — 2026-11-09
 
 本版同步 core `v0.2.6`：A13 基线改为按端分文件存放，首次纳入基线时如实标注「未授权基线建立」。判定口径、闸门总数与其余判定不变。

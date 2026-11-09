@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.33 第1章
+来源：Bumao XTGL Community 0.34 第1章
 
 1. 术语、分层与治理架构
 1.0 术语表（本产品统一口径）：

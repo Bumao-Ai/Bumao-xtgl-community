@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.33 第10章
+来源：Bumao XTGL Community 0.34 第10章
 
 10. 版本规则、交付与闸门登记
 10.0 版本规则：
