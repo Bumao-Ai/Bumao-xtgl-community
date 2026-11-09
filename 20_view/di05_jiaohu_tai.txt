@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.10 第5章
+来源：Bumao XTGL Community 0.29 第5章
 
 5. 交互态契约
 5.0 语气由参数控制：

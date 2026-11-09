@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.29 — 2026-11-09
+
+本版同步 core `v0.2.2`（commit `06d78fb`）随包内核，并把应用内版本补齐到发布序列号。Kernel sync to core v0.2.2; in-app version back-filled to the release series.
+
+- **加号依据：0.18→0.19（+0.01 正常晋升）→0.29（+0.10 内核跨档 0.1→0.2，同一版内叠加）** — 依据 `HX\personal\20_view\di00_qidong_zongze.txt` L55—60 的 0.6.8 逐级加号规则，不跳号、不跨级。
+- **应用内版本 `0.10` → `0.29`** — `00_meta/meta.json`；`README-HX.txt` 当前版本行、`README.md` 两个版本空间说明同步。
+- **随包内核同步到 core `v0.2.2`** — 以 tag 内容为准，非工作树拷贝；整目录覆盖 `kernel/bumao_core/`，新增 `host_reference.py`、`test_a10_policy.py`、`test_gate_registry.py` 与 `jiancha/` 运行层子包。
+- **视图按新版本重渲染** — `render.py write` 重生成 `20_view/` 15 个分章、`mulu.txt` 与 `quanwen_0.29.txt`。
+- **未变** — 规则 59 条／15 章、闸门总数 44；`A10`／`A13` 判定逻辑与判据输入一字未动。
+
 ## 0.18 — 2026-11-09
 
 本版只做内核同步，不新增规则、不放宽任何判定；**是本阶段的最后一个版本**，未来一个月不再主动迭代（只做维护与修复）。Kernel sync only; this is the last release of this phase.

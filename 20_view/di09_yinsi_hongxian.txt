@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.10 第9章
+来源：Bumao XTGL Community 0.29 第9章
 
 9. 隐私红线与去私人化
 9.0 个人信息分级：
