@@ -162,6 +162,15 @@
    "registered_at": "2026-11-09 11:23:19",
    "handler": "执行端（AI 助理）",
    "note": "随 core v0.2.2（tag 06d78fb）内核同步新增；首版 sha256 取入库时实物，与当前件一致。"
+  },
+  {
+   "file": "HOST_CONTRACT.md",
+   "path": "kernel/bumao_core/HOST_CONTRACT.md",
+   "created_at": "2026-11-09 11:31:27",
+   "first_sha256": "70130ff67c308bfced70e4ed820cf0d7b354de5cec3c23384134670092714c00",
+   "registered_at": "2026-11-09 11:31:27",
+   "handler": "执行端（AI 助理）",
+   "note": "随 core 0.2.2 内核同步新增；首版 sha256 取入库时实物，与当前件一致。"
   }
  ]
 }
