@@ -60,7 +60,7 @@ Bumao XTGL Community 强制/限制类审批册 qiangzhi_shenpi.txt
       kernel/bumao_core/portability_probe.py（新增可迁移性探针，依据 z13 13.0 与 B27）
 说明：22:37—22:57 那次前端美化为用户授权范围，一个字不回退；personal 同步归前端线，本册只登记
       「personal 待前端线同步」，不以两端文件覆盖 personal（避免冲掉记忆层与 8801 端口）。
-      （原话已脱敏移除）；期间 kernelsync --check 三端 EXIT=1 为如实状态，不改清单掩盖。
+      （原话已脱敏移除）；期间 kernelsync --check 三端 EXIT=1。
 用户批准原文：「（原话已脱敏移除）」「（原话已脱敏移除）」
 授权闸：L2／L3（当日点名审批＋同哈希改前件）
 
@@ -114,29 +114,26 @@ Bumao XTGL Community 强制/限制类审批册 qiangzhi_shenpi.txt
 授权来源：用户 2026-11-08「（原话已脱敏移除）」「（原话已脱敏移除）」；任务转达「Q011 setup/tutorial 缺字号增强块」「Q012 clients()／client_name 未接基线准入过滤」
 签署：无（执行端记录，不代用户签；属事后追认）
 用户批准原文：「（原话已脱敏移除）」
-引用说明：「用户令（2026-11-08）：」为来源标注；其后两句为用户原话逐字引用，未改写。
 说明：setup/tutorial 补 --fs-zoom:1.12 与同 index 的字号增强块，两开源端逐字节相同；xtgl_core.py 新增 huichuan_dir()／baseline_passed()／baseline_ok()，clients() 过滤未过基线端。改前件同哈希已补入 90_lishi/gongkai_weihu_261107。
 ============================================================
 【第 16 号】2026-11-08｜前端三端中文称谓统一（personal→私人版／community→个人版／minimal→社区版）
 范围：20_view/web/index.html、20_view/web/tutorial.html、20_view/web/i18n.js、20_view/web/xtgl_core.py、20_view/web/web_config.json
 改动时间：2026-11-08 11:59:29
-授权来源：用户 2026-11-08 逐字原话「（原话已脱敏移除）」「（原话已脱敏移除）」
+授权来源：用户 2026-11-08 原话「（原话已脱敏移除）」「（原话已脱敏移除）」
 签署：无（执行端记录，不代用户签；属事后追认）
 用户批准原文：「（原话已脱敏移除）」
-引用说明：「用户令（2026-11-08）：」为来源标注（令＝授权词）；其后两句为用户原话逐字引用，未改写。
 说明：称谓映射收进 web_config.json 的 labels（可配置层），代码与 /api 只按英文标识 personal／community／minimal 取词；英文端名与目录路径未动。改前件同哈希已补入 90_lishi/gongkai_weihu_261107（*.261108_chengwei.bak）。
 
 ============================================================
 【第 17 号】2026-11-09｜A10／A13 判拒文案与取件范围修正（不改判定结论）
 范围：kernel/bumao_core/gate_registry.py、kernel/bumao_core/engine.py
 改动时间：2026-11-09 06:20—06:35
-授权来源：用户 2026-11-09 逐字原话「（原话已脱敏移除）」
+授权来源：用户 2026-11-09 原话「（原话已脱敏移除）」
 签署：无（执行端记录，不代用户签）
 用户批准原文：「（原话已脱敏移除）」
-引用说明：「用户令（2026-11-09）：」为来源标注（令＝授权词）；其后为用户原话逐字引用，未改写。
 说明：A10／A13 在缺审批册时输出「A10 判定=DENY」＋策略 deny，不再只是「找不到审批册」提示；
       find_approval_ledger 不再翻兄弟目录（旧实现会在发布仓同级布局下读到 core 仓的审批册模板，
-      导致理由错误）。判定结论仍为 DENY，未放宽任何一条。
+      导致理由错误）。判定结论仍为 DENY。
 
 ============================================================
 ============================================================
@@ -146,51 +143,46 @@ Bumao XTGL Community 强制/限制类审批册 qiangzhi_shenpi.txt
       kernel/bumao_core/test_equivalence.py、kernel/bumao_core/__init__.py、
       kernel/bumao_core/test_build_parser.py
 改动时间：2026-11-09
-授权来源：用户 2026-11-09 逐字原话（两处）
+授权来源：用户 2026-11-09 原话（两处）
 签署：无（执行端记录，不代用户签）
 用户批准原文：「（原话已脱敏移除）」
-引用说明：「用户令（2026-11-09）：」为来源标注（令＝授权词）；其后两句为用户原话逐字引用，未改写。
 说明：内核以 core 为唯一源头，整目录口径同步本轮修复——build_parser 不再重复注册 check、
       --quick／--full／selftest --kernel 真实现、engine 内部互导兼容相对与扁平两种加载、
       gate_count／test_equivalence 单仓 clone 下按退出码 2「不可判定」。
-      未放宽任何判定：A10 随包审批册零条目仍判 DENY（设计行为），A13 逻辑未改。
+      A10 随包审批册零条目仍判 DENY（设计行为）。
       改前件同哈希已补入 90_lishi/gongkai_weihu_261107（*.261109_v018.bak）；
       新增件 __init__.py（86b25ee5…）与 test_build_parser.py（302fa486…）已登首次入库。
 
 【第 19 号】2026-11-09｜随 core v0.2.4 整包落盘内核、同步契约与控制台修复
 范围：kernel/bumao_core/HOST_CONTRACT.md、engine.py、gate_registry.py、bumao_core_rules.py、gate_count.py、test_equivalence.py、__init__.py、host_reference.py、test_a10_policy.py、test_build_parser.py、test_check_rc.py、test_gate_registry.py、test_jiancha_ledger.py、test_jiancha_loader.py、test_jiancha_recovery.py、test_jiancha_scope.py、jiancha/*.py、kernel/kernel_contract.json、kernel/contract_test.py、20_view/web/index.html
 改动时间：2026-11-09
-授权来源：用户 2026-11-09 逐字原话
+授权来源：用户 2026-11-09 原话
 签署：无（执行端记录，不代用户签）
 用户批准原文：「授权」
-引用说明：用户原话逐字引用，未改写、未润色、未合并。
-说明：内核以 core v0.2.4（tag 5c217f6）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包；未放宽任何判据。
+说明：内核以 core v0.2.4（tag 5c217f6）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包。
 
 【第 20 号】2026-11-09｜三端统一内核线（原话登记）
 范围：kernel/bumao_core/HOST_CONTRACT.md、engine.py、gate_registry.py、bumao_core_rules.py、gate_count.py、test_equivalence.py、__init__.py、host_reference.py、test_a10_policy.py、test_build_parser.py、test_check_rc.py、test_gate_registry.py、test_jiancha_ledger.py、test_jiancha_loader.py、test_jiancha_recovery.py、test_jiancha_scope.py、jiancha/*.py、kernel/kernel_contract.json、kernel/contract_test.py、20_view/web/index.html
 改动时间：2026-11-09
-授权来源：用户 2026-11-09 逐字原话
+授权来源：用户 2026-11-09 原话
 签署：无（执行端记录，不代用户签）
 用户批准原文：「（原话已脱敏移除）」
-引用说明：用户原话逐字引用，未改写、未润色、未合并。
-说明：内核以 core v0.2.4（tag 5c217f6）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包；未放宽任何判据。
+说明：内核以 core v0.2.4（tag 5c217f6）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包。
 
 【第 21 号】2026-11-09｜内核版本线（原话登记）
 范围：kernel/bumao_core/HOST_CONTRACT.md、engine.py、gate_registry.py、bumao_core_rules.py、gate_count.py、test_equivalence.py、__init__.py、host_reference.py、test_a10_policy.py、test_build_parser.py、test_check_rc.py、test_gate_registry.py、test_jiancha_ledger.py、test_jiancha_loader.py、test_jiancha_recovery.py、test_jiancha_scope.py、jiancha/*.py、kernel/kernel_contract.json、kernel/contract_test.py、20_view/web/index.html
 改动时间：2026-11-09
-授权来源：用户 2026-11-09 逐字原话
+授权来源：用户 2026-11-09 原话
 签署：无（执行端记录，不代用户签）
 用户批准原文：「（原话已脱敏移除）」
-引用说明：用户原话逐字引用，未改写、未润色、未合并。
-说明：内核以 core v0.2.4（tag 5c217f6）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包；未放宽任何判据。
+说明：内核以 core v0.2.4（tag 5c217f6）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包。
 
 【第 22 号】2026-11-09｜红项修复（原话登记）
 范围：kernel/bumao_core/HOST_CONTRACT.md、engine.py、gate_registry.py、bumao_core_rules.py、gate_count.py、test_equivalence.py、__init__.py、host_reference.py、test_a10_policy.py、test_build_parser.py、test_check_rc.py、test_gate_registry.py、test_jiancha_ledger.py、test_jiancha_loader.py、test_jiancha_recovery.py、test_jiancha_scope.py、jiancha/*.py、kernel/kernel_contract.json、kernel/contract_test.py、20_view/web/index.html
 改动时间：2026-11-09
-授权来源：用户 2026-11-09 逐字原话
+授权来源：用户 2026-11-09 原话
 签署：无（执行端记录，不代用户签）
 用户批准原文：「（原话已脱敏移除）」
-引用说明：用户原话逐字引用，未改写、未润色、未合并。
-说明：内核以 core v0.2.4（tag 5c217f6）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包；未放宽任何判据。
+说明：内核以 core v0.2.4（tag 5c217f6）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包。
 
 【本册结束】

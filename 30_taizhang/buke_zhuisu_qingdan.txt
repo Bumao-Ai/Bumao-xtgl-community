@@ -19,7 +19,7 @@ Bumao XTGL Community 不可追溯清单（丙类）
 
 ============================================================
 说明：B16 其余 2 件（community/20_view/web/kernelsync.py、kernel/bumao_core/engine.py）
-      的改前件已补齐，哈希与基线旧值逐字相同，见 90_lishi/gongkai_weihu_261107 下
+      的改前件已补齐，哈希与基线旧值相同，见 90_lishi/gongkai_weihu_261107 下
       community_20_view_web_kernelsync.py.261107-2200.pre_261108bak（82700fcc…）与
       kernel_bumao_core_engine.py.261107-2200.pre_261108bak（b6643e65…）。
 【本清单结束】

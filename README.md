@@ -57,7 +57,7 @@ python serve.py            # prints the real local address
 | Releases | 12 tags, `v0.1` → `v0.20`, 2026-11-08 → 2026-11-09 | `git tag` |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) | — |
 
-`A10` passes when the shipped `30_taizhang/shenpi_jilu.txt` carries a same-day authorized entry; this edition ships four entries quoting the user's 2026-11-09 authorizations verbatim. On a clean clone the **first** run flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; run `check --strict` twice — the second run at tag `v0.20` is `0/44` red. That credential is runtime state, not a committed file; the package documents this two-run procedure.
+`A10` passes when the shipped `30_taizhang/shenpi_jilu.txt` carries a same-day authorized entry; this edition ships four authorized entries dated 2026-11-09. On a clean clone the **first** run flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; run `check --strict` twice — the second run at tag `v0.20` is `0/44` red. That credential is runtime state, not a committed file; the package documents this two-run procedure.
 
 ## 中文
 
@@ -190,7 +190,7 @@ python serve.py            # 打印真实的本地地址
 | 发布 | 12 个 tag，`v0.1` → `v0.20`，2026-11-08 → 2026-11-09 | `git tag` |
 | 变更记录 | [CHANGELOG.md](CHANGELOG.md) | — |
 
-`A10` 的通过条件是随包 `30_taizhang/shenpi_jilu.txt` 里有当日的授权条目；本版随附 4 条逐字引用用户 2026-11-09 授权原话的条目。干净克隆上的**第一次**运行会带出 `B19`/`B22`，因为检查凭据（`30_taizhang/check_last.json`）是在那次运行末尾写入的；连跑两次 `check --strict` 即可，`v0.20` 处的第二次运行是 `0/44` 红。该凭据是运行时状态，不是提交文件；包内说明已写明这两步流程。
+`A10` 的通过条件是随包 `30_taizhang/shenpi_jilu.txt` 里有当日的授权条目；本版随附 4 条 2026-11-09 授权条目。干净克隆上的**第一次**运行会带出 `B19`/`B22`，因为检查凭据（`30_taizhang/check_last.json`）是在那次运行末尾写入的；连跑两次 `check --strict` 即可，`v0.20` 处的第二次运行是 `0/44` 红。该凭据是运行时状态，不是提交文件；包内说明已写明这两步流程。
 
 ## Roadmap（0.2 — 进行中）
 

@@ -35,19 +35,19 @@ Bumao XTGL Community 变更与治理台账 biangeng_zhang.txt
         40_renwu/gai_261107_zaigong/w89_community_224645.bak.json、
         w87_community_223304.bak.html。
   影响面：不改条款、不改代码、不重建基线；B16 剩 1 件（新增文件 portability_probe.py）
-        按第 10 号「（原话已脱敏移除）」保持如实红态，不掩盖。
+        按第 10 号「（原话已脱敏移除）」保持红态。
   验证：BumaoXTGL_Community_v01.py check --strict（票据 w90_check_community.json）
   证据：30_taizhang/qiangzhi_shenpi.txt 第 10 号；30_taizhang/core_baseline.json；
         w90_baseline_check.json
 
-2026-11-08 | L3 架构级 | community 7 条红按甲／乙／丙分类处置（如实补录）
-  性质：B27 已修转绿；余 7 条按用户 2026-11-08 指令分三类：甲如实补、乙事后追认不补签、丙列不可追溯。
+2026-11-08 | L3 架构级 | community 7 条红按甲／乙／丙分类处置
+  性质：B27 已修转绿；余 7 条按用户 2026-11-08 指令分三类：甲补、乙事后追认不补签、丙列不可追溯。
   范围：B15／B22／B24（审批类）、B16（改前件）、B17／B20（台账）、B29（预告行）。
   实际改动时间：kernelsync.py 2026-11-08 07:59:22；engine.py 06:56:24；portability_probe.py 07:49:37；
         test_check_rc.py 06:57:07；index.html／i18n.js 08:17—08:18；design_tokens.json 2026-11-07 22:46:45。
   来源：用户指令（2026-11-07「（原话已脱敏移除）」、2026-11-08「（原话已脱敏移除）」）
   L2 补录：B16 改前件——kernelsync.py 与 engine.py 的同哈希改前件已从 2026-11-07 22:00 每日备份
-        补入 90_lishi/gongkai_weihu_261107（sha256 82700fcc…／b6643e65…，与基线旧哈希逐字相同）；
+        补入 90_lishi/gongkai_weihu_261107（sha256 82700fcc…／b6643e65…，与基线旧哈希相同）；
         portability_probe.py／test_check_rc.py 为基线后新增件，无改前态，列丙类。
   L2 补录：B29 预告行——design_tokens.json 补一行，行首时间写「实际改动时间」，
         行内另写「补记时间 2026-11-08 08:26:28」，明写本行事后补记、非事前预告。
@@ -93,7 +93,7 @@ Bumao XTGL Community 变更与治理台账 biangeng_zhang.txt
   证据：check --strict 实跑结论行（本轮留档见 30_taizhang/check_last.json）。
 
 2026-11-09 | 打包修正（不改判定） | 系统版本声明 0.30→0.31（加号依据：0.30→0.31 +0.01 同档正常晋升；内核版本仍 0.2.4 未变）
-  性质：只改发布件打包与包内说明，判定逻辑与判据输入未改。
+  性质：只改发布件打包与包内说明，判定逻辑与判据输入无改动。
   范围：.gitignore（新增 !90_lishi/gongkai_weihu_261107/* 白名单，使改前件随包）、README.md、README-HX.txt、CHANGELOG.md、00_meta/meta.json、本台账。
   证据：解包后连跑两次 check --strict，第二次结论行 0/44 gates red；发布 tag v0.20。
 
