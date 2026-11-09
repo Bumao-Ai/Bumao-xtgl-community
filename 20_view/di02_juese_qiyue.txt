@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.31 第2章
+来源：Bumao XTGL Community 0.32 第2章
 
 2. 角色注册与角色契约
 2.0 角色契约原则：

@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.31 第14章
+来源：Bumao XTGL Community 0.32 第14章
 
 14. 前端设计语言：先读后动，只用既有 token
 本章把「美观已定型、加功能先读设计语言」落成机器判据，由 B28 在 check --strict 时执行；存量字面值登记为基线，新增野值即 FAIL。

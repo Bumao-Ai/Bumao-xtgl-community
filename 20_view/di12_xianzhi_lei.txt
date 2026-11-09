@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.31 第12章
+来源：Bumao XTGL Community 0.32 第12章
 
 12. 限制类：不许做（越界即阻断）
 本章每条均为禁止项，由 B21—B26 在 check --strict 时执行；一旦命中即 FAIL 并返回退出码 1，不设「下不为例」。

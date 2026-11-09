@@ -9,8 +9,8 @@ Status: maintenance pause
 ![checks](https://img.shields.io/badge/checks-44-brightgreen)
 ![local](https://img.shields.io/badge/local--first-no%20cloud-informational)
 
-> **Two version spaces** — the in-app version in `00_meta/meta.json` is `0.31`; the repository release tag is `v0.20`. They are two independent numbering spaces, not the same number.
-> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.31`；仓库发布 tag 是 `v0.20`。这是两个独立的编号空间，不是同一个数字。
+> **Two version spaces** — the in-app version in `00_meta/meta.json` is `0.32`; the repository release tag is `v0.21`. They are two independent numbering spaces, not the same number.
+> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.32`；仓库发布 tag 是 `v0.21`。这是两个独立的编号空间，不是同一个数字。
 >
 > **Cold start** — to resume iteration, start from [`RETURN_HERE.md`](RETURN_HERE.md).
 > **冷启动** — 恢复迭代从 [`RETURN_HERE.md`](RETURN_HERE.md) 开始。
@@ -40,7 +40,7 @@ cd ../20_view/web
 python serve.py            # prints the real local address
 ```
 
-`v0.20` is the tag this README was released with; see Releases and verify the zip with `SHA256SUMS`.
+`v0.21` is the tag this README was released with; see Releases and verify the zip with `SHA256SUMS`.
 
 > Counting: **59 rules / 44 checks** are two dimensions. Rules are the written clauses (15 chapters); checks are the gates that inspect them. One rule can be covered by several gates, and one gate can span several rules.
 
@@ -48,16 +48,16 @@ python serve.py            # prints the real local address
 
 | Item | Value | Source |
 |---|---|---|
-| Commits at `v0.20` | — | 远端由 API 合成提交，本地与远端计数不同，不虚标 |
+| Commits at `v0.21` | — | 远端由 API 合成提交，本地与远端计数不同，不虚标 |
 | Last commit | 2026-11-09 | `git log -1 --date=short` |
 | Rules | 59 clauses / 15 chapters | first line of `check --strict` (`15 ch / 59 cls`) |
-| Check items | 44 | `check --strict` conclusion line (`0/44 gates red` at tag `v0.20`, second run) |
+| Check items | 44 | `check --strict` conclusion line (`0/44 gates red` at tag `v0.21`, second run) |
 | Reverse cases | 17 | `10_rac/test_qiangzhi.py`; last run 17 caught / 0 missed |
 | Defect ledger | 0 real closed items | `30_taizhang/chacuo_zhang.txt` holds 3 sanitized sample rows only |
-| Releases | 12 tags, `v0.1` → `v0.20`, 2026-11-08 → 2026-11-09 | `git tag` |
+| Releases | 13 tags, `v0.1` → `v0.21`, 2026-11-08 → 2026-11-09 | `git tag` |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) | — |
 
-`A10` passes when the shipped `30_taizhang/shenpi_jilu.txt` carries a same-day authorized entry; this edition ships four authorized entries dated 2026-11-09. On a clean clone the **first** run flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; run `check --strict` twice — the second run at tag `v0.20` is `0/44` red. That credential is runtime state, not a committed file; the package documents this two-run procedure.
+`A10` passes when the shipped `30_taizhang/shenpi_jilu.txt` carries a same-day authorized entry; this edition ships four authorized entries dated 2026-11-09. On a clean clone the **first** run flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; run `check --strict` twice — the second run at tag `v0.21` is `0/44` red. That credential is runtime state, not a committed file; the package documents this two-run procedure.
 
 ## 中文
 
@@ -144,7 +144,7 @@ Copyright 2026 Bumao
 ![checks](https://img.shields.io/badge/checks-44-brightgreen)
 ![local](https://img.shields.io/badge/local--first-no%20cloud-informational)
 
-> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.31`；仓库发布 tag 是 `v0.20`。这是两个独立的编号空间，不是同一个数字。
+> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.32`；仓库发布 tag 是 `v0.21`。这是两个独立的编号空间，不是同一个数字。
 >
 > **冷启动** — 恢复迭代从 [`RETURN_HERE.md`](RETURN_HERE.md) 开始。
 
@@ -173,7 +173,7 @@ cd ../20_view/web
 python serve.py            # 打印真实的本地地址
 ```
 
-`v0.20` 是本 README 随附发布的 tag；见 Releases，并用 `SHA256SUMS` 校验 zip。
+`v0.21` 是本 README 随附发布的 tag；见 Releases，并用 `SHA256SUMS` 校验 zip。
 
 > 计数口径：**59 条规则 / 44 道检查**是两个维度。规则是写下来的条款（15 章）；检查是审视这些条款的闸门。一条规则可能被多道闸门覆盖，一道闸门也可能横跨多条规则。
 
@@ -181,16 +181,16 @@ python serve.py            # 打印真实的本地地址
 
 | 项 | 实测值 | 取值来源 |
 |---|---|---|
-| `v0.20` 处的提交数 | — | 远端由 API 合成提交，本地与远端计数不同，不虚标 |
+| `v0.21` 处的提交数 | — | 远端由 API 合成提交，本地与远端计数不同，不虚标 |
 | 最近提交 | 2026-11-09 | `git log -1 --date=short` |
 | 规则 | 59 条 / 15 章 | `check --strict` 首行（`15 ch / 59 cls`） |
-| 检查项 | 44 | `check --strict` 结论行（`0/44 gates red`，`v0.20` 处第二次运行） |
+| 检查项 | 44 | `check --strict` 结论行（`0/44 gates red`，`v0.21` 处第二次运行） |
 | 反向用例 | 17 | `10_rac/test_qiangzhi.py`；最近一次 17 全部捕获 / 0 漏判 |
 | 缺陷台账 | 0 条真实闭环 | `30_taizhang/chacuo_zhang.txt` 仅 3 行脱敏样例 |
-| 发布 | 12 个 tag，`v0.1` → `v0.20`，2026-11-08 → 2026-11-09 | `git tag` |
+| 发布 | 13 个 tag，`v0.1` → `v0.21`，2026-11-08 → 2026-11-09 | `git tag` |
 | 变更记录 | [CHANGELOG.md](CHANGELOG.md) | — |
 
-`A10` 的通过条件是随包 `30_taizhang/shenpi_jilu.txt` 里有当日的授权条目；本版随附 4 条 2026-11-09 授权条目。干净克隆上的**第一次**运行会带出 `B19`/`B22`，因为检查凭据（`30_taizhang/check_last.json`）是在那次运行末尾写入的；连跑两次 `check --strict` 即可，`v0.20` 处的第二次运行是 `0/44` 红。该凭据是运行时状态，不是提交文件；包内说明已写明这两步流程。
+`A10` 的通过条件是随包 `30_taizhang/shenpi_jilu.txt` 里有当日的授权条目；本版随附 4 条 2026-11-09 授权条目。干净克隆上的**第一次**运行会带出 `B19`/`B22`，因为检查凭据（`30_taizhang/check_last.json`）是在那次运行末尾写入的；连跑两次 `check --strict` 即可，`v0.21` 处的第二次运行是 `0/44` 红。该凭据是运行时状态，不是提交文件；包内说明已写明这两步流程。
 
 ## Roadmap（0.2 — 进行中）
 

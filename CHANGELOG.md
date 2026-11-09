@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.32 — 2026-11-09
+
+本版同步 core `v0.2.5`：内核测试件与运行层文案不再命中发布端测试词闸门（B47），测试与运行行为不变。
+
+- **加号依据：0.31→0.32（+0.01 同档正常晋升）** — 依据 `HX\personal\20_view\di00_qidong_zongze.txt` L55—60 的 0.6.8 规则。
+- **随包内核 `kernel/bumao_core/` 同步 core `v0.2.5`** — 改动 6 件：`test_jiancha_ledger.py`、`test_jiancha_recovery.py`、`jiancha/ledger.py`、`jiancha/qingli.py`、`jiancha/supervisor.py`、`__init__.py`；只改文案与测试临时件名，不改判定与测试行为（`contract_test.py` 12/12、`selftest` 6/6）。
+- **发布 tag** — `v0.20` → `v0.21`；应用内版本 `0.31` → `0.32`。
+- **未变** — 规则 59 条／15 章、闸门总数 44；A10／A13／B16／B19／B22 判据不变。
+
 ## 0.31 — 2026-11-09
 
 本版只做「解包即绿」的收口：改前件随包、凭据两步复跑写进包内说明。
