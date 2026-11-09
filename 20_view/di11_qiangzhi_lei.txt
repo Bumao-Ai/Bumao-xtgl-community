@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.35 第11章
+来源：Bumao XTGL Community 0.36 第11章
 
 11. 强制类：必须做（前置条件不满足不得动手）
 本章每条均带机器判据、触发点与处置动作，由 B15—B20 在 check --strict 时执行；判据不满足即 FAIL 并返回退出码 1。

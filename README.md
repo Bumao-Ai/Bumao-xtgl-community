@@ -12,8 +12,8 @@ Status: maintenance pause
 ![checks](https://img.shields.io/badge/checks-44-brightgreen)
 ![local](https://img.shields.io/badge/local--first-no%20cloud-informational)
 
-> **Two version spaces** — the in-app version in `00_meta/meta.json` is `0.35`; the repository release tag is `v0.23`. They are two independent numbering spaces, not the same number.
-> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.35`；仓库发布 tag 是 `v0.23`。这是两个独立的编号空间，不是同一个数字。
+> **Two version spaces** — the in-app version in `00_meta/meta.json` is `0.36`; the repository release tag is `v0.24`. They are two independent numbering spaces, not the same number.
+> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.36`；仓库发布 tag 是 `v0.24`。这是两个独立的编号空间，不是同一个数字。
 >
 > **Cold start** — to resume iteration, start from [`RETURN_HERE.md`](RETURN_HERE.md).
 > **冷启动** — 恢复迭代从 [`RETURN_HERE.md`](RETURN_HERE.md) 开始。
@@ -30,7 +30,7 @@ Status: maintenance pause
 ## Quick start (30 seconds)
 
 ```bash
-git clone -b v0.23 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
+git clone -b v0.24 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
 cd Bumao-xtgl-community/10_rac
 python BumaoXTGL_Community_v01.py whoami
 python BumaoXTGL_Community_v01.py check --strict   # exit code is the verdict
@@ -43,7 +43,7 @@ cd ../20_view/web
 python serve.py            # prints the real local address
 ```
 
-`v0.23` is the tag this README was released with; see Releases and verify the zip with `SHA256SUMS`.
+`v0.24` is the tag this README was released with; see Releases and verify the zip with `SHA256SUMS`.
 
 > Counting: **59 rules / 44 checks** are two dimensions. Rules are the written clauses (15 chapters); checks are the gates that inspect them. One rule can be covered by several gates, and one gate can span several rules.
 
@@ -51,16 +51,16 @@ python serve.py            # prints the real local address
 
 | Item | Value | Source |
 |---|---|---|
-| Commits at `v0.23` | — | 远端由 API 合成提交，本地与远端计数不同，不虚标 |
+| Commits at `v0.24` | — | 远端由 API 合成提交，本地与远端计数不同，不虚标 |
 | Last commit | 2026-11-09 | `git log -1 --date=short` |
 | Rules | 59 clauses / 15 chapters | first line of `check --strict` (`15 ch / 59 cls`) |
-| Check items | 44 | `check --strict` conclusion line (`0/44 gates red` at tag `v0.23`, second run) |
+| Check items | 44 | `check --strict` conclusion line (`0/44 gates red` at tag `v0.24`, second run) |
 | Reverse cases | 17 | `10_rac/test_qiangzhi.py`; last run 17 caught / 0 missed |
 | Defect ledger | 0 real closed items | `30_taizhang/chacuo_zhang.txt` holds 3 sanitized sample rows only |
-| Releases | 15 tags, `v0.1` → `v0.23`, 2026-11-08 → 2026-11-09 | `git tag` |
+| Releases | 16 tags, `v0.1` → `v0.24`, 2026-11-08 → 2026-11-09 | `git tag` |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) | — |
 
-`A10` passes when the shipped `30_taizhang/shenpi_jilu.txt` carries a same-day authorized entry; this edition ships eight entries dated 2026-11-09. On a clean clone the **first** run flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; run `check --strict` twice — the second run at tag `v0.23` is `0/44` red. That credential is runtime state, not a committed file; the package documents this two-run procedure.
+`A10` passes when the shipped `30_taizhang/shenpi_jilu.txt` carries a same-day authorized entry; this edition ships nine entries dated 2026-11-09. On a clean clone the **first** run flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; run `check --strict` twice — the second run at tag `v0.24` is `0/44` red. That credential is runtime state, not a committed file; the package documents this two-run procedure.
 
 ## 中文
 
@@ -73,7 +73,7 @@ python serve.py            # prints the real local address
 ## Roadmap (0.2 — in progress)
 
 1. **Pre-execution constraint** — state the intent before acting; the kernel rules first. *Replayed on all three live editions on 2026-11-09: no order → reject, expired order → reject, out-of-scope target → reject, compliant order → pass (5/5 cases per edition). The supervisor is not bundled with this repository, so package behaviour stays `off`.*
-2. **Mid-execution supervision** — check while the work runs, not once at the end. *Action-level records (`op_id` / target / result) and the mid-sequence halt bundle were replayed on all three live editions on 2026-11-09. A bypass of the entry is recorded as post-hoc searchable only, never counted as covered.*
+2. **Mid-execution supervision** — check while the work runs, not once at the end. *Replayed on 2026-11-09: action-level records (`op_id` / target / result), plus a real mid-sequence halt — an out-of-order change made while the sequence runs interrupts the next action with an `EXTERNAL_DRIFT` evidence bundle (`halt.json` / `diff.txt` / ledger snapshot / `manifest.sha256`), and work resumes only after recover plus a human approval. Bypassing the entry is recorded as post-hoc searchable only, never counted as covered. This round was re-run on the community and minimal live editions; the personal edition keeps its earlier same-day drill evidence and was not re-run.*
 3. **Post-hoc audit** — link operation, basis, result and exception into one traceable chain. *One command exports the full chain from any `op_id` on all three live editions (2026-11-09); `rule_id` / `run_id` / `error_code` sit on the ticket face.*
 
 Status: **in progress**。设计与沙盒原型已通；2026-11-09 三项已在维护者活区三端复跑。随包不附监督执行器，本仓保持 `off`，本节不声称已随包交付。
@@ -147,7 +147,7 @@ Copyright 2026 Bumao
 ![checks](https://img.shields.io/badge/checks-44-brightgreen)
 ![local](https://img.shields.io/badge/local--first-no%20cloud-informational)
 
-> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.35`；仓库发布 tag 是 `v0.23`。这是两个独立的编号空间，不是同一个数字。
+> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.36`；仓库发布 tag 是 `v0.24`。这是两个独立的编号空间，不是同一个数字。
 >
 > **冷启动** — 恢复迭代从 [`RETURN_HERE.md`](RETURN_HERE.md) 开始。
 
@@ -163,7 +163,7 @@ Copyright 2026 Bumao
 ## 快速开始（30 秒）
 
 ```bash
-git clone -b v0.23 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
+git clone -b v0.24 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
 cd Bumao-xtgl-community/10_rac
 python BumaoXTGL_Community_v01.py whoami
 python BumaoXTGL_Community_v01.py check --strict   # 退出码即结论
@@ -176,7 +176,7 @@ cd ../20_view/web
 python serve.py            # 打印真实的本地地址
 ```
 
-`v0.23` 是本 README 随附发布的 tag；见 Releases，并用 `SHA256SUMS` 校验 zip。
+`v0.24` 是本 README 随附发布的 tag；见 Releases，并用 `SHA256SUMS` 校验 zip。
 
 > 计数口径：**59 条规则 / 44 道检查**是两个维度。规则是写下来的条款（15 章）；检查是审视这些条款的闸门。一条规则可能被多道闸门覆盖，一道闸门也可能横跨多条规则。
 
@@ -184,21 +184,21 @@ python serve.py            # 打印真实的本地地址
 
 | 项 | 实测值 | 取值来源 |
 |---|---|---|
-| `v0.23` 处的提交数 | — | 远端由 API 合成提交，本地与远端计数不同，不虚标 |
+| `v0.24` 处的提交数 | — | 远端由 API 合成提交，本地与远端计数不同，不虚标 |
 | 最近提交 | 2026-11-09 | `git log -1 --date=short` |
 | 规则 | 59 条 / 15 章 | `check --strict` 首行（`15 ch / 59 cls`） |
-| 检查项 | 44 | `check --strict` 结论行（`0/44 gates red`，`v0.23` 处第二次运行） |
+| 检查项 | 44 | `check --strict` 结论行（`0/44 gates red`，`v0.24` 处第二次运行） |
 | 反向用例 | 17 | `10_rac/test_qiangzhi.py`；最近一次 17 全部捕获 / 0 漏判 |
 | 缺陷台账 | 0 条真实闭环 | `30_taizhang/chacuo_zhang.txt` 仅 3 行脱敏样例 |
-| 发布 | 15 个 tag，`v0.1` → `v0.23`，2026-11-08 → 2026-11-09 | `git tag` |
+| 发布 | 16 个 tag，`v0.1` → `v0.24`，2026-11-08 → 2026-11-09 | `git tag` |
 | 变更记录 | [CHANGELOG.md](CHANGELOG.md) | — |
 
-`A10` 的通过条件是随包 `30_taizhang/shenpi_jilu.txt` 里有当日的授权条目；本版随附 8 条 2026-11-09 条目。干净克隆上的**第一次**运行会带出 `B19`/`B22`，因为检查凭据（`30_taizhang/check_last.json`）是在那次运行末尾写入的；连跑两次 `check --strict` 即可，`v0.23` 处的第二次运行是 `0/44` 红。该凭据是运行时状态，不是提交文件；包内说明已写明这两步流程。
+`A10` 的通过条件是随包 `30_taizhang/shenpi_jilu.txt` 里有当日的授权条目；本版随附 9 条 2026-11-09 条目。干净克隆上的**第一次**运行会带出 `B19`/`B22`，因为检查凭据（`30_taizhang/check_last.json`）是在那次运行末尾写入的；连跑两次 `check --strict` 即可，`v0.24` 处的第二次运行是 `0/44` 红。该凭据是运行时状态，不是提交文件；包内说明已写明这两步流程。
 
 ## Roadmap（0.2 — 进行中）
 
 1. **执行前约束** — 动手前提交意图，由内核先判。*2026-11-09 在维护者活区三端复跑：无单→拒、过期单→拒、出界目标→拒、合规单→放行，每端 5/5 用例全过。随包不附监督执行器，本仓行为保持 `off`。*
-2. **执行中监管** — 过程中持续检查，而不是只在结束时判一次。*动作级记录（`op_id`／目标／结果）与中途打断包已于 2026-11-09 在三端复跑；绕过入口只记为「仅事后可查」，不计入已覆盖。*
+2. **执行中监管** — 过程中持续检查，而不是只在结束时判一次。*2026-11-09 复跑：动作级记录（`op_id`／目标／结果）＋真实的中途越界中断——序列还在跑时有人在单外改动，下一次动作前即以 `EXTERNAL_DRIFT` 中断并生成证据包（`halt.json`／`diff.txt`／账本快照／`manifest.sha256`），恢复须先 recover 再经人工批准 resume 才能继续。绕过入口只记为「仅事后可查」，不计入已覆盖。本轮在 community、minimal 活区复跑；personal 沿用当日早间演练留证，未重跑。*
 3. **执行后审计** — 把操作、依据、结果、异常四者关联成一条可追溯链。*任一 `op_id` 一条命令导出完整链路（2026-11-09 三端复跑）；`rule_id`／`run_id`／`error_code` 落在票面。*
 
 状态：**进行中**。设计与沙盒原型已通；2026-11-09 三项已在维护者活区三端复跑。随包不附监督执行器，本仓保持 `off`，本节不声称已随包交付。

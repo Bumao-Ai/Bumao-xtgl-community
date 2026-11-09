@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.35 第8章
+来源：Bumao XTGL Community 0.36 第8章
 
 8. 差错台账与自我纠正
 8.0 只记系统自身：

@@ -13,4 +13,4 @@
 12 | 限制类：不许做 | 限制 越界 阻断 CORE_VERSION 绕过闸门 本机路径 私人端 许可条款 B21 B22 B23 B24 B25 B26 | di12_xianzhi_lei.txt | 六条禁止项：版本擅改、绕闸、路径泄漏、私人端混入、自造许可
 13 | 可迁移性：要能带走 | 可迁移 换路径 换盘符 换端口 相对路径 解释器不写死 包内配置 B27 | di13_keyiqianyi.txt | 整份工程拷到任意路径、任意盘符、换端口后仍能跑；静态闸门加发布前动态实测
 14 | 前端设计语言：先读后动 | 设计语言 design_tokens 先读后动 只用既有 token 存量基线 野颜色 B28 | di14_qian_duan_yu_yan.txt | 新增前端元素必须由既有 token 组合而成；存量字面值登记为基线，新增越界判红
-当前版本：0.35 | 产品名：Bumao XTGL Community | 全文归档：quanwen_0.35.txt
+当前版本：0.36 | 产品名：Bumao XTGL Community | 全文归档：quanwen_0.36.txt

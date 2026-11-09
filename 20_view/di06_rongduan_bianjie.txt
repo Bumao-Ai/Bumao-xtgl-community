@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.35 第6章
+来源：Bumao XTGL Community 0.36 第6章
 
 6. 熔断、权限与不可逆边界
 6.0 不可逆边界：
