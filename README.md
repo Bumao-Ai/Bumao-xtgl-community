@@ -10,7 +10,7 @@ Status: maintenance pause
 ![local](https://img.shields.io/badge/local--first-no%20cloud-informational)
 
 > **Two version spaces** — the in-app version in `00_meta/meta.json` is `0.32`; the repository release tag is `v0.21`. They are two independent numbering spaces, not the same number.
-> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.32`；仓库发布 tag 是 `v0.21`。这是两个独立的编号空间，不是同一个数字。
+> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.33`；仓库发布 tag 是 `v0.21`。这是两个独立的编号空间，不是同一个数字。
 >
 > **Cold start** — to resume iteration, start from [`RETURN_HERE.md`](RETURN_HERE.md).
 > **冷启动** — 恢复迭代从 [`RETURN_HERE.md`](RETURN_HERE.md) 开始。
@@ -144,7 +144,7 @@ Copyright 2026 Bumao
 ![checks](https://img.shields.io/badge/checks-44-brightgreen)
 ![local](https://img.shields.io/badge/local--first-no%20cloud-informational)
 
-> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.32`；仓库发布 tag 是 `v0.21`。这是两个独立的编号空间，不是同一个数字。
+> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.33`；仓库发布 tag 是 `v0.21`。这是两个独立的编号空间，不是同一个数字。
 >
 > **冷启动** — 恢复迭代从 [`RETURN_HERE.md`](RETURN_HERE.md) 开始。
 

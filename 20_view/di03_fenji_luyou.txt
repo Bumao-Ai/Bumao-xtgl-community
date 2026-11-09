@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.32 第3章
+来源：Bumao XTGL Community 0.33 第3章
 
 3. 任务分级与路由判定
 3.0 影响等级（L0–L4）：

@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.32 第0章
+来源：Bumao XTGL Community 0.33 第0章
 
 0. 元信息、接入协议与版本单点
 0.0 Bumao XTGL Community（元信息与效力）：

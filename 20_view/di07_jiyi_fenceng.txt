@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.32 第7章
+来源：Bumao XTGL Community 0.33 第7章
 
 7. 记忆分层与生命周期
 7.0 三层记忆：

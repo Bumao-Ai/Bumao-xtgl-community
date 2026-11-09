@@ -29,6 +29,7 @@ _tmp_*
 30_taizhang/check_last.json
 30_taizhang/saojian_zuijin.json
 00_meta/a13_benlun_jizhun.json
+00_meta/a13_benlun_jizhun.*.json
 
 # 改前件（B16 备份）必须随包发布，覆盖上面的 *.bak 忽略
 !90_lishi/gongkai_weihu_261107/*
