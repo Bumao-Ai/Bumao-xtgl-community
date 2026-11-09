@@ -153,6 +153,15 @@
    "registered_at": "2026-11-09 11:20:40",
    "handler": "执行端（AI 助理）",
    "note": "随 core v0.2.2（tag 06d78fb）内核同步新增；首版 sha256 取入库时实物，与当前件一致。"
+  },
+  {
+   "file": "test_jiancha_loader.py",
+   "path": "kernel/bumao_core/test_jiancha_loader.py",
+   "created_at": "2026-11-09 11:23:19",
+   "first_sha256": "15de08d24d0bd1a0c9f15b4f13792e8523504a790ef4100eb1f5805ffcf87a8b",
+   "registered_at": "2026-11-09 11:23:19",
+   "handler": "执行端（AI 助理）",
+   "note": "随 core v0.2.2（tag 06d78fb）内核同步新增；首版 sha256 取入库时实物，与当前件一致。"
   }
  ]
 }
