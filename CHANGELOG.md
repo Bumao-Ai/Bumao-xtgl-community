@@ -17,22 +17,22 @@
 - **改前件随包（B16）** — `90_lishi/gongkai_weihu_261107/` 内改前件原本被 `.gitignore` 的 `*.bak` 挡住；新增白名单 `!90_lishi/gongkai_weihu_261107/*`，使 `index.html.261109_pre_0.2.4.bak`、`kernel_contract.json.261109_pre_0.2.4.bak` 及同目录历史改前件随包发布（内容为公开件旧版，无私密内容）。
 - **解包复跑两步（B19／B22）** — `30_taizhang/check_last.json` 是运行凭据，不提交；包内 `README.md`／`README-HX.txt` 已写明：解包后先跑一次 `check --strict`（写入凭据），再跑第二次复判，第二次结论应为 `0/44 gates red`。
 - **发布 tag** — `v0.19` → `v0.20`；应用内版本 `0.30` → `0.31`（同档 +0.01）。
-- **订正** — 0.30 条目所称「随包内核 v0.2.3」有误：0.30 发布件实物为 core `v0.2.4`（commit `5c217f6`），0.2.3 同步内容在发布前已作废重做；本版起以 0.2.4 为准。
+- **订正** — 0.30 条目所称「随包内核 v0.2.3」有误：0.30 发布件实物为 core `v0.2.4`（commit `3fdc46f`），0.2.3 同步内容在发布前已作废重做；本版起以 0.2.4 为准。
 - **未变** — 规则 59 条／15 章、闸门总数 44；A10 判据、三态定义、B16／B19／B22 判据与 0.30 相同。
 
 ## 0.30 — 2026-11-09
 
-本版随包内核由 core `v0.2.2` 升到 `v0.2.3`（commit `282d684`，同档 0.2.x，按 0.6.9 规则本端 +0.01），并把控制台任务留档分组修正带入发布件。
+本版随包内核由 core `v0.2.2` 升到 `v0.2.3`（commit `88bccef`，同档 0.2.x，按 0.6.9 规则本端 +0.01），并把控制台任务留档分组修正带入发布件。
 
 - **加号依据：0.29→0.30（+0.01 同档正常晋升；0.2.2→0.2.3 不跨档，不加 0.1）** — 依据 `HX\personal\20_view\di00_qidong_zongze.txt` L55—60 的 0.6.8 逐级加号规则，不跳号、不跨级。
 - **应用内版本 `0.29` → `0.30`** — `00_meta/meta.json`；`README.md` 两个版本空间说明、`README-HX.txt` 当前版本行、本台账同步（发布 tag `v0.18` → `v0.19`）。
-- **随包内核同步到 core `v0.2.3`（28 件）** — 整目录覆盖 `kernel/bumao_core/`，逐件 SHA256 与 core `282d684` 一致（28/28）；新增 `test_jiancha_ledger.py`、`test_jiancha_recovery.py`、`test_jiancha_scope.py`，运行层 `jiancha/` 4 件加固。
+- **随包内核同步到 core `v0.2.3`（28 件）** — 整目录覆盖 `kernel/bumao_core/`，逐件 SHA256 与 core `88bccef` 一致（28/28）；新增 `test_jiancha_ledger.py`、`test_jiancha_recovery.py`、`test_jiancha_scope.py`，运行层 `jiancha/` 4 件加固。
 - **控制台修复带入发布件** — `20_view/web/index.html` 的 `logKey()` 目录名 `任务目录` → `40_renwu`；工作日志分组按项目名归并，不再全落「其他记录」。
 - **未变** — 规则 59 条／15 章、闸门总数 44；`A10` 按设计仍为 DENY（随包审批册零条目模板），
 
 ## 0.29 — 2026-11-09
 
-本版同步 core `v0.2.2`（commit `06d78fb`）随包内核，并把应用内版本补齐到发布序列号。Kernel sync to core v0.2.2; in-app version back-filled to the release series.
+本版同步 core `v0.2.2`（commit `140d304`）随包内核，并把应用内版本补齐到发布序列号。Kernel sync to core v0.2.2; in-app version back-filled to the release series.
 
 - **加号依据：0.18→0.19（+0.01 正常晋升）→0.29（+0.10 内核跨档 0.1→0.2，同一版内叠加）** — 依据 `HX\personal\20_view\di00_qidong_zongze.txt` L55—60 的 0.6.8 逐级加号规则，不跳号、不跨级。
 - **应用内版本 `0.10` → `0.29`** — `00_meta/meta.json`；`README-HX.txt` 当前版本行、`README.md` 两个版本空间说明同步。
@@ -118,11 +118,11 @@
 
 ### 0.30 — 2026-11-09
 
-Bundled kernel bumped from core v0.2.2 to v0.2.3 (commit `282d684`, same 0.2.x tier, +0.01 for this edition per rule 0.6.9), and the console task-record grouping fix is carried into the release artifact.
+Bundled kernel bumped from core v0.2.2 to v0.2.3 (commit `88bccef`, same 0.2.x tier, +0.01 for this edition per rule 0.6.9), and the console task-record grouping fix is carried into the release artifact.
 
 - **Bump rationale: 0.29→0.30 (+0.01, normal promotion within the same tier; 0.2.2→0.2.3 does not cross tiers, so no +0.1)** — per the 0.6.8 stepwise bump rule at `HX\personal\20_view\di00_qidong_zongze.txt` L55—60: no skipped numbers, no skipped tiers.
 - **In-app version `0.29` → `0.30`** — `00_meta/meta.json`; the two-version-spaces note in `README.md`, the current-version line in `README-HX.txt` and this ledger are aligned (release tag `v0.18` → `v0.19`).
-- **Bundled kernel synced to core `v0.2.3` (28 files)** — the whole directory overwrites `kernel/bumao_core/`, and each file's SHA256 matches core `282d684` (28/28); adds `test_jiancha_ledger.py`, `test_jiancha_recovery.py`, `test_jiancha_scope.py`, and the 4 files of the `jiancha/` runtime layer are hardened.
+- **Bundled kernel synced to core `v0.2.3` (28 files)** — the whole directory overwrites `kernel/bumao_core/`, and each file's SHA256 matches core `88bccef` (28/28); adds `test_jiancha_ledger.py`, `test_jiancha_recovery.py`, `test_jiancha_scope.py`, and the 4 files of the `jiancha/` runtime layer are hardened.
 - **Console fix carried into the release artifact** — the `logKey()` directory name in `20_view/web/index.html` changes `任务目录` → `40_renwu`; work-log groups are merged by project name and no longer all fall into "其他记录".
 - **Unchanged** — 59 rules / 15 chapters, 44 gates in total; `A10` is still DENY by design (zero-entry bundled approval ledger template) and is not written as fixed.
 

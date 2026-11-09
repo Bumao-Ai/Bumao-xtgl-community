@@ -159,7 +159,7 @@ Bumao XTGL Community 强制/限制类审批册 qiangzhi_shenpi.txt
 授权来源：用户 2026-11-09 原话
 签署：无（执行端记录，不代用户签）
 用户批准原文：「授权」
-说明：内核以 core v0.2.4（tag 5c217f6）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包。
+说明：内核以 core v0.2.4（tag 3fdc46f）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包。
 
 【第 20 号】2026-11-09｜三端统一内核线（原话登记）
 范围：kernel/bumao_core/HOST_CONTRACT.md、engine.py、gate_registry.py、bumao_core_rules.py、gate_count.py、test_equivalence.py、__init__.py、host_reference.py、test_a10_policy.py、test_build_parser.py、test_check_rc.py、test_gate_registry.py、test_jiancha_ledger.py、test_jiancha_loader.py、test_jiancha_recovery.py、test_jiancha_scope.py、jiancha/*.py、kernel/kernel_contract.json、kernel/contract_test.py、20_view/web/index.html
@@ -167,7 +167,7 @@ Bumao XTGL Community 强制/限制类审批册 qiangzhi_shenpi.txt
 授权来源：用户 2026-11-09 原话
 签署：无（执行端记录，不代用户签）
 用户批准原文：「（原话已脱敏移除）」
-说明：内核以 core v0.2.4（tag 5c217f6）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包。
+说明：内核以 core v0.2.4（tag 3fdc46f）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包。
 
 【第 21 号】2026-11-09｜内核版本线（原话登记）
 范围：kernel/bumao_core/HOST_CONTRACT.md、engine.py、gate_registry.py、bumao_core_rules.py、gate_count.py、test_equivalence.py、__init__.py、host_reference.py、test_a10_policy.py、test_build_parser.py、test_check_rc.py、test_gate_registry.py、test_jiancha_ledger.py、test_jiancha_loader.py、test_jiancha_recovery.py、test_jiancha_scope.py、jiancha/*.py、kernel/kernel_contract.json、kernel/contract_test.py、20_view/web/index.html
@@ -175,7 +175,7 @@ Bumao XTGL Community 强制/限制类审批册 qiangzhi_shenpi.txt
 授权来源：用户 2026-11-09 原话
 签署：无（执行端记录，不代用户签）
 用户批准原文：「（原话已脱敏移除）」
-说明：内核以 core v0.2.4（tag 5c217f6）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包。
+说明：内核以 core v0.2.4（tag 3fdc46f）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包。
 
 【第 22 号】2026-11-09｜红项修复（原话登记）
 范围：kernel/bumao_core/HOST_CONTRACT.md、engine.py、gate_registry.py、bumao_core_rules.py、gate_count.py、test_equivalence.py、__init__.py、host_reference.py、test_a10_policy.py、test_build_parser.py、test_check_rc.py、test_gate_registry.py、test_jiancha_ledger.py、test_jiancha_loader.py、test_jiancha_recovery.py、test_jiancha_scope.py、jiancha/*.py、kernel/kernel_contract.json、kernel/contract_test.py、20_view/web/index.html
@@ -183,6 +183,6 @@ Bumao XTGL Community 强制/限制类审批册 qiangzhi_shenpi.txt
 授权来源：用户 2026-11-09 原话
 签署：无（执行端记录，不代用户签）
 用户批准原文：「（原话已脱敏移除）」
-说明：内核以 core v0.2.4（tag 5c217f6）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包。
+说明：内核以 core v0.2.4（tag 3fdc46f）为唯一源头整包落盘；契约 updated_at 同步 2026-11-09；控制台 logKey() 目录名 任务目录→40_renwu 随本次发布件进包。
 
 【本册结束】

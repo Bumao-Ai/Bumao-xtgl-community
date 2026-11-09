@@ -83,13 +83,13 @@ Bumao XTGL Community 变更与治理台账 biangeng_zhang.txt
 2026-11-09 | 版本声明晋升 | 系统版本声明 0.10→0.29（加号依据：0.18→0.19 +0.01 正常晋升；0.19→0.29 +0.10 内核跨档 0.1→0.2，同一版内叠加；不跳号不跨级）
   性质：只改版本声明与随发布的文字／视图，不动判定逻辑与判据输入。
   范围：00_meta/meta.json、README.md、README-HX.txt、20_view（render.py write 重渲染）、本台账。
-  内核：kernel/bumao_core 整目录同步 core v0.2.2（tag commit 06d78fb）。
+  内核：kernel/bumao_core 整目录同步 core v0.2.2（tag commit 140d304）。
   证据：check --strict 实跑结论行（本轮留档见 30_taizhang/check_last.json）。
 
 2026-11-09 | 版本声明晋升 | 系统版本声明 0.29→0.30（加号依据：0.29→0.30 +0.01 同档正常晋升；0.2.2→0.2.3 同档不跨档，不跳号不跨级）
   性质：只改版本声明、随发布文字/视图与控制台一处分组目录名，不动判定逻辑与判据输入。
   范围：00_meta/meta.json、README.md、README-HX.txt、20_view（render.py write 重渲染）、20_view/web/index.html（logKey 任务目录→40_renwu）、本台账。
-  内核：kernel/bumao_core 整目录同步 core v0.2.3（commit 282d684），28 件逐件 SHA256 一致。
+  内核：kernel/bumao_core 整目录同步 core v0.2.3（commit 88bccef），28 件逐件 SHA256 一致。
   证据：check --strict 实跑结论行（本轮留档见 30_taizhang/check_last.json）。
 
 2026-11-09 | 打包修正（不改判定） | 系统版本声明 0.30→0.31（加号依据：0.30→0.31 +0.01 同档正常晋升；内核版本仍 0.2.4 未变）
@@ -105,5 +105,15 @@ Bumao XTGL Community 变更与治理台账 biangeng_zhang.txt
   L2 记录：审批册新增第 5 号（A13 条目号推进）；qiangzhi_shenpi.txt 第 19 号已点名本轮全部受管件。
   L3 记录：core_baseline.json 经 rebuild_baseline 重建，approved_files 逐件在当日审批册被点名授权；改前件同哈希要求由本机私有区备份承接，公开仓不再保留原话。
   证据：yj_desens_plan.json（逐件命中数与字节数）、check --strict 实跑结论行。
+  验证：BumaoXTGL_Community_v01.py check --strict
+
+2026-11-09 | 失效 commit 引用订正（不改判定） | 历史脱敏改写后旧 commit 号全部失效，按 commit-map 换为现行号
+  性质：只把 commit 号旧值换成改写后的新值，7 位长度不变；判据、日期、句子结构均无改动。
+  范围：CHANGELOG.md、30_taizhang/biangeng_zhang.txt、30_taizhang/qiangzhi_shenpi.txt、30_taizhang/shouci_ruku_dengji.txt。
+  订正：三种旧内核号（0.2.2 定型／0.2.3／0.2.4）共 25 处换成改写后的现行号，7 位长度不变；本件 2 处、shouci_ruku_dengji.txt 13 处、qiangzhi_shenpi.txt 4 处、CHANGELOG.md 6 处。
+  旧号与新号的逐处对照见本机私有区 yj_sha_fix_apply.json，本册不转录旧号（旧号已全仓失效，留字即留断链）。
+  来源：用户指令（全订正，含治理册）。
+  核对：13 个旧号按脱敏前备份库所带 tag 与现行 tag 指向的 commit 比对；4 个无 tag 的旧号按新旧提交文案逐字比对。
+  证据：yj_sha_fix_apply.json（逐件替换数与残留数）、check --strict 实跑结论行。
   验证：BumaoXTGL_Community_v01.py check --strict
 【本文件结束】
