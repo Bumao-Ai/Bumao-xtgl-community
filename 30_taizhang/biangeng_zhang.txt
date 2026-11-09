@@ -97,4 +97,13 @@ Bumao XTGL Community 变更与治理台账 biangeng_zhang.txt
   范围：.gitignore（新增 !90_lishi/gongkai_weihu_261107/* 白名单，使改前件随包）、README.md、README-HX.txt、CHANGELOG.md、00_meta/meta.json、本台账。
   证据：解包后连跑两次 check --strict，第二次结论行 0/44 gates red；发布 tag v0.20。
 
+
+2026-11-09 | 线上仓全量脱敏（不改判定） | 删除发布件与 git 历史中直引的用户原话，保留授权词与条目结构
+  性质：只删原话字面并替换为脱敏标记；判据、测试行为、布局配色、接口字段均无改动。
+  范围：20_view/web/index.html、kernel/kernel_contract.json、30_taizhang/shenpi_jilu.txt、30_taizhang/qiangzhi_shenpi.txt、30_taizhang/biangeng_zhang.txt、90_lishi/gongkai_weihu_261107/index.html.261109_pre_0.2.4.bak、90_lishi/gongkai_weihu_261107/kernel_contract.json.261109_pre_0.2.4.bak。
+  来源：用户当日脱敏指令（范围性授权；原话不予转录，严重度分级由用户当面裁定）。
+  L2 记录：审批册新增第 5 号（A13 条目号推进）；qiangzhi_shenpi.txt 第 19 号已点名本轮全部受管件。
+  L3 记录：core_baseline.json 经 rebuild_baseline 重建，approved_files 逐件在当日审批册被点名授权；改前件同哈希要求由本机私有区备份承接，公开仓不再保留原话。
+  证据：yj_desens_plan.json（逐件命中数与字节数）、check --strict 实跑结论行。
+  验证：BumaoXTGL_Community_v01.py check --strict
 【本文件结束】
