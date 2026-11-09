@@ -34,7 +34,7 @@ L4 | Irreversible deletion, disk partitions and volumes, credentials and permiss
 (4) A level assignment must be supported by a hit on the determination keys of one of the rows in (2); it must not be downgraded on the grounds that the user is rushing, the task is small in volume, or it was done before without incident, nor upgraded without basis so that everything triggers a circuit break.
 (5) This level's list is not exhaustive: when an action outside the table appears, return to the three inputs in (1) to derive it; you must not default to L0 just because it is not written in the table.
 3.5 Grading traces and review:
-(1) Tasks at L1 and above must leave one line of grading conclusion before execution, in the format: level | hit row | rollback path (present / absent, stated explicitly). Without this line, execution must not begin.
+(1) Tasks at L1 and above must leave one line of grading conclusion before execution, in the format: level｜hit row｜rollback path (present / absent, stated explicitly). Without this line, execution must not begin.
 (2) Trace location: write it in the current round's delivery details, without starting a separate file; after execution, archive it together as evidence.
 (3) Review trigger: before the task ends, look again at whether the grading has been overturned by the actual actions; if a higher-level action occurs during execution, you must immediately return to 3.4 to re-grade and go through the corresponding circuit break, and must not "let it go since it is done".
 (4) Reverse pollution prohibited: you must not modify the grading afterwards to make the archive look good; if the grading is found to be wrong, record one entry in the error ledger (see 8.1).

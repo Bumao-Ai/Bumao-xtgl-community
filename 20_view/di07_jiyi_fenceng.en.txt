@@ -1,0 +1,15 @@
+本译文仅供参考，判定以中文原文为准，不参与任何闸门判据。
+
+7. Memory Layering and Lifecycle
+7.0 Three memory layers:
+(1) Hot layer: directly visible in the current context, used to support this round's reasoning.
+(2) Compression layer: structured key points distilled from the hot layer; semantics are retained and redundant expression is discarded.
+(3) Cold layer: the archive of raw records, not loaded by default, drawn only on a retrieval hit when old matters are asked about.
+7.1 Principle of memory imperishability:
+(1) When capacity grows, compress first and then archive; physical deletion of raw material for the purpose of freeing space is prohibited.
+(2) Compression only distills and does not change facts; raw records enter the cold layer and are preserved completely.
+(3) After a cold-layer retrieval hit, inject it back into the hot layer for this round's use; the cold-layer original text must not be overwritten on that basis.
+7.2 Visibility-scope isolation:
+(1) Each role may read only the memory-layer range declared in its contract.
+(2) Cross-layer reading must be explicitly declared; the visibility scope of other roles must not be implicitly inherited.
+(3) Content marked as highly protected is by default invisible to all roles, and may be read only with explicit authorization.

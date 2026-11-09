@@ -1,0 +1,35 @@
+本译文仅供参考，判定以中文原文为准，不参与任何闸门判据。
+
+12. Restrictive Category: Must Not Do (a boundary crossing is blocked outright)
+Every clause in this chapter is a prohibition, executed by B21—B26 during check --strict; once hit it is FAIL and exit code 1 is returned, with no "not next time".
+12.0 Restriction-01 CORE_VERSION must not be changed without authorization:
+(1) Criterion: the CORE_VERSION assignment in 20_view\web\xtgl_core.py may appear only once; its value must equal the core_version of 20_view\web\core_manifest.json, and must equal frozen_interfaces.core_version.current_value in kernel\kernel_contract.json (when that contract exists).
+(2) Trigger point: every check --strict statically reads the above three places and compares all three.
+(3) Handling: B21 judges FAIL and prints the three values and the one that is inconsistent; a version change must first obtain authorization and synchronize the contract and the approval register — changing the code alone is blocked.
+(4) Gate position: B21.
+12.1 Restriction-02 Core files must not be modified directly by bypassing the gate:
+(1) Criterion: if the modification time of any managed file (the z-series canonical body in 10_rac\zhunze, the scripts in 10_rac, the core files in 20_view\web, the code in kernel\bumao_core) is later than the finished_at of 30_taizhang\check_last.json, and that file is not listed in the day's approval entries, it is deemed a direct modification bypassing the gate.
+(2) Trigger point: during check --strict, compare the file mtime with the completion time of the previous round's check.
+(3) Handling: B22 judges FAIL and lists the files and the two time points; a change that bypasses the gate must not be closed with "anyway it runs green now" — the approval must be supplied or the change rolled back.
+(4) Gate position: B22.
+12.2 Restriction-03 Local machine paths and executor codes must not be written into public files:
+(1) Criterion: within the public-file set (the repo-root facade files, the public documents and configuration of 00_meta, the scripts of 10_rac, the zhunze canonical body, and the text views of 20_view) there must be no real values of the local user name, machine name, or home-directory identifier, nor any drive-letter path pointing to a real user directory; the placeholders "you", "user", and "<user>" do not count as hits.
+(2) Trigger point: during check --strict, take the real identifier words from the environment variables of the current runtime environment, then scan the public files item by item.
+(3) Handling: B23 judges FAIL and prints the files and the hit words; line breaks, encoding, or comments do not constitute an exemption — public files may contain only placeholders.
+(4) Gate position: B23. The de-personalization of shared front-end code is handled in the same round by group E of kernel\contract_test.py.
+12.3 Restriction-04 The kernel must not be modified without approval:
+(1) Criterion: when the Python code in kernel\bumao_core, kernel\contract_test.py, and kernel\kernel_contract.json change relative to the baseline in 30_taizhang\core_baseline.json, that file must be named in the day's approval entries and that entry must contain an authorization word; if not named, it is blocked.
+(2) Trigger point: every check --strict compares the hashes of the kernel files item by item, then checks the day's section of the approval register.
+(3) Handling: B24 judges FAIL and prints the modified files and the location of the approval register; kernel changes must not be self-approved by the executing side, nor skipped on the grounds that "only comments were changed".
+(4) Gate position: B24.
+12.4 Restriction-05 Private-side content must not be brought into open-source artifacts:
+(1) Criterion: within the public-file set there must be no private-side-specific identifiers — private-side physical directory names, private-side entry brand spellings, private data directory names, private self-check directory names. The list is fixed in PRIVATE_TOKENS of 10_rac\qiangzhi.py, and changing the list requires registration in the same round.
+(2) Trigger point: during check --strict, scan the public files item by item; body text, comments, and configuration keys are treated alike.
+(3) Handling: B25 judges FAIL and prints the files and the hit private-side identifiers; they must not be retained on the grounds that "it is only an example" or "the user will understand it".
+(4) Gate position: B25.
+12.5 Restriction-06 License clauses must not be invented:
+(1) Criterion one: the LICENSE at the repo root and in 10_rac must be the full text of Apache License 2.0, and the two copies must be byte-identical; apart from LICENSE, no invented license file may appear at the repo root.
+(2) Criterion two: the Python files used for release all carry SPDX-License-Identifier: Apache-2.0; NOTICE must not contain additional restrictions such as "commercial use prohibited / personal use only / non-commercial / additional terms".
+(3) Trigger point: during check --strict, read the key paragraphs of LICENSE, check the SPDX lines item by item, and scan NOTICE for prohibited words.
+(4) Handling: B26 judges FAIL and prints the files missing SPDX or the hit additional terms; license clauses recognize only the Apache-2.0 original text, and no other standard may be established inside the repo.
+(5) Gate position: B26.

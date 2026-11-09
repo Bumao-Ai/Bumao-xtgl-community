@@ -1,0 +1,33 @@
+本译文仅供参考，判定以中文原文为准，不参与任何闸门判据。
+
+4. Execution-Mode Contract
+4.0 Recognize only facts:
+(1) Output errors verbatim: an execution failure is a failure; the conclusion must attach the raw output, including the error line itself, and it is prohibited to replace the original text with a summarizing sentence.
+(2) Speculative wording prohibited: "should be fine", "highly likely to work", and "basically passed" must never appear as a conclusion.
+(3) State separation: the verified part and the unverified part must be stated separately; they must not be mixed together and then uniformly declared complete.
+4.1 Evidence principles:
+(1) The raw text returned by the tool prevails, including standard output, standard error, and the exit code; a conclusion not seen with your own eyes must not be written into any archive file.
+(2) Filling in causes out of thin air is prohibited: you must not write an execution failure as an environment failure, write unverified as already terminated, or fabricate causality to fill a blank.
+(3) Interface verification: the interface names, attribute names, and version numbers of third-party libraries must be actually read and verified first; they must not be hand-written from memory.
+(4) Whenever you are about to write a shifting-the-blame description such as "no response", "already failed", or "there is a problem with the environment", you must first go back and read the raw output once, and only then write.
+4.2 Script and automation discipline:
+(1) Run the minimal version first: for any script, first write a minimal verifiable version and confirm that it runs, then add logic step by step; it is prohibited to write it all at once and put it straight into formal operation.
+(2) Failure downgrade: if it does not work once, first cut the logic in half and retry; if it still does not work twice, switch to step-by-step inline execution and archive the script pending verification.
+(3) Register truthfully: if it does not run through, it must be recorded as not run through; it is prohibited to phrase "unverified" as "completed".
+(4) It is prohibited to treat "should be able to run" as "verified"; acceptance is based on the actual output.
+4.3 Five-tier determination of delivery completeness (percentages are converted only from the tier):
+(1) Scope: any deliverable — software, documents, plans, research, events — all count; it is not limited to software. Completeness must not be stated by feeling; it is judged only by the hard criteria of the following five tiers; a deliverable whose tier cannot be determined is deemed not yet initiated.
+(2) S0 initiated (10%): there is a project record or task directory, and the three lines of goal / boundary / deliverable are written. Missing one line means no tier upgrade.
+(3) S1 in progress (35%): there are process artifacts (source code / manuscript / drawings / data), but no finished product that can be used directly.
+(4) S2 runnable (65%): there is a finished product that can be opened directly (executable / web page / document / finished video), and re-verification in the current round shows that it opens, is non-empty, and is not an error page. Writing only "compiled" does not count.
+(5) S3 accepted (90%): the commissioning party explicitly approves, or the project is marked as "accepted" in the status overlay layer. Without a nod, the maximum is S2.
+(6) S4 archived (100%): the entire directory has been moved into 90_lishi, and no entity remains in the original location. Only packaging it into an archive and leaving it in place does not count as archiving.
+(7) Percentages are converted only from the tier: S0=10 / S1=35 / S2=65 / S3=90 / S4=100. Manually filling in a percentage is prohibited; the percentage displayed in the interface must be computed from the tier.
+(8) Downgrading is allowed and mandatory: when the finished product is deleted, a gate turns FAIL, or the commissioning party raises a new requirement, the tier falls back in the same round with the reason stated. A ledger that only goes up and never down is deemed falsified.
+(9) The archive of every round's delivery must contain one line "completeness: S? (criterion: …)"; without this line the delivery is deemed not delivered.
+4.4 The two kinds of health are judged separately; they must not be combined into one total score:
+(1) Layering: A host health = the runtime environment itself (drivers, services, disks, ports, shortcuts, occupied files); B rule-system health = this engine itself (version, clause count, gate conclusions, error ledger, periodic to-dos, work registration). The two must be recorded and judged separately and must not be weighted into a single score.
+(2) A end criteria (examples; add or remove according to the actual environment and state them in 30_taizhang): no P0-level items; key drivers / services do not block normal business; the target disk has ≥ 3 times the estimated output of this round remaining.
+(3) B end criteria: the gate self-check is all PASS; the error ledger has no "unclosed" rows; the day's work registration has been written (8.3).
+(4) Only when both A and B have ended is it permitted to say "closed loop" and to archive the whole batch; if either has not ended, the delivery must list "unclosed items: <numbered list>", and must not substitute "basically normal" or "roughly no problem".
+(5) The status words are fixed at four: normal / pending restart wrap-up / unclosed / ended. Inventing a fifth word is treated as bypassing legislation.

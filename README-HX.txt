@@ -11,7 +11,7 @@ README-HX.txt · Bumao XTGL Community 工作区导航（唯一入口）
 ------------------------------------------------------------
 AI 治理引擎，内核是「多 Agent 角色与路由治理」。
 只保留通用治理机制：工作区分层、真身／视图／台账三层、闸门与审计、版本规则。
-当前版本 0.30（2026-11-09）。版本号只认 00_meta\meta.json 的 version 字段，
+当前版本 0.31（2026-11-09）。版本号只认 00_meta\meta.json 的 version 字段，
 本文件任何文字与 meta 冲突时以 meta 为准。
 
 二、版本与条款
@@ -89,7 +89,7 @@ A file of the same name or a pointer in the parent directory does not belong to 
 ------------------------------------------------------------
 An AI governance engine whose kernel is "multi-agent roles and routing governance".
 It retains only the generic governance mechanisms: workspace layering, the true-body/view/ledger three layers, gates and audit, and version rules.
-Current version 0.30 (2026-11-09). The version number is recognized only from the `version` field of 00_meta\meta.json;
+Current version 0.31 (2026-11-09). The version number is recognized only from the `version` field of 00_meta\meta.json;
 if any text in this file conflicts with meta, meta prevails.
 
 2. Versions and clauses

@@ -1,0 +1,20 @@
+本译文仅供参考，判定以中文原文为准，不参与任何闸门判据。
+
+9. Privacy Red Lines and De-personalization
+9.0 Personal information classification:
+(1) Class A identity: real name, account, machine name, user directory path, organizational-structure relationships.
+(2) Class B credentials: passwords, keys, tokens, recovery codes, private keys and their derived strings.
+(3) Class C preferences: personal tastes, aesthetic orientation, habitual expressions, catchphrases, private relationships.
+(4) Class D location: absolute paths, drive letters, device identifiers, geolocation.
+(5) Handling: Classes A, B, and D are all prohibited from entering the canonical body and views; Class C is prohibited from entering the canonical body and may exist only outside the product as a configuration item that the deployer can replace at any time.
+9.1 How de-personalization is implemented:
+(1) Path relativization: location information is instead traced by scripts at runtime; literal paths are not written in files.
+(2) Person generalization: clause subjects use role codes and "the user", without specific personal names or personal pronouns.
+(3) Mechanisms stay, content leaves: reusable governance mechanisms are retained, and individualized content is migrated to a configuration layer outside the product.
+(4) Reproducible results: the results of de-personalization must be repeatedly verifiable by gates, not taken on human declaration.
+9.2 Machine gates (structured scan + word-list scan):
+(1) Scan scope: canonical body, views, scripts, meta-information, and ledgers, covered byte by byte.
+(2) Structured scan items: drive-letter paths, absolute paths and UNC paths, user directories, machine names, key signature strings, and private-key file headers.
+(3) Dynamic values: the machine name and the user name are obtained from environment variables at runtime; no literal value is written inside the product — this is both a de-personalization requirement and a prerequisite for portability.
+(4) Word-list scan: prohibited words of the persona-corpus kind are provided by 00_meta\pii_words.json, and the deployer may add or remove them according to its own red lines; that file itself does not participate in the scan, to avoid self-matching.
+(5) Zero tolerance: a hit means FAIL; downgrading to "notice only" or a warning is not allowed.

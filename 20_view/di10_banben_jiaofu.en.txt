@@ -1,0 +1,24 @@
+本译文仅供参考，判定以中文原文为准，不参与任何闸门判据。
+
+10. Version Rules, Delivery, and Gate Registration
+10.0 Version rules:
+(1) Syntax: written as <major>.<minor>, with both major and minor as decimal integers without zero padding. Legal examples such as 0.5, 1.0; prohibited: 0.05, v0.5, 0.5-beta.
+(2) Increment method: an L3 architecture-level change increments the major version and resets the minor to zero; an L2 addition, deletion, or modification of clauses increments the minor version; an L1 wording revision does not increment the version number and only records one revision entry.
+(3) Single-point storage: the version number is written only in the version field of 00_meta\meta.json; other locations are injected by rendering.
+(4) Comparison: always compare as an integer tuple (major, minor); string sorting is prohibited.
+(5) Version independence: this product's version number is independent and advances only according to the local 00_meta\meta.json and the ledger; it is not mixed with, compared with, or used to judge which is newer than the version number of any external product.
+10.1 Delivery hygiene:
+(1) No drive letters in scripts: all scripts trace paths relatively; hard-coding any drive letter or absolute directory is prohibited.
+(2) No plaintext keys: literal key values and private-key file headers must not appear in the product; credentials are always obtained via environment variables.
+(3) Delivery must attach the raw test output: every round's delivery must attach the raw gate output; without output it is deemed not accepted.
+10.2 Gate registration and change bookkeeping:
+(1) Newly added clauses must have their check items registered in 00_meta\jiancha_map.json in the same round; if not registered, B9 FAIL.
+(2) The registration must state the check-item code, the check content, and the clause range covered.
+(3) Manual-type check items must state the evidence location; otherwise they must not be marked as manual, to avoid dangling entries.
+(4) Every change is recorded in 30_taizhang, noting the nature level and the evidence pointer.
+10.3 Version spacing and change records (a recording regime, with no automatic gate):
+(1) Historical standard abolished: early on, a fixed version spacing from an external product was required; that standard has been discontinued — the two lines each evolve on their own, and forcibly leveling them only forces out false version numbers.
+(2) Current standard: a fixed spacing is no longer required. Whenever a substantive change occurs locally (adding / modifying / abolishing clauses), one entry must be recorded in the local 30_taizhang change ledger, stating the nature of the change and the evidence pointer.
+(3) Determination: unrecorded items must state the reason and the plan; if the same change is missed for two consecutive release steps, register it in the error ledger.
+(4) This clause has no automatic gate; it is checked by the "manual + change ledger" hook of the registration table in 10.2; meta must not reference a non-existent gate number.
+(5) Reason for existence: early meta declared that it was "permanently checked by gate B13", but B13 was never implemented, which is a dangling reference; rather than keeping a fake gate, it is better to switch to a manual check that can actually be done.

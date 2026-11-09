@@ -1,0 +1,23 @@
+本译文仅供参考，判定以中文原文为准，不参与任何闸门判据。
+
+8. Error Ledger and Self-Correction
+8.0 Record only the system itself:
+(1) The ledger records only this system's own judgment errors, execution deviations, and operation standards that can be restated publicly.
+(2) User privacy is not recorded: any specific content involving personal identity, credentials, or preferences must not enter the ledger.
+(3) The above two items are machine-verifiable standards, checked by gate B6 together with spot checks; they do not rely on self-discipline.
+8.1 Error record format:
+(1) One error must contain at least: the phenomenon, the root cause, the correct practice, and the cumulative count.
+(2) The root cause must be written down to the actionable, fool-proofing level; descriptions such as "negligence" or "carelessness", from which no improvement can be derived, must not be written.
+(3) The cumulative count is used to identify repeated pitfalls; when the same error recurs and reaches the threshold, a fool-proofing measure must be produced or a new gate item added.
+8.2 Corrective closed loop:
+(1) When an error is found, record it first and then fix it; the order must not be reversed.
+(2) Any constraint added as a result of an error must be made into a check item and registered in 00_meta\jiancha_map.json; otherwise B9 FAIL.
+(3) Fixed errors retain their records for later regression verification and must not be deleted.
+8.3 Daily work registration (mandatory, one line per entry):
+(1) Sole ledger: one daily work registration table with six fixed columns — date｜time｜executor｜task｜what was done｜detailed pointer. The column order must not be changed.
+(2) Anyone who connects to the system and produces a deliverable must append one row in the current round; write only one sentence, no empty table, and do not write only "worked today".
+(3) The detailed pointer must be a genuinely existing archive path. If it points to a non-existent path, the entire row is deemed unregistered.
+(4) Separation of scope: this table is only an index, not a report. The process, evidence, and comments go in the archive pointed to; the ledger does not copy the text.
+(5) Rolling retention (default 90 days): overdue rows are migrated as whole rows to the archive subdirectory — migrate only, do not delete; physical deletion of ledger rows is prohibited, and the date of historical rows must not be changed.
+(6) This product does not build in that gate; adopters must implement "zero registration for the day means FAIL" in their own engine and register the check item in 10.2.
+(7) Reason for existence: relying on human memory will inevitably lose it; only by landing on a table that must be written can "what was done each day" be traced back.

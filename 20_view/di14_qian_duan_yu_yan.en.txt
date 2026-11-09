@@ -1,0 +1,9 @@
+本译文仅供参考，判定以中文原文为准，不参与任何闸门判据。
+
+14. Front-End Design Language: Read Before Acting, Use Only Existing Tokens
+This chapter turns "the look has been finalized; read the design language before adding features" into machine criteria, executed by B28 during check --strict; existing literal values are registered as the baseline, and any newly added wild value is FAIL.
+14.0 Mandatory-08 New front-end elements must be composed of existing tokens:
+(1) Criterion: the literal color values #xxxxxx and font-size:Npx appearing in index.html / setup.html / tutorial.html must be findable in 20_view\web\design_tokens.json, or findable in the existing registrations of 00_meta\frontend_token_baseline.json; if neither contains it, it is judged out of bounds.
+(2) Trigger point: every check --strict scans the three pages line by line; newly added color values, font sizes, spacings, corner radii, and shadows must never be written as literals.
+(3) Handling: B28 judges FAIL and prints the file, line number, and out-of-bounds literal value; before changing, a "design language list" must first be generated (all tokens + component class names + grid card specifications), and after changing, take before and after screenshots at the same viewport 1440×900 and compare color metrics.
+(4) Gate position: B28; the existing registrations are maintained by qiangzhi.py token-baseline, which records only what exists and does not relax additions.

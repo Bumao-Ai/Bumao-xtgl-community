@@ -1,0 +1,41 @@
+本译文仅供参考，判定以中文原文为准，不参与任何闸门判据。
+
+11. Mandatory Category: Must Do (work must not start if preconditions are unmet)
+Every clause in this chapter carries a machine criterion, a trigger point, and a handling action, and is executed by B15—B20 during check --strict; if a criterion is unmet, it is FAIL and exit code 1 is returned.
+11.0 Mandatory-01 Approval records must exist before modifying core files:
+(1) Criterion: for each core file registered in 20_view\web\core_manifest.json, its current sha256 must equal the baseline value of the same name in 30_taizhang\core_baseline.json. Inequality is deemed "modified", and that file must be named in the day's entry of 30_taizhang\qiangzhi_shenpi.txt, and that entry must contain one of the authorization words (authorized / approved / agreed / ruled / ordered).
+(2) Trigger point: read the baseline and the approval register at the start of every check --strict; once a core file is written to disk, the next check sees it immediately.
+(3) Handling: B15 judges FAIL, prints the file names lacking approval and the absolute location of the approval register, exit code 1; before the approval is supplied, core files must not continue to be modified, and it must not be closed with "get it running first, then add the record".
+(4) Gate position: B15 is provided by 10_rac\qiangzhi.py and registered in BumaoXTGL_Community_v01.py.
+11.1 Mandatory-02 Every change must leave a trace:
+(1) Criterion: when the current sha256 of any managed file in the baseline differs from the baseline, a pre-change copy of that file must exist under 90_lishi\gongkai_weihu_261107, and the copy's sha256 must equal the baseline value. The copy name must contain the original file name and may carry a .bak and a timestamp suffix.
+(2) Trigger point: during check --strict, compare the three-party hashes of the baseline, the current file, and the backup file, item by item.
+(3) Handling: B16 judges FAIL and lists the files that are "modified but have no pre-change copy with the same hash"; after supplying the pre-change copy, re-run; a missing copy must not be replaced by a temporary draft, an in-memory state, or a verbal explanation.
+(4) Gate position: B16.
+11.2 Mandatory-03 The source of a change must be declared:
+(1) Criterion: 30_taizhang\biangeng_zhang.txt must contain the day's entry, and at least one of the day's entries must contain a "source:" field whose value is non-empty and limited to one of the four categories "user instruction / script / upstream sync / manual".
+(2) Trigger point: read the day's section of the change ledger at every check --strict.
+(3) Handling: B17 judges FAIL and reports the missing "source:" or an out-of-range value; the source must not be written as "carried over from before" or "same as last time", which cannot be traced.
+(4) Gate position: B17.
+11.3 Mandatory-04 The version number must come from a single source:
+(1) Criterion one: the product version recognizes only the version field of 00_meta\meta.json; scripts and json under 10_rac (including the zhunze canonical body) must not again contain a literal identical to the current product version.
+(2) Criterion two: the core version recognizes only the CORE_VERSION assignment in 20_view\web\xtgl_core.py, and that assignment must appear only once in the file; the core_version in 20_view\web\core_manifest.json can only be its mirror.
+(3) Trigger point: during check --strict, respectively scan the literals in 10_rac, count the CORE_VERSION assignments, and compare the manifest mirror.
+(4) Handling: B18 judges FAIL and lists the out-of-range file names and hit locations; it is prohibited to release on the grounds that "the other place is just a comment" or "the two places are the same for now".
+(5) Gate position: B18.
+11.4 Mandatory-05 Writing to disk is allowed only after the checks have been completed:
+(1) Criterion: 30_taizhang\check_last.json must exist and be parseable; its rules_sha must equal the sha256 of the current z-series canonical body after merging; a_items must be no fewer than 11; b_items must equal the expected entry count of 00_meta\gates_decl.json; finished_at must be non-empty.
+(2) Trigger point: at the end of each check, engine.py writes the credential; at the start of the next check it is read. After the canonical body or a script changes, the credential's rules_sha is stale, and the next round immediately turns red.
+(3) Handling: B19 judges FAIL and reports "no complete check has been run after the change, or the credential is stale"; check_last.json must not be hand-written to pass as a check record — that file is written only by the engine.
+(4) Gate position: B19.
+11.5 Mandatory-06 Ledger registration is required:
+(1) Criterion: every clause id must be covered by covers in 00_meta\jiancha_map.json (judged by B9); at the same time, the day's entry in 30_taizhang\biangeng_zhang.txt must contain the nature level "L2" or "L3" and state the scope of impact or the evidence pointer.
+(2) Trigger point: during check --strict, check the registration table and the day's section of the change ledger.
+(3) Handling: B20 judges FAIL and separately reports "clauses with unregistered check items" and "missing L2/L3 bookkeeping for the day"; clauses must not be added first and the books made up later — the bookkeeping and the clauses must be in the same round.
+(4) Gate position: B20.
+11.6 Mandatory-07 Core-file changes must be preceded by a published notice line and must be third-party reviewable:
+(1) Criterion: for each core file registered in 20_view\web\core_manifest.json, if its mtime is later than the write time of 30_taizhang\core_baseline.json, a "corresponding" notice line must exist in 20_view\web\gaigai_yugao.txt. Correspondence requires three things to hold simultaneously: ① the file name appears in the second segment "which files are changed" of the notice line (after comma separation, an exact literal match; since 0.16, * is no longer a wildcard — a line containing * holds only for a file actually named * — so the notice must name each file individually); ② the notice time falls between the baseline time and that file's mtime (a clock deviation of 120 seconds is allowed); ③ that file's mtime is no later than "notice time + estimated duration + 10 minutes grace".
+(2) Exemption: runtime telemetry files (check_last.json, saojian_zuijin.json) are written by the check itself and do not count as human modification of core files, so no notice line is required; the exemption list is hard-coded in YUGAO_EXEMPT of qiangzhi.py, and changing it requires changing this clause in the same round.
+(3) Trigger point: read the notice file and the baseline time at the start of every check --strict; the notice line format has six fixed segments: time｜which files are changed｜why｜estimated how long｜scope of impact (token / interface / de-identification / baseline / none)｜executor.
+(4) Handling: B29 judges FAIL, prints the file names that are "later in mtime than the baseline but have no corresponding notice line" and the location of the notice file, exit code 1; it must not be smoothed over by "adding a line after the fact" or "changing the mtime back" — when adding a line, the notice time must still fall before that file's mtime, otherwise the criterion does not hold.
+(5) Gate position: B29; for the read-only locking and unlock notice of the three-end core files see kernel\suoding.py, for change evidence collection see kernel\shaobing.py, and for downstream blocking when B16 is red see kernel\duanxia_zuduan.py.

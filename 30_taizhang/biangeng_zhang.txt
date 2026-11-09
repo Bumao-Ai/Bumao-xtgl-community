@@ -92,4 +92,9 @@ Bumao XTGL Community 变更与治理台账 biangeng_zhang.txt
   内核：kernel/bumao_core 整目录同步 core v0.2.3（commit 282d684），28 件逐件 SHA256 一致。
   证据：check --strict 实跑结论行（本轮留档见 30_taizhang/check_last.json）。
 
+2026-11-09 | 打包修正（不改判定） | 系统版本声明 0.30→0.31（加号依据：0.30→0.31 +0.01 同档正常晋升；内核版本仍 0.2.4 未变）
+  性质：只改发布件打包与包内说明，判定逻辑与判据输入未改。
+  范围：.gitignore（新增 !90_lishi/gongkai_weihu_261107/* 白名单，使改前件随包）、README.md、README-HX.txt、CHANGELOG.md、00_meta/meta.json、本台账。
+  证据：解包后连跑两次 check --strict，第二次结论行 0/44 gates red；发布 tag v0.20。
+
 【本文件结束】
