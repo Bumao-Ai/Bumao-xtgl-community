@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.29 第13章
+来源：Bumao XTGL Community 0.30 第13章
 
 13. 可迁移性：要能带走（整份工程）
 本章把「换路径、换盘符、换端口仍能跑」落成机器判据，由 B27 在 check --strict 时执行；静态命中即 FAIL，动态实测另由 portability_probe.py 记录到交付清单。

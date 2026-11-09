@@ -140,3 +140,149 @@ A：不能。这是本引擎的铁律——不 ALL PASS 不开工、不发布。
 - 时间戳：2026-11-03
 - 说明：本教程只覆盖 Community 版；Minimal 版见其 00_meta 下的简化版
 【索引尾结束】
+---
+
+## English
+
+# Bumao XTGL Community — Open Source Release Tutorial
+
+> For first-time publishers who are "not very good at open source". Follow the order and you can safely make the Community edition public on GitHub.
+> License: Apache-2.0 (the official full text ships with the package in the root LICENSE; do not choose another template).
+
+---
+
+## 0. In one sentence
+
+The Community edition is the open-source release of the "AI assistant governance engine" — it writes "how the assistant should work" as checkable clauses, and anyone who clones it can use it. The only serious thing to do before publishing: **confirm that you have not leaked your local machine paths / user name / keys**.
+
+---
+
+## 1. Pre-publication privacy self-check (most important, go through item by item)
+
+Open a terminal in the release directory and run the commands below one by one; **each of them should output 0 hits**:
+
+### ① Local drive letters and user directories
+```bash
+grep -rn "<本机根>\|用户目录\|<用户>" . --include="*.py" --include="*.json" --include="*.html" --include="*.md"
+```
+Expected: no results. If there are any → locate the files and delete or edit them line by line.
+
+### ② Keys and tokens
+```bash
+grep -rn "sk-\|api[_-]key\|token\|password" . --include="*.json" --include="*.py" --include="*.html"
+```
+Expected: only "field names" are hit, not "real values". If a long string starting with `sk-` appears → delete it immediately.
+
+### ③ Old project code name (residue from the historical rename)
+```bash
+grep -rn "<旧项目代号>" . --include="*.py" --include="*.json" --include="*.md"
+```
+Expected: no results (this directory has already been renamed to community).
+
+### ④ Whether local configuration values have been cleared
+Check that these three items in `20_view/web/web_config.json` **must be empty strings**:
+```json
+{ "daiban": "", "defects": "", "check_log_dir": "" }
+```
+Your real personal paths may only stay in `web_config.local.json` (that file must be excluded by .gitignore and never committed).
+
+### ⑤ Backup files and caches
+```bash
+find . -name "*.bak*" -o -name "__pycache__" -o -name "*.pyc"
+```
+Expected: no results. `.bak` files often contain sensitive content from before the change, **delete them before publishing**; do not keep them just for convenience.
+
+---
+
+## 2. Write .gitignore (to prevent slips later)
+
+Create a new `.gitignore` in the root of the release directory, containing at least:
+
+```
+__pycache__/
+*.pyc
+*.bak
+*.bak.*
+web_config.local.json
+*.log
+```
+
+---
+
+## 3. Build a clean package (optional: verify locally first)
+
+```bash
+python 10_rac/engine.py check --strict
+```
+The last line must be `ALL PASS` before you continue. If it does not PASS, fix the red items first; do not publish with failures.
+
+---
+
+## 4. Push to GitHub (first release)
+
+```bash
+# 0）在 GitHub 网页端先「New repository」建好空仓库，名字如 bumao-xtgl-community
+
+# 1）进目录、初始化
+cd <你的 community 目录>
+git init
+git add .
+git commit -m "feat: Bumao XTGL Community 首次开源"
+
+# 2）连远程并推送
+git branch -M main
+git remote add origin https://github.com/<你的用户名>/bumao-xtgl-community.git
+git push -u origin main
+```
+
+If push asks you to log in first, use a GitHub personal access token (Settings → Developer settings → Personal access tokens) as the password.
+
+---
+
+## 5. Three things to add after publishing
+
+1. **README**: state in one sentence "what this is, how to install it, how to run check"
+2. **LICENSE**: the official full text of Apache-2.0 (the three public repositories already ship it with the package; upload it directly, do not swap in another template)
+3. **CONTRIBUTING.md** (optional): explain how others can propose rule changes
+
+---
+
+## 6. FAQ
+
+**Q: I am not sure whether a file should be committed. What should I do?**
+A: Private → put it into .gitignore. Unsure → do not commit it for now; better to commit less than to leak.
+
+**Q: What if sensitive information has already been pushed?**
+A: Delete the repository immediately and rebuild it (history leaves traces and cannot be cleaned out). That is why the self-check in step 1 must be done first.
+
+**Q: engine.py check keeps failing. Can I publish first?**
+A: No. This is the iron rule of this engine — no work starts and nothing is published without ALL PASS.
+
+---
+
+## How to add a feature from scratch
+
+Take "add a new read-only panel" as an example and follow five steps; skip one and you get "the switch is on but the panel is blank".
+
+### 1. Add the capability entry
+Add an item to the `modules` array in `20_view/web/modules.json`, copying all fields from an existing entry: `id`, `name`, `name_en`, `version`, `core`, `min_core`, `kind`, `status`, `group`, `source`, `permission`, `write`, `credential`, `evidence`, `review_by`, `desc`. This table is the definition shared by all editions, and after changing it you must keep it consistent with upstream; whether a particular edition should enable it is not written here but in that edition's `web_config.json` `capabilities`. `applies_to` is used by packages, not by capability entries.
+
+### 2. Wire up the backend
+Add read-only data to `snapshot` first, adding one more field to the `/api/overview` response in `xtgl_core.py`; if an independent query is needed, add an `/api/` route. Use `GET` for reads and `POST` for writes; both must pass the same-origin check and the `permission` bit. Routes must not hard-code local absolute paths; resolve paths from configuration every time. The return structure is fixed as two parts, status code and data; on error, give a readable reason.
+
+### 3. Mount the front end
+Card numbers start with `s-`, are written into `CAP_MAP` in `index.html`, and map to the capability entry `id` from step one; tabs do not need manual show/hide, `applyCaps()` automatically collapses cards that are not enabled according to `capabilities`. Add entries to the paired Chinese-English items in `i18n.js`; Chinese sentences do not mix English phrases and English sentences do not mix Chinese. Add an empty-state message for when there is no data.
+
+### 4. Add rule packages and feature packages
+Rule packages go into `00_meta/rules_library/packs/`, feature packages go into `00_meta/feature_packs/`; one file is one package, and `id` must match the file name. `enabled` defaults to `false`; set it to `true` to take effect. `applies_to` only takes edition names such as `community` and `minimal`; `depends_on` may only reference capability `id`s that already exist in `modules.json`. The load order is fixed: first read the capability definitions, then switch according to this edition's `capabilities`, and finally stack the `enabled` packages. Packages must not modify canonical clauses, nor preset values such as days or counts.
+
+### 5. How to prove it after adding
+Run `BumaoXTGL_Community_v01.py check --strict` in this edition (without `--out`); after changing core files, run `kernelsync.py --manifest` to recompute the manifest. Reconciliation points: capability definitions are byte-identical to upstream, no new panel appears while the capability is off, real data can be fetched once it is on, and the check verdict is all green. If any item fails, do not set `enabled` to `true`.
+
+---
+
+【Index tail start】
+- Maintainer: Bumao XTGL
+- Timestamp: 2026-11-03
+- Note: this tutorial covers only the Community edition; for the Minimal edition see the simplified version under its 00_meta
+【Index tail end】

@@ -37,3 +37,47 @@
 3. **通知基线重算**：改完报「需要重算基线」，由基线负责人一次性 `--manifest` 重算并复跑三端；不得自行重算抹平。
 
 入口：`/setup` 页。本页入口链接待前端线在 `setup.html` 加一行（本轮未改该文件，避免与美化在途打架）。
+
+---
+
+## English
+
+# Front-end Integration Contract (One Page)
+
+> **Reference document · not binding.** Ruling of 2026-11-07: changes to core files are governed not by this one page but by the three-part mechanism (read-only lock／sentinels／downstream block, see `kernel/bumao_core/HOST_CONTRACT.md` §9). This page only addresses "the person making the change knows what to change".
+
+## 1. The nine `/api/*` endpoints
+
+| Endpoint | Input | Returned fields | Correct behavior when unavailable |
+|---|---|---|---|
+| `/api/overview` | none | `core_version, edition, title, subtitle, root, root_name, root_source, setup_required, setup_reason, modules, goals, daiban, logs, clauses, health, gates` | main page shows "not configured" + `/setup` entry; must not spin idle or leave blank cards |
+| `/api/env` | none | `root, ok, checks` | top status bar shows "not configured" + `/setup` entry |
+| `/api/clauses` | none | `file, error, clauses` | clause area shows the raw `error`; do not hide errors |
+| `/api/doc` | `?file=` (required; missing param 400) | `error` | show "file does not exist or not selected" + an entry back to the list |
+| `/api/tasks` | none | array | to-do area shows the empty-state text "no to-dos" |
+| `/api/modules` | none | `ok, core, list_version, modules, errors` | module area shows the raw `errors`; must not use "loading" as a long-term placeholder |
+| `/api/goals` | none | `ok, path, count, list, error` | goal area shows `error` + `/setup` entry |
+| `/api/detail` | `?file=` (required; missing param 400) | detail text | show "no file selected" empty state |
+| `/api/snapshot` | none | `meta, gates, coverage, drift, rules_library, _capabilities` | health-check area shows "snapshot not obtained"; must not paint missing data as green |
+
+Criterion: the nine are each measured 200／400, and every "unavailable" case has visible text and a `/setup` entry; spinning idle (request fails but the page does not change) means it does not qualify.
+
+## 2. Immutable items
+
+1. **Design language**: colors, spacing, corner radius, fonts, card structure, and animation are fixed; new elements take values only from `design_tokens.json`.
+2. **token gate**: literal color values `#xxxxxx` and `font-size:Npx` appearing on the three pages must hit entries registered in `design_tokens.json` or `00_meta/frontend_token_baseline.json`, otherwise `B28` goes red.
+3. **Three-end consistency**: the 12 items of community and minimal are byte-identical; `xtgl_core.py` may differ only in the port fallback line per edition.
+
+## 3. Desensitization rules
+
+- Zero hits for four categories: drive-letter prefixes (e.g. the X drive), user names, machine names, and internal directory names.
+- Paths always go through the same `maskPath()`, showing only the last segment; it is forbidden to bypass it and write the raw path directly in `innerHTML` concatenation, `title`, `data-*`, or tooltips.
+- Both places are scanned for acceptance: `innerText` and `outerHTML`; the hit count must be 0.
+
+## 4. Three things to do before changing
+
+1. **Post the notice line**: first run `kernel/suoding.py unlock ...` (which automatically writes `20_view/web/gaigai_yugao.txt`), then start;
+2. **Keep the pre-change copy**: the original of the changed file and its hash go into the corresponding maintenance directory under `90_lishi`;
+3. **Notify baseline recalculation**: after the change, report "baseline recalculation needed"; the baseline owner recalculates once with `--manifest` and re-runs all three ends; you must not recalculate on your own to smooth it over.
+
+Entry: the `/setup` page. The entry link on this page awaits the front-end line adding one line in `setup.html` (this round did not change that file, to avoid clashing with in-flight beautification).

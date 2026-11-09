@@ -11,7 +11,7 @@ README-HX.txt · Bumao XTGL Community 工作区导航（唯一入口）
 ------------------------------------------------------------
 AI 治理引擎，内核是「多 Agent 角色与路由治理」。
 只保留通用治理机制：工作区分层、真身／视图／台账三层、闸门与审计、版本规则。
-当前版本 0.29（2026-11-09）。版本号只认 00_meta\meta.json 的 version 字段，
+当前版本 0.30（2026-11-09）。版本号只认 00_meta\meta.json 的 version 字段，
 本文件任何文字与 meta 冲突时以 meta 为准。
 
 二、版本与条款
@@ -71,3 +71,81 @@ python render.py write            真身 → 视图
 python rules_db.py                重建派生索引 rules.json
 ============================================================
 【本文件结束】
+
+---
+
+## English
+
+README-HX.txt · Bumao XTGL Community Workspace Navigation (Single Entry Point)
+
+[Brand Positioning · 2026-11-03] This product = **Bumao XTGL Community (open-source base edition)** = Bumao Core + generic rules.
+It contains only the minimal Bumao Core kernel and generic rules; edition differences lie only in distribution configuration and preset content, and **rules do not enter the kernel**.
+============================================================
+This file is the single entry point of this product. It lives inside the product directory and travels with the product.
+The first thing in a new session is to read this file in full; not having read it counts as not connected, and no write operation may be executed.
+A file of the same name or a pointer in the parent directory does not belong to this product and does not take part in any gate check.
+
+1. What this is
+------------------------------------------------------------
+An AI governance engine whose kernel is "multi-agent roles and routing governance".
+It retains only the generic governance mechanisms: workspace layering, the true-body/view/ledger three layers, gates and audit, and version rules.
+Current version 0.30 (2026-11-09). The version number is recognized only from the `version` field of 00_meta\meta.json;
+if any text in this file conflicts with meta, meta prevails.
+
+2. Versions and clauses
+------------------------------------------------------------
+Versions are maintained independently; clause changes are registered in this product's 30_taizhang as "landed / not landed + reason".
+
+3. Six-layer structure (00_meta / 10_rac / 20_view / 30_taizhang / 40_renwu / 90_lishi)
+------------------------------------------------------------
+00_meta       metadata, onboarding protocol, single version point, private vocabulary, check-item registry, newcomer guide
+10_rac        executor and the sole true body zhunze\
+20_view       the sole view area, written exclusively by render.py
+30_taizhang   change and governance ledger (append-only)
+40_renwu      task execution area (deliverables and working drafts)
+90_lishi      historical archive, read-only
+
+4. Three-layer assets
+------------------------------------------------------------
+True body zhunze\z00..z10.json   the only editable data source
+Views 20_view\                   read-only products rendered from the true body, rebuildable at any time
+Ledger 30_taizhang\              records only facts and process traces; does not copy clause bodies
+Flow is one-directional: true body → views.
+
+5. Three onboarding steps (order must not be reversed)
+------------------------------------------------------------
+① Read this file to obtain the product name, version, and true-body location;
+② Read the corresponding chapters or the full-text archive under 20_view\ as needed;
+③ python BumaoXTGL_Community_v01.py check --strict   ← must be ALL PASS before you may act
+Four steps to make a change: ① edit zhunze\z*.json → ② render.py write → ③ check --strict →
+④ record in 30_taizhang\biangeng_zhang.txt. If any step is missing, the change is considered not in effect.
+
+Newcomers should first read 00_meta\XINSHOU-ZHINAN.txt (ten minutes to get started, including the three most common mistakes).
+
+6. The four items added in 0.8 (all about "what counts as done")
+------------------------------------------------------------
+4.3  Five levels of delivery completeness (S0 initiated / S1 in progress / S2 runnable / S3 accepted / S4 archived);
+     the percentage is converted only from the level and may not be filled in by hand; downgrading is allowed and, when required, mandatory.
+4.4  Two kinds of health are judged separately: host health (A) and rule-system health (B) each have their own end criteria;
+     they may not be merged into a single score; only when both have ended is it called a "closed loop".
+5.3  Status may be manually overridden: the system verdict is only a baseline; manual ticks write an override file and retain by/at,
+     but an override must not bypass a gate.
+8.3  Daily work log: one line per entry with six columns; the detailed pointer must really exist; rolling retention only moves entries and never deletes them.
+
+7. Productization red lines
+------------------------------------------------------------
+· No file may contain drive letters, user directories, machine names, or other deployment information; paths are resolved by scripts at runtime.
+· The entire workspace can be copied as a whole to any machine and run directly.
+· Credentials always go through environment variables; literal secret values are not allowed inside the product.
+· The three items above are machine-checked each round by gates B6 / B6b / B7; they are not guaranteed by human eyes.
+
+8. Common commands (run under 10_rac\)
+------------------------------------------------------------
+python BumaoXTGL_Community_v01.py check --strict   full gate check
+python BumaoXTGL_Community_v01.py whoami           onboarding self-check and check-item physical exam
+python BumaoXTGL_Community_v01.py audit            structure and clause statistics
+python BumaoXTGL_Community_v01.py show <clause id> print the body of a clause
+python render.py write            true body → views
+python rules_db.py                rebuild the derived index rules.json
+============================================================
+[End of this file]

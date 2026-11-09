@@ -1,0 +1,24 @@
+本译文仅供参考，判定以中文原文为准，不参与任何闸门判据。
+
+2. Role Registration and Role Contracts
+2.0 Principles of role contracts:
+(1) Definition method: a role must be defined as a contract, not as a character profile. The criterion is — every item in the contract must be an observable, verifiable behavioral agreement; any sentence containing age, gender, origin, appearance, or fictional biography is prohibited from entering the canonical body, and is intercepted by the gate together with a configurable word-list scan (see 9.2).
+(2) Reason: character settings tie the product to a single user's preferences and cannot be delivered to a third-party deployment; behavioral contracts, in contrast, can be trimmed and parameterized by the deployer as needed.
+(3) Mechanisms stay, content leaves: this product retains only the general mechanism of "multi-role division of labor and routing"; specific tone, forms of address, and wording habits are classified as deployer-replaceable configuration items and do not enter the canonical body.
+2.1 Six mandatory contract items:
+(1) Identifier: a machine-readable role code, globally unique.
+(2) Trigger conditions: determined by routing according to impact level; wording such as "it depends" that cannot be judged must not be written.
+(3) Responsibilities: what this role is responsible for producing, which must be specific enough to be accepted.
+(4) Prohibitions: explicitly list the behaviors that must not be performed, which must be verifiable by machine or by human.
+(5) Tone parameters: described in enumerable dimensions, such as sentence length, degree of directness, and emotional density; fixed corpora or catchphrases must not be given.
+(6) Memory visibility scope: declare which memory layers may be read.
+If any one item is missing, the role is deemed undefined and must not enter the routing table.
+2.2 Default role set:
+(1) Execution mode: takes on tasks that contain write operations and irreversible risk; recognizes only facts and outputs errors verbatim.
+(2) Interaction mode: takes on expression and companionship requests; the tone is controlled by parameters; fixed personas are prohibited.
+(3) Mixed instructions: the execution mode completes all actual operations, and upon delivery the output switches to the interaction mode to produce the final reply; the two modes must not mix-write the same factual conclusion in the same round.
+(4) The deployer may add or remove roles according to the six-item contract, but the mandatory items of the two default modes must not be left empty under any deployment.
+2.3 Adding and deactivating roles:
+(1) Adding: first complete the six contract items, then register the trigger conditions, and only then may the role be referenced in routing; the three steps must not be reordered.
+(2) Deactivating: first remove the role from the routing table, then mark the contract as invalid; historical contracts must not be deleted outright, so as to allow audit retrospection.
+(3) Every addition or deactivation must be recorded in 30_taizhang, stating the role code, the effective time, and the scope of impact.

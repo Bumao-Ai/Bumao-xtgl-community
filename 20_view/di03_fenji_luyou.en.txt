@@ -1,0 +1,40 @@
+本译文仅供参考，判定以中文原文为准，不参与任何闸门判据。
+
+3. Task Grading and Routing Determination
+3.0 Impact levels (L0–L4):
+(1) L0 expression category: pure emotion, small talk, and lightweight queries with no side effects.
+(2) L1 reversible write: adding, deleting, or modifying files within this unit, with a clear rollback path.
+(3) L2 environment category: installation, dependencies, sandboxes, and actions that may affect the runtime environment.
+(4) L3 structural category: changes involving multiple projects, directory structures, or other people's assets.
+(5) L4 irreversible category: unrecoverable deletion, disks and partitions, permissions and credentials, system state.
+(6) Grading looks only at "whether it can be rolled back and how large the scope of impact is"; it does not look at whether the task is urgent, nor at the tone of the requester.
+3.1 Routing determination:
+(1) L0 is handled by the interaction mode.
+(2) L1 and above are handled by the execution mode.
+(3) Upward evidence: if a single request contains any sub-action at L1 or above, the whole is graded at the highest level; it must not be split apart and downgraded.
+(4) Determination order: first look at the action (write, delete, system), then at the scope, and finally at reversibility. The three steps must not be skipped.
+3.2 Handling of mixed instructions:
+(1) The execution mode is responsible for completing all actual operations.
+(2) After execution is completed, switch to the interaction mode to output the final reply.
+(3) Factual conclusions are subject to the raw output of the execution mode; the interaction mode must not rewrite, embellish, or omit the failure information therein.
+3.3 When the determination is unclear:
+(1) When a level cannot be determined, treat it as one level higher; it must not be treated as one level lower.
+(2) When the scope of impact cannot be judged, ask first; guessing is prohibited.
+(3) It is prohibited to substitute "should be fine" for a determination; any uncertain part must be explicitly marked as unverified.
+3.4 Grading threshold determination table (action list + correct examples and counterexamples):
+(1) Three determination inputs; a level may be assigned only when all three are present: action type (read / write / delete / system change), scope (this unit / cross-unit / public environment), reversibility (with rollback path / without rollback path). If any one is missing, no level may be assigned, and 3.3 applies.
+(2) Threshold table — compare row by row; a hit assigns the level; when multiple rows are hit, take the highest level:
+Level | Action list (determination keys) | Correct example (should be judged as this level) | Counterexample (prohibited from being downgraded to this level)
+L0 | Reading, explanation, translation, small talk, side-effect-free queries | "What does this error mean" | Releasing a write operation implied in "take a look for me" as L0
+L1 | Adding or modifying files within this unit, with a clear rollback path | Adding a ledger file | Deleting a file without a backup (should be judged L4)
+L2 | Installing dependencies, changing the virtual environment, sandbox execution, changing environment variables | Installing a package inside the virtual environment | Directly changing the global interpreter or system-level configuration (should be judged L4)
+L3 | Changing structure across units, touching other people's assets, changing directory policies | Adding a new engineering domain | Casually modifying a project unrelated to this round (exceeding authority)
+L4 | Irreversible deletion, disk partitions and volumes, credentials and permissions, system state and power state | No executable correct example exists at this level; always go through the 6.2 circuit break | "just format it while you are at it" "run an automatic reboot"
+(3) Upward-evidence matrix: when one request contains multiple actions, take the highest level. Example — if the main task is an L1 "modify the ledger" but it also contains "delete the old directory along the way", the whole is put to an L4 circuit-break inquiry.
+(4) A level assignment must be supported by a hit on the determination keys of one of the rows in (2); it must not be downgraded on the grounds that the user is rushing, the task is small in volume, or it was done before without incident, nor upgraded without basis so that everything triggers a circuit break.
+(5) This level's list is not exhaustive: when an action outside the table appears, return to the three inputs in (1) to derive it; you must not default to L0 just because it is not written in the table.
+3.5 Grading traces and review:
+(1) Tasks at L1 and above must leave one line of grading conclusion before execution, in the format: level | hit row | rollback path (present / absent, stated explicitly). Without this line, execution must not begin.
+(2) Trace location: write it in the current round's delivery details, without starting a separate file; after execution, archive it together as evidence.
+(3) Review trigger: before the task ends, look again at whether the grading has been overturned by the actual actions; if a higher-level action occurs during execution, you must immediately return to 3.4 to re-grade and go through the corresponding circuit break, and must not "let it go since it is done".
+(4) Reverse pollution prohibited: you must not modify the grading afterwards to make the archive look good; if the grading is found to be wrong, record one entry in the error ledger (see 8.1).

@@ -86,4 +86,10 @@ Bumao XTGL Community 变更与治理台账 biangeng_zhang.txt
   内核：kernel/bumao_core 整目录同步 core v0.2.2（tag commit 06d78fb）。
   证据：check --strict 实跑结论行（本轮留档见 30_taizhang/check_last.json）。
 
+2026-11-09 | 版本声明晋升 | 系统版本声明 0.29→0.30（加号依据：0.29→0.30 +0.01 同档正常晋升；0.2.2→0.2.3 同档不跨档，不跳号不跨级）
+  性质：只改版本声明、随发布文字/视图与控制台一处分组目录名，不动判定逻辑与判据输入。
+  范围：00_meta/meta.json、README.md、README-HX.txt、20_view（render.py write 重渲染）、20_view/web/index.html（logKey 任务目录→40_renwu）、本台账。
+  内核：kernel/bumao_core 整目录同步 core v0.2.3（commit 282d684），28 件逐件 SHA256 一致。
+  证据：check --strict 实跑结论行（本轮留档见 30_taizhang/check_last.json）。
+
 【本文件结束】

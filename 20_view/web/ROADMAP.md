@@ -96,3 +96,106 @@
 3. 这一季度删掉的复杂度，是否多于新增的功能？
 
 三个都答不上来，就停止加功能，先修基础。
+
+---
+
+## English
+
+# XTGL Roadmap · From a Personal Tool to an Extensible Platform
+
+> The north star is not Stars; it is **the number of workspaces actually used every week**.
+> 100 people who use it every day are worth more than 5,000 people who merely clicked Star.
+
+---
+
+## Stage 0 · Independently Runnable (done, 2026-11-02)
+
+- Console kernel 2.0: path-independent, three-layer rules, first-run wizard, demo environment, 22 tests;
+- Two open-source releases share the same kernel; all 8 core files have identical sha256;
+- Gates on both ends ALL PASS; the main system's `check --strict` ALL PASS.
+
+**What this stage proves**: it is not something that only runs on the author's computer.
+
+---
+
+## Stage 1 · Stable and Installable (near term, 1–2 months)
+
+Goal: a stranger can install it on a clean Windows, get it running, and understand it.
+
+Acceptance criteria (all must be met to pass):
+
+- [ ] On a clean machine (no Python cache, no history of this project) it starts successfully within three commands;
+- [ ] The first-run wizard covers three entry points: "new / existing project / broken config";
+- [ ] Kernel tests ≥ 22 items, all pass on both ends; run in CI;
+- [ ] At least 10 non-author users install independently and give feedback (not a demo, real use);
+- [ ] Two READMEs + one technical document + one architecture note, all in sync with the code;
+- [ ] The known-issues list is public; bad smells are not hidden.
+
+**Explicitly not doing**: plugins, module marketplace, multi-device.
+
+---
+
+## Stage 2 · Multi-system Modularization (mid term, 3–6 months)
+
+Goal: on the same kernel, at least three systems can be switched on and off and upgraded independently.
+
+Acceptance criteria:
+
+- [ ] Module manifest v1 is frozen and `module_check` enters CI;
+- [ ] At least 3 modules can be independently enabled/disabled (tasks / rules / audit as candidates);
+- [ ] Workspace data specification v1 is frozen; new fields are only added, never changed;
+- [ ] Modules do not read each other's private files; they go only through Core;
+- [ ] The first module submitted by an external developer is merged (even if very small).
+
+**The key to this stage**: proving that the "shared kernel" is not a slogan, but something that can constrain third parties.
+
+---
+
+## Stage 3 · Open-source Ecosystem (6–12 months)
+
+Goal: no longer only the author extending it alone.
+
+Acceptance criteria:
+
+- [ ] At least 2 third-party modules are usable long term;
+- [ ] The compatibility policy has been executed once (deprecate → migrate → remove);
+- [ ] There is a fixed release cadence and changelog;
+- [ ] There is a community entry point where questions can be asked and issues reproduced;
+- [ ] At least one merge record of "an external contributor fixed a Core bug".
+
+---
+
+## Stage 4 · Infrastructure (1+ years, long-term vision)
+
+Goal: other projects are willing to treat XTGL Core as a foundation.
+
+Acceptance criteria:
+
+- [ ] Projects integrate Core as a dependency;
+- [ ] Clients beyond the desktop appear (server / Web / others);
+- [ ] The data specification and module contract become quotable standards documents.
+
+This stage has no timetable and makes no promise. If it cannot be achieved, we stop at Stage 2/3; that is not shameful.
+
+---
+
+## The Six Things Most Worth Doing Now (next 30 days)
+
+1. **Engine convergence**: merge the render / rules_db / engine of the two open-source repositories into one set, or at least add contract tests;
+2. **Write-interface token**: generate a one-time token at startup, validated by the write interface, replacing "trust only the local machine";
+3. **HTTP end-to-end tests**: start and stop a real server, covering 200 / 403 / 404 and write-interface authentication;
+4. **Rule schema**: `rules_schema.json` + a checking command, so bad rules are reported at step 3 of the wizard;
+5. **Clean-machine install**: find a Windows machine that has never had this project installed, go through it from scratch, and record the sticking points;
+6. **English README**: the first gate for external release; not writing English means serving only Chinese users.
+
+---
+
+## Judgment Criteria (to Prevent Self-indulgence)
+
+Ask only three questions each quarter:
+
+1. Is anyone actually using it **weekly**, rather than installing it and leaving it there?
+2. When a new user fails for the first time, can they find the reason in the documentation?
+3. Did the complexity removed this quarter exceed the functionality added?
+
+If you cannot answer all three, stop adding features and fix the foundation first.

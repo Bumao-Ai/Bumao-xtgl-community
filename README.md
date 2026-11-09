@@ -9,8 +9,8 @@ Status: maintenance pause
 ![checks](https://img.shields.io/badge/checks-44-brightgreen)
 ![local](https://img.shields.io/badge/local--first-no%20cloud-informational)
 
-> **Two version spaces** — the in-app version in `00_meta/meta.json` is `0.29`; the repository release tag is `v0.18`. They are two independent numbering spaces, not the same number.
-> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.29`；仓库发布 tag 是 `v0.18`。这是两个独立的编号空间，不是同一个数字。
+> **Two version spaces** — the in-app version in `00_meta/meta.json` is `0.30`; the repository release tag is `v0.19`. They are two independent numbering spaces, not the same number.
+> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.30`；仓库发布 tag 是 `v0.19`。这是两个独立的编号空间，不是同一个数字。
 >
 > **Cold start** — to resume iteration, start from [`RETURN_HERE.md`](RETURN_HERE.md).
 > **冷启动** — 恢复迭代从 [`RETURN_HERE.md`](RETURN_HERE.md) 开始。
@@ -27,7 +27,7 @@ Status: maintenance pause
 ## Quick start (30 seconds)
 
 ```bash
-git clone -b v0.18 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
+git clone -b v0.19 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
 cd Bumao-xtgl-community/10_rac
 python BumaoXTGL_Community_v01.py whoami
 python BumaoXTGL_Community_v01.py check --strict   # exit code is the verdict
@@ -40,7 +40,7 @@ cd ../20_view/web
 python serve.py            # prints the real local address
 ```
 
-`v0.18` is the tag this README was released with; see Releases and verify the zip with `SHA256SUMS`.
+`v0.19` is the tag this README was released with; see Releases and verify the zip with `SHA256SUMS`.
 
 > Counting: **59 rules / 44 checks** are two dimensions. Rules are the written clauses (15 chapters); checks are the gates that inspect them. One rule can be covered by several gates, and one gate can span several rules.
 
@@ -48,16 +48,16 @@ python serve.py            # prints the real local address
 
 | Item | Value | Source |
 |---|---|---|
-| Commits at `v0.18` | — | 远端由 API 合成提交，本地与远端计数不同，不虚标 |
+| Commits at `v0.19` | — | 远端由 API 合成提交，本地与远端计数不同，不虚标 |
 | Last commit | 2026-11-09 | `git log -1 --date=short` |
 | Rules | 59 clauses / 15 chapters | first line of `check --strict` (`15 ch / 59 cls`) |
-| Check items | 44 | `check --strict` conclusion line (`1/44 gates red`, second run at tag `v0.18`; only `A10`) |
+| Check items | 44 | `check --strict` conclusion line (`1/44 gates red`, second run at tag `v0.19`; only `A10`) |
 | Reverse cases | 17 | `10_rac/test_qiangzhi.py`; last run 17 caught / 0 missed |
 | Defect ledger | 0 real closed items | `30_taizhang/chacuo_zhang.txt` holds 3 sanitized sample rows only |
-| Releases | 10 tags, `v0.1` → `v0.18`, 2026-11-08 → 2026-11-09 | `git tag` |
+| Releases | 11 tags, `v0.1` → `v0.19`, 2026-11-08 → 2026-11-09 | `git tag` |
 | Changelog | [CHANGELOG.md](CHANGELOG.md) | — |
 
-On a public clone, `A10` is red by design: it needs a same-day authorized entry in `30_taizhang/shenpi_jilu.txt`, and this edition ships that file as a **structure template with zero entries**. With no parseable entry the gate is **explicitly denied (DENY)** — the result is FAIL, never PASS. "Red by design" means the public repository ships no same-day authorization credential; it is not a waiver. The detail line now starts with `A10 判定=DENY` and names the policy (`deny`). The **first** run on a clean clone also flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; a second run at tag `v0.18` is `1/44` red, while live with a real ledger is `0/44` — the two numbers measure different trees. That credential is runtime state, not a committed file.
+On a public clone, `A10` is red by design: it needs a same-day authorized entry in `30_taizhang/shenpi_jilu.txt`, and this edition ships that file as a **structure template with zero entries**. With no parseable entry the gate is **explicitly denied (DENY)** — the result is FAIL, never PASS. "Red by design" means the public repository ships no same-day authorization credential; it is not a waiver. The detail line now starts with `A10 判定=DENY` and names the policy (`deny`). The **first** run on a clean clone also flags `B19`/`B22`, because the check credential (`30_taizhang/check_last.json`) is written at the end of that run; a second run at tag `v0.19` is `1/44` red, while live with a real ledger is `0/44` — the two numbers measure different trees. That credential is runtime state, not a committed file.
 
 ## 中文
 
@@ -129,5 +129,121 @@ kernel/       bundled bumao_core
 - Security: [`SECURITY.md`](SECURITY.md)
 - License: Apache-2.0, see [`LICENSE`](LICENSE)
 - Trademark boundary: [`TRADEMARK.md`](TRADEMARK.md)
+
+Copyright 2026 Bumao
+
+---
+
+# Bumao XTGL · Community（中文）
+
+状态：维护暂停，稳定可用
+
+![license](https://img.shields.io/badge/license-Apache--2.0-blue)
+![python](https://img.shields.io/badge/python-3.12%2B-blue)
+![rules](https://img.shields.io/badge/rules-59-brightgreen)
+![checks](https://img.shields.io/badge/checks-44-brightgreen)
+![local](https://img.shields.io/badge/local--first-no%20cloud-informational)
+
+> **两个版本空间** — 应用内版本（`00_meta/meta.json`）是 `0.30`；仓库发布 tag 是 `v0.19`。这是两个独立的编号空间，不是同一个数字。
+>
+> **冷启动** — 恢复迭代从 [`RETURN_HERE.md`](RETURN_HERE.md) 开始。
+
+59 条规则、44 道检查，加一个本地 Web 控制台：让 AI 代理跑在一套你能逐条看到的规则下，每次运行给出一个可核验的 `ALL PASS` / `FAIL` 结论。
+
+**是什么** — 完整发行版：规则集、闸门集与本地控制台。
+**给谁用** — 需要「可审计地使用 AI」的个人或小团队。
+**解决什么** — AI 干了什么、合不合规，事后查不清、事前拦不住。
+
+![控制台总览](20_view/screens/console-overview.png)
+*单仓克隆下的真实控制台：元信息与闸门入口。闸门状态面板会读取同级其他端，所以只克隆本仓时显示「数据不可用」——这是已知的布局限制，不是模拟数据。*
+
+## 快速开始（30 秒）
+
+```bash
+git clone -b v0.19 https://github.com/Bumao-Ai/Bumao-xtgl-community.git
+cd Bumao-xtgl-community/10_rac
+python BumaoXTGL_Community_v01.py whoami
+python BumaoXTGL_Community_v01.py check --strict   # 退出码即结论
+```
+
+控制台：
+
+```bash
+cd ../20_view/web
+python serve.py            # 打印真实的本地地址
+```
+
+`v0.19` 是本 README 随附发布的 tag；见 Releases，并用 `SHA256SUMS` 校验 zip。
+
+> 计数口径：**59 条规则 / 44 道检查**是两个维度。规则是写下来的条款（15 章）；检查是审视这些条款的闸门。一条规则可能被多道闸门覆盖，一道闸门也可能横跨多条规则。
+
+## 工作留痕
+
+| 项 | 实测值 | 取值来源 |
+|---|---|---|
+| `v0.19` 处的提交数 | — | 远端由 API 合成提交，本地与远端计数不同，不虚标 |
+| 最近提交 | 2026-11-09 | `git log -1 --date=short` |
+| 规则 | 59 条 / 15 章 | `check --strict` 首行（`15 ch / 59 cls`） |
+| 检查项 | 44 | `check --strict` 结论行（`1/44 gates red`，`v0.19` 处的第二次运行；仅 `A10`） |
+| 反向用例 | 17 | `10_rac/test_qiangzhi.py`；最近一次 17 全部捕获 / 0 漏判 |
+| 缺陷台账 | 0 条真实闭环 | `30_taizhang/chacuo_zhang.txt` 仅 3 行脱敏样例 |
+| 发布 | 11 个 tag，`v0.1` → `v0.19`，2026-11-08 → 2026-11-09 | `git tag` |
+| 变更记录 | [CHANGELOG.md](CHANGELOG.md) | — |
+
+在公开克隆上，`A10` 按设计为红：它需要 `30_taizhang/shenpi_jilu.txt` 里有当日的授权条目，而本版把该文件作为**零条目的结构模板**随附。没有可解析条目时，闸门**显式判拒（DENY）**——结果是 FAIL，绝不是 PASS。「按设计红」的意思是公开仓不随附当日授权凭据，不是豁免。detail 行现在以 `A10 判定=DENY` 开头并标明策略（`deny`）。干净克隆上的**第一次**运行还会带出 `B19`/`B22`，因为检查凭据（`30_taizhang/check_last.json`）是在那次运行末尾写入的；`v0.19` 处的第二次运行是 `1/44` 红，而带真实台账的 live 是 `0/44`——两个数字量的是不同的树。该凭据是运行时状态，不是提交文件。
+
+## Roadmap（0.2 — 进行中）
+
+1. **执行前约束** — 动手前提交意图，由内核先判。设计与沙盒原型已通，**未接入 live**。*（进行中）*
+2. **执行中监管** — 过程中持续检查，而不是只在结束时判一次。设计与沙盒原型已通，**未接入 live**。*（进行中）*
+3. **执行后审计** — 把操作、依据、结果、异常四者关联成一条可追溯链。设计与沙盒原型已通，**未接入 live**。*（进行中）*
+
+状态：**进行中**。设计与沙盒原型已通，live 尚未接入；本节不声称已交付。
+
+## 架构
+
+（图示沿用上方 mermaid 流程：`10_rac/zhunze`（15 章 · 59 条）→ engine check／`render.py` → 文本视图与控制台；engine → `kernel/bumao_core` → `ALL PASS` / `FAIL`。）
+
+## 检查什么
+
+![check --strict](20_view/screens/check-terminal.png)
+*全新克隆上的真实逐闸门输出；最后一行是结论与退出码。*
+
+| 组 | 闸门 | 证明了什么 |
+|---|---|---|
+| 规则源 | A1–A9、A11、A12 | 15 章 / 59 条可加载、ID 唯一、块连续、引用可解析、无空条款 |
+| 授权链 | A10、A13 | 审批台账与引用式授权；无台账 → 显式 **DENY**（FAIL），不是豁免 |
+| 视图与渲染 | B1、B2、B5、B8a、B8b、B8c | 视图零漂移、渲染幂等、章文件一致、版本由 meta 注入 |
+| 结构与布局 | B3、B4、B14 | 根文件平铺 ≤ 1、子目录命名、分层与 `meta.layers` 一致 |
+| 脱敏 | B6、B6b、B7、B23、B25 | 无机器路径、密钥、私有词或真实台账条目 |
+| 覆盖、锁、台账 | B9、B10、B11、B12 | 每条条款均已登记、无陈旧锁、治理与缺陷台账完整 |
+| 治理 | B15–B22、B24、B26、B29 | 核心改动前审批、留痕、来源、单一版本源、不许假绿 |
+| 可移植与界面 | B27、B28 | 树可移植；控制台只用既有视觉令牌 |
+
+合计：13 道源闸门 + 31 道视图／治理闸门 = **44 道检查**。
+
+每次运行以一个结论收尾，该结论挂到控制台里的证据锚点。本版不新增独立的票链视图。
+
+## 目录
+
+```text
+00_meta/      meta.json、gates_decl.json
+10_rac/       引擎入口、规则源（zhunze/）、渲染器
+20_view/      生成的视图 + Web 控制台 + screens/（README 用图）
+30_taizhang/  台账与基线
+40_renwu/     任务记录
+90_lishi/     历史
+kernel/       随包 bumao_core
+```
+
+`30_taizhang/core_baseline.json` 以仓库相对路径为键，所以全新克隆无需本地工作树即可校验。
+
+## 文档与许可
+
+- 变更记录：[`CHANGELOG.md`](CHANGELOG.md)
+- 参与贡献：[`CONTRIBUTING.md`](CONTRIBUTING.md) · DCO：[`DCO`](DCO)
+- 安全策略：[`SECURITY.md`](SECURITY.md)
+- 许可：Apache-2.0，见 [`LICENSE`](LICENSE)
+- 商标边界：[`TRADEMARK.md`](TRADEMARK.md)
 
 Copyright 2026 Bumao

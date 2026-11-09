@@ -79,3 +79,89 @@ i18n.js  favicon.png  xtgl_clean.py  design_tokens.json
 维护者：Bumao
 
 本稿替代 2026-11-03 的旧稿（旧稿已移入 `90_lishi`）。本稿只写仓库内可核对的实物事实；与实物不符的旧表述已删除。
+
+---
+
+## English
+
+# Bumao XTGL Community — Open Source Release Notice
+
+Verification date: 2026-11-07  Verification method: item-by-item comparison against the physical files in the repository
+
+## I. Basic information
+
+| Item | Value | Physical evidence |
+|---|---|---|
+| Name | Bumao XTGL Community | `name` in `00_meta/meta.json` |
+| Version | 0.10 | `CORE_VERSION` in `20_view/web/xtgl_core.py`; `core_version` in `20_view/web/core_manifest.json` |
+| Rule system | 13 chapters, 56 clauses (chapter 11 has 6 mandatory clauses, chapter 12 has 6 restrictive clauses) | see "Rule count convention" at the end of this section; counted clause by clause from the canonical z-series |
+| License | Apache License 2.0 | repository root `LICENSE` and `10_rac/LICENSE`; the two are byte-identical |
+| Copyright line | `Copyright 2026 Bumao` | `NOTICE` |
+| Trademark | for the boundaries of use of the name and the logo see `TRADEMARK.md` at the repository root | physical file |
+| Port | `127.0.0.1:8802` | `port` in `20_view/web/web_config.json` |
+| Runtime | Python 3.12.14; the functional code uses only the standard library | import lists of the entry script and the core files |
+| Front end | all of `20_view/web` is released with the repository, not stripped, not compressed, not obfuscated | physical directory |
+
+**Rule count convention (the single authority)**: run the following in the community root
+
+```
+python -c "import json,glob; fs=sorted(glob.glob('10_rac/zhunze/z*.json')); print(len(fs),'章',sum(len(json.load(open(f,encoding='utf-8-sig')).get('clauses',[])) for f in fs),'条')"
+```
+
+The chapter counts / clause counts in this file, in the README and in the release tutorial must all follow the output of this command; do not copy them by hand.
+
+## II. Core files and manifest convention
+
+There are 13 core files under `20_view/web`, registered in `core_manifest.json`:
+
+```
+xtgl_core.py  serve.py  index.html  setup.html  tutorial.html
+kernelsync.py  module_check.py  modules.json  snapshot.py
+i18n.js  favicon.png  xtgl_clean.py  design_tokens.json
+```
+
+Among them, `kernelsync.py` and `module_check.py` are local tools and are not released.
+
+`core_manifest.json` records the SHA256 of the above 13 files and is itself in the repository. Verification must be based on the physical files in the repository:
+
+- files listed in the manifest must all be in the repository, and no core file outside the manifest may appear in the repository;
+- after any core file is changed, the maintainer recomputes the manifest locally (local tool, not released);
+- the version number is recognized only from `CORE_VERSION` in `xtgl_core.py` and `core_version` in `core_manifest.json`; this file establishes no separate version convention.
+
+## III. Front end shipped with the package and the current state of SPDX marking
+
+The front-end source is under the same license and the same sanitization standard as the backend:
+
+- `index.html`, `setup.html`, `tutorial.html`, `i18n.js`, `design_tokens.json`, `favicon.png` are all released with the repository;
+- the 4 shipped Python core files (`xtgl_core.py`, `serve.py`, `snapshot.py`, `xtgl_clean.py`) all carry `SPDX-License-Identifier: Apache-2.0` in their file headers;
+- HTML and JS (`index.html`, `setup.html`, `tutorial.html`, `i18n.js`) currently **do not carry** SPDX comments; this item is still to be added;
+- `modules.json` and `design_tokens.json` are data files and do not carry SPDX comments;
+- the front end must not contain internal paths, internal role code names, private edition names or references;
+- build artifacts, caches, `node_modules`, `*.bak*` and `*.tmp` are never included in the package.
+
+## IV. Excluded from the package
+
+- `web_config.local.json` (local private configuration)
+- `__pycache__/`, `*.pyc`
+- `*.bak*`, `*.tmp`, `*~`
+- `node_modules/`
+- any private configuration or other-edition files not listed in this repository
+- local paths, machine names, user names, internal role code names, intranet addresses
+
+## V. Self-check before release
+
+1. Under `10_rac`, run `python BumaoXTGL_Community_v01.py check --strict`; the verdict must be `ALL PASS`;
+2. Under `20_view/web`, verify that the hashes of the 13 files match `core_manifest.json` (done by the maintainer locally with the verification tool; local tool, not released);
+3. Privacy rescan: zero hits for local paths, machine names, user names, internal role code names and intranet addresses;
+4. Cold start: after unpacking in a clean directory, start the service directly; the home page opens and the wizard can be walked through;
+5. Confirm that the package contains no `.bak` / `__pycache__` / `node_modules`.
+
+## VI. License obligations
+
+- distribution must retain the repository root `LICENSE` and `NOTICE`;
+- modified files must be marked as changed;
+- use of the name and the logo is governed by `TRADEMARK.md` at the repository root.
+
+Maintainer: Bumao
+
+This draft replaces the old draft of 2026-11-03 (the old draft has been moved into `90_lishi`). This draft states only verifiable physical facts inside the repository; old statements that did not match the physical files have been removed.

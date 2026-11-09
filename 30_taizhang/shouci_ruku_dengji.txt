@@ -23,10 +23,10 @@
    "file": "__init__.py",
    "path": "kernel/bumao_core/__init__.py",
    "created_at": "2026-11-09 00:00:00",
-   "first_sha256": "86b25ee5ad1bb1704c7d1588d626e15b4f5977a44c09ed83d61e37740fae394b",
-   "registered_at": "2026-11-09 00:00:00",
+   "first_sha256": "0cef08362e7d126c8b27204e11ddd998658bdf18be67e141e94ae94c90191533",
+   "registered_at": "2026-11-09 13:36:43",
    "handler": "执行端（AI 助理）",
-   "note": "随 core v0.2.0-beta.5 内核同步新增；首版 sha256 与入库时实物一致。"
+   "note": "随 core v0.2.4 更新后重登：首版 sha256 按本轮实物更新（原登记 2026-11-09 00:00:00 首版 86b25ee5…）；四要素齐，未改判据。"
   },
   {
    "file": "test_build_parser.py",
@@ -50,10 +50,10 @@
    "file": "test_a10_policy.py",
    "path": "kernel/bumao_core/test_a10_policy.py",
    "created_at": "2026-11-09 11:20:40",
-   "first_sha256": "b8672410d34515aa98a409af033a8e3fc2c0619200785eb383caf7ff34c463b7",
-   "registered_at": "2026-11-09 11:20:40",
+   "first_sha256": "7f0b7ba19c114d0bd1333ddfeeee607944709126dcc2b03e66dc66733c8a6701",
+   "registered_at": "2026-11-09 13:36:43",
    "handler": "执行端（AI 助理）",
-   "note": "随 core v0.2.2（tag 06d78fb）内核同步新增；首版 sha256 取入库时实物，与当前件一致。"
+   "note": "随 core v0.2.4 更新后重登：首版 sha256 按本轮实物更新（原登记 2026-11-09 11:20:40 首版 b8672410…）；四要素齐，未改判据。"
   },
   {
    "file": "test_gate_registry.py",
@@ -171,6 +171,33 @@
    "registered_at": "2026-11-09 11:31:27",
    "handler": "执行端（AI 助理）",
    "note": "随 core 0.2.2 内核同步新增；首版 sha256 取入库时实物，与当前件一致。"
+  },
+  {
+   "file": "test_jiancha_ledger.py",
+   "path": "kernel/bumao_core/test_jiancha_ledger.py",
+   "created_at": "2026-11-09 12:08:43",
+   "first_sha256": "840d2e3db27ad8603e0a7ed9d1cec1d1fddf9eade7542dcf9bbd9eaeff61626c",
+   "registered_at": "2026-11-09 13:36:43",
+   "handler": "执行端（AI 助理）",
+   "note": "随 core v0.2.3／v0.2.4 内核同步新增；首版 sha256 取入库时实物，与当前件一致。"
+  },
+  {
+   "file": "test_jiancha_recovery.py",
+   "path": "kernel/bumao_core/test_jiancha_recovery.py",
+   "created_at": "2026-11-09 12:09:28",
+   "first_sha256": "91b6a04570a87f1ca8e92efb2cdb25cb08a992bb28ce5516f327a36c92df5bea",
+   "registered_at": "2026-11-09 13:36:43",
+   "handler": "执行端（AI 助理）",
+   "note": "随 core v0.2.3／v0.2.4 内核同步新增；首版 sha256 取入库时实物，与当前件一致。"
+  },
+  {
+   "file": "test_jiancha_scope.py",
+   "path": "kernel/bumao_core/test_jiancha_scope.py",
+   "created_at": "2026-11-09 12:08:22",
+   "first_sha256": "6ae3dc85bec221a92d38c13a001f048e12ceea508347b6c6804af54162638ebb",
+   "registered_at": "2026-11-09 13:36:43",
+   "handler": "执行端（AI 助理）",
+   "note": "随 core v0.2.3／v0.2.4 内核同步新增；首版 sha256 取入库时实物，与当前件一致。"
   }
  ]
 }

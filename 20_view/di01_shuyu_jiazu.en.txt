@@ -1,0 +1,23 @@
+本译文仅供参考，判定以中文原文为准，不参与任何闸门判据。
+
+1. Terminology, Layering, and Governance Architecture
+1.0 Glossary (the unified standard of this product):
+(1) Role: a set of behavioral contracts that can be triggered by routing, describing "what to do and what not to do under what conditions". A role is not a character setting and must not contain a fictional biography.
+(2) Contract: the complete definition of a role, which must contain six items — identifier, trigger conditions, responsibilities, prohibitions, tone parameters, and memory visibility scope.
+(3) Routing: the mechanism that dispatches requests to roles according to the task's impact level; the basis of the judgment is the action and the scope of impact, not the tone.
+(4) Circuit break: the mechanism that forcibly stops and requires human authorization when an irreversible boundary is reached.
+(5) Canonical body / view / ledger: the canonical body is the only modifiable data source; a view is a read-only product rendered from the canonical body; the ledger is the trace of facts and processes. The three must not substitute for one another.
+(6) Memory visibility scope: the range of memory layers that a role is permitted to read, used to isolate information crossing between different roles.
+1.1 Six-layer engineering-domain structure:
+(1) 00_meta: meta-information, access protocol, single point of version.
+(2) 10_rac: the executor and the sole canonical body zhunze\.
+(3) 20_view: the sole view area, written exclusively by render.py.
+(4) 30_taizhang: change and governance ledger.
+(5) 90_lishi: history archive, read-only.
+(6) 40_renwu: task execution area, the landing area for deliverables and process drafts, separated from the governance layer.
+(7) The directory names of the above six layers must match ^\d{2}_[a-z]+$, machine-checked by gate B4; the directory list must be aligned item by item with the layers field of 00_meta\meta.json, machine-checked by gate B14.
+1.2 Relationship of the three-layer assets:
+(1) Only the canonical body may be modified: any change to a governance rule must land in zhunze\z*.json; you must not modify the view first and then back-fill it.
+(2) Views can be rebuilt at any time: corrupting a view does not affect the canonical body; re-running the render restores it byte for byte.
+(3) The ledger does not copy clause text: the ledger records only facts, pointers, and process traces; the sole authority for the text is always the canonical body.
+(4) One-way flow: canonical body → view; the ledger records the occurrence of this flow but does not participate in generation.

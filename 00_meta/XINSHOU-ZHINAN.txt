@@ -76,3 +76,86 @@ Bumao XTGL Community 把这件事故化成两层：
 Apache-2.0（见 10_rac\LICENSE）。改完想回流，请在变更台账里写清性质与证据指针。
 ============================================================
 【本文件结束】
+
+---
+
+## English
+
+XINSHOU-ZHINAN.txt · Bumao XTGL Community Beginner's Guide (Get Started in Ten Minutes)
+============================================================
+For the person who receives this product for the first time. Do it in order; do not skip steps.
+After reading this, you should be able to: run the self-check, change one clause, and understand what the gate is blocking.
+
+1. What problem this thing solves
+------------------------------------------------------------
+An AI assistant "not obeying" is usually not because the model is stupid, but because nobody wrote down "how it should work" clearly and nobody checks it.
+Bumao XTGL Community turns this into two layers:
+  · Clauses (zhunze\z*.json) — write the requirements as sentences that can each be judged;
+  · Gate (BumaoXTGL_Community_v01.py) — use code to check whether the clauses are obeyed, not relying on self-discipline.
+In one sentence: it does not care what the AI says; it only cares whether what the AI produces conforms to the rules.
+
+2. Get it running in three minutes
+------------------------------------------------------------
+Step 1  Check the version:   type 00_meta\meta.json
+        In it, version is the single source of the version; wherever else it is written, that one prevails.
+
+Step 2  Introduce itself:    cd 10_rac
+                            python BumaoXTGL_Community_v01.py whoami
+        You should see the version, the clause count, 0 view drifts, and the connection status.
+
+Step 3  Pass the gate:       python BumaoXTGL_Community_v01.py check --strict
+        Only with ALL PASS are you allowed to change things. If it FAILs, fix the FAIL first; do not "start working anyway".
+
+3. How a clause change takes effect (four steps; missing one equals no change)
+------------------------------------------------------------
+① Change the canonical source    edit 10_rac\zhunze\z*.json (change only here)
+② Render                        python render.py write
+③ Pass the gate                 python BumaoXTGL_Community_v01.py check --strict
+④ Record it                      append one entry to 30_taizhang\biangeng_zhang.txt
+Why you cannot directly edit the .txt files under 20_view: they are read-only artifacts rendered from the canonical source,
+a manual edit is overwritten in the next round, and the gate reports view drift (B1/B2).
+
+4. The three most common mistakes
+------------------------------------------------------------
+① Treating "it is in the file" as "it is visible in the interface"
+   UI changes require a screenshot on the real machine; writing it in a configuration file does not mean it takes effect.
+② Manually editing rendered artifacts
+   20_view is written only by render.py. To change content, change the canonical source; to change the view, re-render.
+③ Treating "it should run" as "it has been verified"
+   Acceptance looks at the actual output, not inference. If it does not run, honestly record "unverified".
+
+5. The four extra items added after 0.8 (all about "how work is considered done")
+------------------------------------------------------------
+4.3  Five levels of completeness: S0 initiated 10% / S1 in progress 35% / S2 runnable 65% / S3 accepted 90% / S4 archived 100%.
+     The percentage is converted only from the level and must not be filled in by hand; downgrading is allowed and mandatory.
+4.4  Two healths judged separately: host health (A, the machine itself) and rule-system health (B, this engine) each get their own completion criterion;
+     only when both are complete is it called a "closed loop". Combining them into one total score is forbidden.
+5.3  Status can be manually overridden: the system verdict is only a baseline; what a person ticks themselves is written to an override file with by/at;
+     but an override must not bypass the gate — ticking "done" does not make the self-check PASS.
+8.3  Daily work log: one line per entry with six columns (date | time | executor | task | what was done | detailed pointer);
+     the detailed pointer must really exist; rolling retention only migrates, never deletes.
+
+6. The directories in one sentence
+------------------------------------------------------------
+00_meta       meta information, single version point, check-item registry
+10_rac        executor + the single canonical source zhunze\ (change only here)
+20_view       the view written exclusively by render.py; the full text of the current version is archived here too
+30_taizhang   change ledger + defect ledger + project records (append only)
+40_renwu      task execution area
+90_lishi      historical archive, read-only
+
+7. Want to use it on your own project
+------------------------------------------------------------
+1) Just copy the whole directory; the product contains no absolute paths and no personal information (gates B6/B6b check this).
+2) First change name / short / version in 00_meta\meta.json, then change the role and routing clauses in zhunze.
+3) For every main clause you add, you must also register covers in the map of 00_meta\jiancha_map.json,
+   otherwise gate B9 "check-item registration covers all clauses" fails directly — this is intentional,
+   the purpose is to prevent clauses that are "written but not checked" from slipping in.
+4) If your check can only be done manually, write "check": "人工" in the map and give an evidence pointer;
+   dangling entries (manual declared but no evidence) are treated as unregistered.
+
+8. License and feedback
+------------------------------------------------------------
+Apache-2.0 (see 10_rac\LICENSE). If you want to contribute back after changes, write clearly the nature and the evidence pointer in the change ledger.
+============================================================
+【End of this file】
