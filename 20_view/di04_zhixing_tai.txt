@@ -1,4 +1,4 @@
-来源：Bumao XTGL Community 0.34 第4章
+来源：Bumao XTGL Community 0.35 第4章
 
 4. 执行态契约
 4.0 只认事实：

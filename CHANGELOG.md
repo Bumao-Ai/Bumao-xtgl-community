@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.35 — 2026-11-09
+
+本版只改对外自述与版本号，不改判据、不改核心件集合，也不动 `kernel/`。
+
+- **加号依据：0.34→0.35（+0.01 同档正常晋升）** — 依据 `HX\personal\20_view\di00_qidong_zongze.txt` L55—60 的 0.6.8 规则；随包内核仍 core `v0.2.6`，不跨档再加号。
+- **0.2 三项状态改为「活区三端已复跑」** — README 双语 Roadmap 与状态行写明：①执行前约束、②执行中监管、③执行后审计均在 2026-11-09 于维护者活区三端复跑；同时写明**随包不附监督执行器**，本仓 `BUMO_JIANCHA_MODE` 仍为 `off`，解包后的行为与 0.34 逐字等价。
+- **订正** — README 英文侧快速开始的克隆 tag 停在 `v0.19`，改为本版 `v0.23`；版本徽标行、提交数／检查项／发布行按实物同步（15 个 tag、8 条 2026-11-09 授权条目）。
+- **维护暂停** — 每版照旧写「维护暂停，稳定可用」；本版补一句维护者口径：哪一版才算最终暂停版尚未确定，因此仍按不定时更新发布。
+- **未变** — 规则 59 条／15 章、检查项 44；A10／A13／B16／B19／B22 判据不变；`check --strict` 仍 `ALL PASS`（A段 13 项 + B段 31 项）。
+
+**English**
+- Documentation and version strings only; no verdict, no core-file-set change, `kernel/` untouched.
+- The roadmap now states that all three 0.2 items were replayed on the maintainer's three live editions on 2026-11-09, and that this repository still ships no supervisor (`BUMO_JIANCHA_MODE` stays `off`, unpacked behaviour identical to 0.34).
+- Fixed the English quick-start clone tag (was `v0.19`, now `v0.23`); synced version/count lines (15 tags, 8 authorization entries dated 2026-11-09).
+- The maintenance-pause line is kept in every release, now noting that the final paused release is undecided and releases continue at irregular intervals.
+- Unchanged: 59 rules / 15 chapters, 44 checks, and the A10 / A13 / B16 / B19 / B22 verdicts.
+
 ## 0.34 — 2026-11-09
 
 本版只修「发布件自述与实物不一致」，不改判定、不改核心件集合。

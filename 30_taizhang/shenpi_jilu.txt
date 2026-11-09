@@ -57,3 +57,12 @@ README.md、README-HX.txt、20_view/（render 重渲染）、90_lishi/gongkai_we
 分组目录名修正前的旧值，按磁盘 12 件逐件重算后改为实物哈希（generated 改 2026-11-09，core_version 仍 0.10）；
 README 英文侧应用内版本与随附条目数按实物校正。不改判据、不改核心件集合。
 范围：20_view/web/core_manifest.json、00_meta/meta.json、README.md、README-HX.txt、CHANGELOG.md、20_view/（render 重渲染）。
+
+【第 8 号】 2026-11-09
+用户批准原文：「（原话已脱敏移除）」
+说明：本版只改对外自述与版本号：README 双语 Roadmap 的 0.2 三项状态改为「2026-11-09 活区三端复跑」，
+并写明随包不附监督执行器、本仓 BUMO_JIANCHA_MODE 保持 off；订正英文侧克隆 tag（v0.19→v0.23）；
+版本／计数行按实物同步（15 个 tag、8 条 2026-11-09 条目）；维护暂停段照旧，并注明最终暂停版未定、不定时更新。
+不改判据、不改核心件集合、不动 kernel/。
+范围：README.md、README-HX.txt、00_meta/meta.json、CHANGELOG.md、20_view/（render 重渲染）、30_taizhang/shenpi_jilu.txt。
+授权来源：本日已登记之授权词（本册第 1 号）；本条为当日发版安排的执行记录，原话按脱敏口径不录。
